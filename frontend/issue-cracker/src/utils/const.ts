@@ -1,16 +1,16 @@
 // Logo
 export const LOGO_TITLE = 'Issue Cracker..🍪';
-
+const DEPLOY = 'http://issue-tracker.pyro-squad.com';
+const LOCAL = 'http://localhost:8080';
 //url
 export const URL = {
   // AUTH: 'http://localhost:8080/api/web/auth',
-  AUTH: 'http://issue-tracker.pyro-squad.com/api/web/auth',
+  AUTH: `${LOCAL}/api/web/auth`,
   LOGIN:
     'https://github.com/login/oauth/authorize?client_id=2a42dd1b1e2aad1238e9&scope=read:user,user:email&redirect_uri=http://localhost:3000/authentication',
-  FORM: 'http://issue-tracker.pyro-squad.com/api/web/issues/form',
-  ISSUES: 'http://issue-tracker.pyro-squad.com/api/web/issues',
-
-  MILESTONE: 'http://issue-tracker.pyro-squad.com/api/web/milestones',
+  FORM: `${LOCAL}/api/web/issues/form`,
+  ISSUES: `${LOCAL}/api/web/issues`,
+  MILESTONE: `${LOCAL}/api/web/milestones`,
 };
 //path
 export const PATH = {

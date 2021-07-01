@@ -8,7 +8,7 @@ import { IssueDataProps } from '../../../utils/types/IssueDataType';
 
 const IssueDetail = (): JSX.Element => {
   const { state } = useLocation<IssueDataProps>();
-
+  console.log(state);
   return (
     <>
       <IssueDetailStyle>
