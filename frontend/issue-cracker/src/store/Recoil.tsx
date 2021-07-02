@@ -100,16 +100,15 @@ export const issueAddData = selector({
   get: ({ get }) => {
     const inputData = get(issueAddState);
     const dropData = get(dropCheckState);
-
     const assigneesIdList = dropData.assignee.map((ele) => ele.id);
     const labelsIdList = dropData.label.map((ele) => ele.id);
-    const milestonesIdList = dropData.milestone?.map((ele) => ele.id);
+    const milestonesIdList = dropData.milestone?.map((ele) => ele?.id);
     return {
       title: inputData.title,
       comment: inputData.comment,
-      assigneesId: assigneesIdList,
-      labelsId: labelsIdList,
-      milestoneId: milestonesIdList,
+      assigneesId: dropData.assignee,
+      labelsId: dropData.label,
+      milestoneId: milestonesIdList[0],
     };
   },
 });
