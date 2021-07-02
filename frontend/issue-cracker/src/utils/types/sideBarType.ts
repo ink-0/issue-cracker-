@@ -13,10 +13,17 @@ export interface LabelProps {
   textColorHexa: string;
 }
 export interface MilestoneProps {
-  id: number;
-  title: string;
+  id?: number;
+  title?: string;
+  description?: string;
+  due_date?: string;
+}
+
+export interface DMilestoneProps {
   description: string;
-  due_date: string;
+  dueDate: string;
+  status: string;
+  title: string;
 }
 
 export interface AssigneeDataProps {
@@ -30,6 +37,12 @@ export interface LabelDataProps {
 }
 
 export interface MilestoneDataProps {
-  checkedMilestone?: MilestoneProps[];
-  milestoneData?: MilestoneProps[];
+  checkedMilestone?: MilestoneProps[] | null;
+  milestoneData?: MilestoneProps[] | null;
+}
+
+export interface dropCheckStateProps {
+  assignee: AssigneeProps[];
+  label: LabelProps[];
+  milestone: MilestoneProps[] | DMilestoneProps[] | null;
 }

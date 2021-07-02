@@ -5,7 +5,10 @@ import CheckOffIcon from '../../styles/svg/CheckOffIcon';
 import { Text as S } from '../../styles/CommonStyles';
 import { useRecoilState } from 'recoil';
 import { dropCheckState } from '../../../store/Recoil';
-import { MilestoneProps } from '../../../utils/types/sideBarType';
+import {
+  DMilestoneProps,
+  MilestoneProps,
+} from '../../../utils/types/sideBarType';
 
 const SideBarDropMilestone = ({
   data,
@@ -14,22 +17,28 @@ const SideBarDropMilestone = ({
 }): JSX.Element => {
   const [isCheck, setIsCheck] = useState(false);
   const [dropCheck, setDropCheck] = useRecoilState(dropCheckState);
-
+  console.log('사이드바마일스톤안에', dropCheck);
   const handleClickMilestone = () => {
     setIsCheck(!isCheck);
 
     if (!isCheck) {
-      setDropCheck({
-        ...dropCheck,
-        milestone: [...dropCheck.milestone, data],
-      });
+      {
+        dropCheck.milestone &&
+          setDropCheck({
+            ...dropCheck,
+            milestone: [...dropCheck.milestone, data],
+          });
+      }
     } else {
-      setDropCheck({
-        ...dropCheck,
-        milestone: dropCheck.milestone.filter(
-          (el: MilestoneProps) => el.id !== data.id
-        ),
-      });
+      {
+        dropCheck.milestone &&
+          setDropCheck({
+            ...dropCheck,
+            milestone: dropCheck.milestone.filter(
+              (el: MilestoneProps | DMilestoneProps) => el.title !== data.title
+            ),
+          });
+      }
     }
   };
 
@@ -37,7 +46,7 @@ const SideBarDropMilestone = ({
     const milestoneList = dropCheck.milestone?.map(
       (el: MilestoneProps) => el.id
     );
-    if (milestoneList.includes(data.id)) {
+    if (milestoneList?.includes(data.id)) {
       setIsCheck(true);
     }
   }, []);

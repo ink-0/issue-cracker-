@@ -1,6 +1,7 @@
 import { atom, selector } from 'recoil';
 import {
   AssigneeProps,
+  dropCheckStateProps,
   LabelProps,
   MilestoneProps,
 } from '../utils/types/sideBarType';
@@ -49,12 +50,12 @@ export const dropMilestoneState = atom({
   default: false,
 });
 
-export const dropCheckState = atom({
+export const dropCheckState = atom<dropCheckStateProps>({
   key: 'dropCheckState',
   default: {
-    assignee: [] as AssigneeProps[],
-    label: [] as LabelProps[],
-    milestone: [] as MilestoneProps[],
+    assignee: [],
+    label: [],
+    milestone: [],
   },
 });
 
@@ -102,7 +103,7 @@ export const issueAddData = selector({
 
     const assigneesIdList = dropData.assignee.map((ele) => ele.id);
     const labelsIdList = dropData.label.map((ele) => ele.id);
-    const milestonesIdList = dropData.milestone.map((ele) => ele.id);
+    const milestonesIdList = dropData.milestone?.map((ele) => ele.id);
     return {
       title: inputData.title,
       comment: inputData.comment,

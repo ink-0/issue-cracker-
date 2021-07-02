@@ -2,15 +2,16 @@
 export const LOGO_TITLE = 'Issue Cracker..🍪';
 const DEPLOY = 'http://issue-tracker.pyro-squad.com';
 const LOCAL = 'http://localhost:8080';
+const BASE_URL = LOCAL;
 //url
 export const URL = {
   // AUTH: 'http://localhost:8080/api/web/auth',
-  AUTH: `${LOCAL}/api/web/auth`,
+  AUTH: `${BASE_URL}/api/web/auth`,
   LOGIN:
     'https://github.com/login/oauth/authorize?client_id=2a42dd1b1e2aad1238e9&scope=read:user,user:email&redirect_uri=http://localhost:3000/authentication',
-  FORM: `${LOCAL}/api/web/issues/form`,
-  ISSUES: `${LOCAL}/api/web/issues`,
-  MILESTONE: `${LOCAL}/api/web/milestones`,
+  FORM: `${BASE_URL}/api/web/issues/form`,
+  ISSUES: `${BASE_URL}/api/web/issues`,
+  MILESTONE: `${BASE_URL}/api/web/milestones`,
 };
 //path
 export const PATH = {

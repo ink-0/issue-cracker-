@@ -22,6 +22,12 @@ import LabelContent from './content/LabelContent';
 import MilestoneContent from './content/MilestoneContent';
 import { issueForm } from '../../../store/Recoil';
 import { IssueDataProps } from '../../../utils/types/IssueDataType';
+import {
+  AssigneeProps,
+  LabelProps,
+  MilestoneProps,
+  DMilestoneProps,
+} from '../../../utils/types/sideBarType';
 
 interface TokenProps {
   name: string;
@@ -42,6 +48,20 @@ const SideBar = ({ state }: { state?: IssueDataProps }): JSX.Element => {
   const dropMilestoneElement = useRef<HTMLDivElement>(null);
 
   const issueFormData = useRecoilValue(issueForm);
+
+  const [userData, labelData, milestoneData] = [
+    issueFormData.assignees,
+    issueFormData.labels,
+    issueFormData.milestones,
+  ];
+
+  const [checkedData, setCheckedData] = useRecoilState(dropCheckState);
+
+  const [checkedAssignee, checkedLabel, checkedMilestone] = [
+    checkedData.assignee,
+    checkedData.label,
+    checkedData.milestone,
+  ];
 
   const dropAssigneeHandler = () => {
     setIsDropAssignee(!isDropAssignee);
@@ -81,24 +101,32 @@ const SideBar = ({ state }: { state?: IssueDataProps }): JSX.Element => {
       setIsDropMilestone(false);
     };
     document.addEventListener('mousedown', dropCloseHandler);
+    // milestoneInfo: null
+    // console.log('ㅇ림어나리', state);
+    //{title : 'dadsfadsf' , statue: 'OPEN'}
+    if (state) {
+      console.log(state);
+      let prevChekedData;
+      if (state.milestoneInfo) {
+        prevChekedData = {
+          assignee: state.assignees as AssigneeProps[],
+          label: state.labels as LabelProps[],
+          milestone: [state.milestoneInfo] as DMilestoneProps[],
+        };
+      } else {
+        prevChekedData = {
+          assignee: state.assignees as AssigneeProps[],
+          label: state.labels as LabelProps[],
+          milestone: null,
+        };
+      }
+      console.log('체크체크ㅔ츠켗', prevChekedData);
+      setCheckedData(prevChekedData);
+    }
     return () => {
       document.removeEventListener('mousedown', dropCloseHandler);
     };
-  }, []);
-
-  const [userData, labelData, milestoneData] = [
-    issueFormData.assignees,
-    issueFormData.labels,
-    issueFormData.milestones,
-  ];
-
-  const checkedData = useRecoilValue(dropCheckState);
-
-  const [checkedAssignee, checkedLabel, checkedMilestone] = [
-    checkedData.assignee,
-    checkedData.label,
-    checkedData.milestone,
-  ];
+  }, [state]);
 
   return (
     <SideBarStyle>
