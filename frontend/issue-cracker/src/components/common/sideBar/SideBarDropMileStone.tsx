@@ -17,7 +17,7 @@ const SideBarDropMilestone = ({
 }): JSX.Element => {
   const [isCheck, setIsCheck] = useState(false);
   const [dropCheck, setDropCheck] = useRecoilState(dropCheckState);
-  console.log('사이드바마일스톤안에', dropCheck);
+
   const handleClickMilestone = () => {
     setIsCheck(!isCheck);
 
@@ -26,7 +26,7 @@ const SideBarDropMilestone = ({
         dropCheck.milestone &&
           setDropCheck({
             ...dropCheck,
-            milestone: [...dropCheck.milestone, data],
+            milestone: [data],
           });
       }
     } else {
@@ -35,7 +35,7 @@ const SideBarDropMilestone = ({
           setDropCheck({
             ...dropCheck,
             milestone: dropCheck.milestone.filter(
-              (el: MilestoneProps | DMilestoneProps) => el.title !== data.title
+              (el: MilestoneProps) => el.id !== data.id
             ),
           });
       }

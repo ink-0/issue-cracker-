@@ -21,20 +21,13 @@ import AssigneeContent from './content/AssigneeContent';
 import LabelContent from './content/LabelContent';
 import MilestoneContent from './content/MilestoneContent';
 import { issueForm } from '../../../store/Recoil';
-import { IssueDataProps } from '../../../utils/types/IssueDataType';
-import {
-  AssigneeProps,
-  LabelProps,
-  MilestoneProps,
-  DMilestoneProps,
-} from '../../../utils/types/sideBarType';
 
 interface TokenProps {
   name: string;
   profileImageUrl: string;
 }
 
-const SideBar = ({ state }: { state?: IssueDataProps }): JSX.Element => {
+const SideBar = (): JSX.Element => {
   const token = localStorage.getItem(TOKEN);
   const decoded = token && jwtDecode<TokenProps>(token);
   const setDecodedToken = useSetRecoilState(decodedToken);
@@ -55,7 +48,7 @@ const SideBar = ({ state }: { state?: IssueDataProps }): JSX.Element => {
     issueFormData.milestones,
   ];
 
-  const [checkedData, setCheckedData] = useRecoilState(dropCheckState);
+  const checkedData = useRecoilValue(dropCheckState);
 
   const [checkedAssignee, checkedLabel, checkedMilestone] = [
     checkedData.assignee,
@@ -100,33 +93,13 @@ const SideBar = ({ state }: { state?: IssueDataProps }): JSX.Element => {
       setIsDropLabel(false);
       setIsDropMilestone(false);
     };
+
     document.addEventListener('mousedown', dropCloseHandler);
-    // milestoneInfo: null
-    // console.log('ㅇ림어나리', state);
-    //{title : 'dadsfadsf' , statue: 'OPEN'}
-    if (state) {
-      console.log(state);
-      let prevChekedData;
-      if (state.milestoneInfo) {
-        prevChekedData = {
-          assignee: state.assignees as AssigneeProps[],
-          label: state.labels as LabelProps[],
-          milestone: [state.milestoneInfo] as DMilestoneProps[],
-        };
-      } else {
-        prevChekedData = {
-          assignee: state.assignees as AssigneeProps[],
-          label: state.labels as LabelProps[],
-          milestone: null,
-        };
-      }
-      console.log('체크체크ㅔ츠켗', prevChekedData);
-      setCheckedData(prevChekedData);
-    }
+
     return () => {
       document.removeEventListener('mousedown', dropCloseHandler);
     };
-  }, [state]);
+  }, []);
 
   return (
     <SideBarStyle>

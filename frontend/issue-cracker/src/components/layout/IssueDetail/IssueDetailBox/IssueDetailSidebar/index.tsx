@@ -11,7 +11,7 @@ const IssueDetailSidebar = ({
   return (
     <IssueDetailSidebarStyle>
       <React.Suspense fallback={null}>
-        <SideBar {...{ state }} />
+        <SideBar />
       </React.Suspense>
     </IssueDetailSidebarStyle>
   );

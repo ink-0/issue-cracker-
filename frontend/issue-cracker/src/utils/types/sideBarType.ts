@@ -1,8 +1,8 @@
 export interface AssigneeProps {
-  id: string | null;
-  name: string | null;
+  id: string;
+  name: string;
   profileImageUrl: string;
-  emails: string[] | null;
+  emails: string[];
 }
 
 export interface LabelProps {
@@ -37,12 +37,12 @@ export interface LabelDataProps {
 }
 
 export interface MilestoneDataProps {
-  checkedMilestone?: MilestoneProps[] | null;
-  milestoneData?: MilestoneProps[] | null;
+  checkedMilestone?: MilestoneProps[];
+  milestoneData?: MilestoneProps[];
 }
 
 export interface dropCheckStateProps {
   assignee: AssigneeProps[];
   label: LabelProps[];
-  milestone: MilestoneProps[] | DMilestoneProps[] | null;
+  milestone: MilestoneProps[];
 }
