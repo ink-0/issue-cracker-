@@ -2,16 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import IssueDetailInputContent from './IssueDetailInputContent';
 import IssueDetailDisplay from './IssueDetailDisplay';
-import { IssueDataProps } from '../../../../../utils/types/IssueDataType';
 
-const IssueDetailInput = ({
-  state,
-}: {
-  state: IssueDataProps;
-}): JSX.Element => {
+const IssueDetailInput = (): JSX.Element => {
   return (
     <IssueDetailInputStyle>
       <IssueDetailDisplay />
+
       <IssueDetailInputContent />
     </IssueDetailInputStyle>
   );

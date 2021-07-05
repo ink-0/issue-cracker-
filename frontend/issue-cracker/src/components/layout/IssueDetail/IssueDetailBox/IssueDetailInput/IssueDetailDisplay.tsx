@@ -7,27 +7,39 @@ import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
+import IssueDetailComment from './IssueDetailComment';
 import { TYPE as T } from '../../../../../utils/const';
 import { useRecoilValue } from 'recoil';
-import { decodedToken } from '../../../../../store/Recoil';
+import { decodedToken, issueDetailState } from '../../../../../store/Recoil';
+import { IssueDataProps } from '../../../../../utils/types/IssueDataType';
+import { getElapsedTime } from '../../../../../utils/util';
 
 const IssueDetailDisplay = (): JSX.Element => {
-  const decoded = decodedToken && useRecoilValue(decodedToken);
-  const profileURL = decoded && decoded.profileImageUrl;
+  const issueDetail = useRecoilValue<IssueDataProps>(issueDetailState);
+  const { createdDateTime, writer, content } = issueDetail;
+
   return (
     <IssueDisplayStyle>
       <DisplayWrapper>
         <ProfileImgStyle>
-          {profileURL && <P.ProfileImgLarge src={profileURL} />}
+          <P.ProfileImgLarge src={writer.avatarUrl} />
         </ProfileImgStyle>
         <DisplayBox>
           <S.IssueTableHeader>
             <LeftBox>
               <WriterBox>
-                <TextGroup type={T.SMALL} content={'Raccoon'} color="#14142B" />
+                <TextGroup
+                  type={T.SMALL}
+                  content={writer.name}
+                  color="#14142B"
+                />
               </WriterBox>
               <DateBox>
-                <TextGroup type={T.SMALL} content={'20분 전'} color="#6E7191" />
+                <TextGroup
+                  type={T.SMALL}
+                  content={getElapsedTime(createdDateTime)}
+                  color="#6E7191"
+                />
               </DateBox>
             </LeftBox>
             <RightBox>
@@ -54,36 +66,12 @@ const IssueDetailDisplay = (): JSX.Element => {
           </S.IssueTableHeader>
           <S.IssueCell>
             <ContentBox>
-              <TextGroup type={T.SMALL} content={'내용 출력'} color="#6e7191" />
+              <TextGroup type={T.SMALL} content={content} color="#6e7191" />
             </ContentBox>
           </S.IssueCell>
         </DisplayBox>
       </DisplayWrapper>
-
-      <DisplayWrapper>
-        <ProfileImgStyle>
-          {profileURL && <P.ProfileImgLarge src={profileURL} />}
-        </ProfileImgStyle>
-        <DisplayBox>
-          <S.IssueTableHeader>
-            <LeftBox>
-              <WriterBox>
-                <TextGroup type={T.SMALL} content={'ink-O'} color="#14142B" />
-              </WriterBox>
-              <DateBox>
-                <TextGroup type={T.SMALL} content={'10분 전'} color="#6E7191" />
-              </DateBox>
-            </LeftBox>
-            <RightBox>
-              <EmoticonBox>
-                <InsertEmoticonIcon />
-                <EmojiEmotionsIcon />
-              </EmoticonBox>
-            </RightBox>
-          </S.IssueTableHeader>
-          <S.IssueCell></S.IssueCell>
-        </DisplayBox>
-      </DisplayWrapper>
+      <IssueDetailComment />
     </IssueDisplayStyle>
   );
 };

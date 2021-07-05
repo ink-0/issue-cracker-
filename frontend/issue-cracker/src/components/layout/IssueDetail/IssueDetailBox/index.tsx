@@ -4,11 +4,11 @@ import IssueDetailInput from './IssueDetailInput';
 import { IssueDataProps } from '../../../../utils/types/IssueDataType';
 import IssueDetailSidebar from '../IssueDetailBox/IssueDetailSidebar';
 
-const IssueDetailBox = ({ state }: { state: IssueDataProps }): JSX.Element => {
+const IssueDetailBox = (): JSX.Element => {
   return (
     <IssueDetailBoxStyle>
-      <IssueDetailInput {...{ state }} />
-      <IssueDetailSidebar {...{ state }} />
+      <IssueDetailInput />
+      <IssueDetailSidebar />
     </IssueDetailBoxStyle>
   );
 };

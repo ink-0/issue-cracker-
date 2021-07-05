@@ -40,12 +40,12 @@ const SideBar = (): JSX.Element => {
   const dropLabelElement = useRef<HTMLDivElement>(null);
   const dropMilestoneElement = useRef<HTMLDivElement>(null);
 
-  const issueForm = useRecoilValue(issueFormState);
+  const issueFormData = useRecoilValue(issueFormState);
 
   const [userData, labelData, milestoneData] = [
-    issueForm.assignees,
-    issueForm.labels,
-    issueForm.milestones,
+    issueFormData.assignees,
+    issueFormData.labels,
+    issueFormData.milestones,
   ];
 
   const checkedData = useRecoilValue(dropCheckState);

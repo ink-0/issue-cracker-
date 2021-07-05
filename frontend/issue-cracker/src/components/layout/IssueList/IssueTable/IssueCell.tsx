@@ -40,7 +40,6 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
           writer,
         } = issue;
         const elapsedTime = getElapsedTime(createdDateTime);
-
         return (
           <S.IssueCell key={uuidv4()}>
             <>
@@ -89,7 +88,7 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
                 {assignees.map((assignee) => {
                   return (
                     <P.ProfileImgSmall
-                      src={assignee.profileImageUrl}
+                      src={assignee.avatarUrl}
                       key={uuidv4()}
                     />
                   );
