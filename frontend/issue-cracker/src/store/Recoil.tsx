@@ -8,12 +8,6 @@ import {
 import { URL as U } from '../utils/const';
 
 // Login
-
-export const addState = atom({
-  key: 'addState',
-  default: false,
-});
-
 export const token = atom({
   key: 'token',
   default: null,
@@ -28,8 +22,8 @@ export const decodedToken = atom({
 });
 
 //SideBar
-export const issueForm = selector({
-  key: 'issueForm',
+export const issueFormState = selector({
+  key: 'issueFormState',
   get: async () => {
     const response = await fetch(U.FORM);
     const data = await response.json();
@@ -61,8 +55,8 @@ export const dropCheckState = atom<dropCheckStateProps>({
 
 //IssueList
 
-export const issueListData = selector({
-  key: 'issueListData',
+export const issueListState = selector({
+  key: 'issueListState',
   get: async () => {
     const response = await fetch(U.ISSUES);
     const data = await response.json();
@@ -72,8 +66,13 @@ export const issueListData = selector({
 
 // MilestoneList
 
-export const milestoneListData = selector({
-  key: 'milestoneListData',
+export const milestoneAddState = atom({
+  key: 'milestoneAddState',
+  default: false,
+});
+
+export const milestoneListState = selector({
+  key: 'milestoneListState',
   get: async () => {
     const response = await fetch(U.MILESTONE);
     const data = await response.json();
@@ -81,24 +80,31 @@ export const milestoneListData = selector({
   },
 });
 
+// LabelList
+
+export const labelAddState = atom({
+  key: 'labelAddState',
+  default: false,
+});
+
 // //IssueAdd
-interface IssueAddStateProps {
+interface IssueAddStateInputProps {
   title: string;
   comment: string;
 }
 
-export const issueAddState = atom<IssueAddStateProps>({
-  key: 'issueAddState',
+export const issueAddInputState = atom<IssueAddStateInputProps>({
+  key: 'issueAddInputState',
   default: {
     title: '',
     comment: '',
   },
 });
 
-export const issueAddData = selector({
-  key: 'issueAddData',
+export const issueAddState = selector({
+  key: 'issueAddState',
   get: ({ get }) => {
-    const inputData = get(issueAddState);
+    const inputData = get(issueAddInputState);
     const dropData = get(dropCheckState);
     const assigneesIdList = dropData.assignee.map((ele) => ele.id);
     const labelsIdList = dropData.label.map((ele) => ele.id);
@@ -114,8 +120,8 @@ export const issueAddData = selector({
 });
 
 // IssueData
-export const issueDetailData = selector({
-  key: 'issueDetailData',
+export const issueDetailState = selector({
+  key: 'issueDetailState',
   get: async ({ get }) => {
     const issueID = get(issueDetailID);
     const response = await fetch(`${U.ISSUES}/${issueID}`);

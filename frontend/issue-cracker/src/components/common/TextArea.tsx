@@ -2,15 +2,15 @@ import React, { ChangeEventHandler } from 'react';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import styled from 'styled-components';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
-import { issueAddState } from '../../store/Recoil';
+import { issueAddInputState } from '../../store/Recoil';
 import { useRecoilState } from 'recoil';
 
 const TextArea = (): JSX.Element => {
-  const [issueAdd, setIssueAdd] = useRecoilState(issueAddState);
+  const [issueAddInput, setIssueAddInput] = useRecoilState(issueAddInputState);
 
   const handleChangeInputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIssueAdd({
-      ...issueAdd,
+    setIssueAddInput({
+      ...issueAddInput,
       comment: e.target.value,
     });
   };

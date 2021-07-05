@@ -41,7 +41,6 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
         } = issue;
         const elapsedTime = getElapsedTime(createdDateTime);
 
-        // 타미...! IssueList 에서 미리 ID를 리코일에 세팅해주는 작업을 하고있습니다 :)
         return (
           <S.IssueCell key={uuidv4()}>
             <>

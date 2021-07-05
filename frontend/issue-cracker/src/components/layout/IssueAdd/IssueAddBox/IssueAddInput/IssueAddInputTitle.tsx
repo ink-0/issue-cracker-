@@ -4,18 +4,18 @@ import styled from 'styled-components';
 import { ProfileImg as P } from '../../../../styles/CommonStyles';
 import { TYPE as T } from '../../../../../utils/const';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { decodedToken, issueAddState } from '../../../../../store/Recoil';
+import { decodedToken, issueAddInputState } from '../../../../../store/Recoil';
 const IssueAddInputTitle = (): JSX.Element => {
   const decoded = decodedToken && useRecoilValue(decodedToken);
   const profileURL = decoded && decoded.profileImageUrl;
 
-  const [issueAdd, setIssueAdd] = useRecoilState(issueAddState);
+  const [issueAddInput, setIssueAddInput] = useRecoilState(issueAddInputState);
 
   const handleChangeInputTitle = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void =>
-    setIssueAdd({
-      ...issueAdd,
+    setIssueAddInput({
+      ...issueAddInput,
       title: e.target.value,
     });
 
@@ -29,7 +29,7 @@ const IssueAddInputTitle = (): JSX.Element => {
           type={T.MEDIUM}
           name="제목"
           variant="outlined"
-          value={issueAdd.title}
+          value={issueAddInput.title}
           onChange={handleChangeInputTitle}
         />
       </InputGroupStyle>

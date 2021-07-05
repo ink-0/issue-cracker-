@@ -3,13 +3,12 @@ import styled from 'styled-components';
 import IssueDetailTitle from './IssueDetailTitle';
 import { Line as S } from '../../styles/CommonStyles';
 import IssueDetailBox from './IssueDetailBox';
-import { IssueDataProps } from '../../../utils/types/IssueDataType';
 import { useRecoilValue } from 'recoil';
-import { dropCheckState, issueDetailData } from '../../../store/Recoil';
+import { issueDetailState } from '../../../store/Recoil';
 
 const IssueDetail = (): JSX.Element => {
   // const setCheckData = useSetRecoilState(dropCheckState);
-  const issueDetailList = useRecoilValue(issueDetailData);
+  const issueDetailList = useRecoilValue(issueDetailState);
   console.log(issueDetailList);
   const state = {
     issueId: 1,

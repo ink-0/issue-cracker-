@@ -6,12 +6,12 @@ import TapGroup from '../../../common/group/TabGroup';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { useRecoilState } from 'recoil';
-import { addState } from '../../../../store/Recoil';
+import { labelAddState } from '../../../../store/Recoil';
 
 const LabelNav: FC = () => {
-  const [issueAddState, setIssueAddState] = useRecoilState(addState);
+  const [labelAdd, setIssueAdd] = useRecoilState(labelAddState);
 
-  const handleClickbutton = () => setIssueAddState((prev) => !prev);
+  const handleClickbutton = () => setIssueAdd((prev) => !prev);
 
   return (
     <LabelNavDiv>
@@ -19,7 +19,7 @@ const LabelNav: FC = () => {
         <TabBox>
           <TapGroup />
         </TabBox>
-        {issueAddState ? (
+        {labelAdd ? (
           <ButtonBox onClick={handleClickbutton}>
             <ButtonGroup
               type={BS.SMALL_FILL}

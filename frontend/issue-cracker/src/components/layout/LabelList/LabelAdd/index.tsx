@@ -14,11 +14,11 @@ import {
 } from '../../../../utils/const';
 import AddIcon from '@material-ui/icons/Add';
 import { useSetRecoilState } from 'recoil';
-import { addState } from '../../../../store/Recoil';
+import { labelAddState } from '../../../../store/Recoil';
 
 const LabelAdd = (): JSX.Element => {
-  const setAddState = useSetRecoilState(addState);
-  const handleClickButton = () => setAddState((prev) => !prev);
+  const setLabelAddState = useSetRecoilState(labelAddState);
+  const handleClickButton = () => setLabelAddState((prev) => !prev);
 
   return (
     <LabelAddStyle>
