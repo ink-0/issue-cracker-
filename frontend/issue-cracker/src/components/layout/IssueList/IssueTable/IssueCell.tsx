@@ -1,6 +1,6 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {
@@ -11,7 +11,7 @@ import {
 import CheckBoxes from '../../../common/CheckBoxes';
 import IssueOpenIcon from '../../../styles/svg/IssueOpenIcon';
 import LabelSmallGroup from '../../../common/group/LabelSmallGroup';
-import { decodedToken } from '../../../../store/Recoil';
+import { decodedToken, issueDetailID } from '../../../../store/Recoil';
 import { IssueDataProps } from '../../../../utils/types/IssueDataType';
 import { getElapsedTime, getIssue } from '../../../../utils/util';
 
@@ -21,6 +21,9 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
 
   const openIssue = getIssue(issues, 'OPEN');
   const closedIssue = getIssue(issues, 'CLOSED');
+  const setIssueDetailID = useSetRecoilState(issueDetailID);
+
+  const handleClickIssueCell = (id: number) => setIssueDetailID(id);
 
   return (
     <>
@@ -37,6 +40,8 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
           writer,
         } = issue;
         const elapsedTime = getElapsedTime(createdDateTime);
+
+        // 타미...! IssueList 에서 미리 ID를 리코일에 세팅해주는 작업을 하고있습니다 :)
         return (
           <S.IssueCell key={uuidv4()}>
             <>
@@ -46,10 +51,9 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
                   <Link
                     to={{
                       pathname: `/main/issue-detail/${issueId}`,
-                      state: issueId,
                     }}
                   >
-                    <IssueUpper>
+                    <IssueUpper onClick={() => handleClickIssueCell(issueId)}>
                       <IssueOpenIcon
                         color="#3f51b5"
                         style={{ width: 24, height: 24 }}
