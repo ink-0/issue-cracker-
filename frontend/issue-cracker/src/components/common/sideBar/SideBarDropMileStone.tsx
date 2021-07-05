@@ -5,10 +5,7 @@ import CheckOffIcon from '../../styles/svg/CheckOffIcon';
 import { Text as S } from '../../styles/CommonStyles';
 import { useRecoilState } from 'recoil';
 import { dropCheckState } from '../../../store/Recoil';
-import {
-  DMilestoneProps,
-  MilestoneProps,
-} from '../../../utils/types/sideBarType';
+import { MilestoneProps } from '../../../utils/types/sideBarType';
 
 const SideBarDropMilestone = ({
   data,
@@ -43,9 +40,9 @@ const SideBarDropMilestone = ({
   };
 
   useEffect(() => {
-    const milestoneList = dropCheck.milestone?.map(
-      (el: MilestoneProps) => el.id
-    );
+    const milestoneList =
+      dropCheck.milestone[0] &&
+      dropCheck.milestone?.map((el: MilestoneProps) => el.id);
     if (milestoneList?.includes(data.id)) {
       setIsCheck(true);
     }

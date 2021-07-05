@@ -10,9 +10,7 @@ const MilestoneContent = ({
   return (
     <>
       <ProgressBox>
-        {checkedMilestone && checkedMilestone?.length !== 0 && (
-          <ProgressBar value={0} />
-        )}
+        {checkedMilestone && checkedMilestone[0] && <ProgressBar value={0} />}
       </ProgressBox>
       <TextBox>
         <S.TextSmall>

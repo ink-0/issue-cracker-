@@ -11,7 +11,6 @@ import { dropCheckState } from '../../../store/Recoil';
 const IssueDetail = (): JSX.Element => {
   const { state } = useLocation<IssueDataProps>();
   const setCheckData = useSetRecoilState(dropCheckState);
-  console.log(state);
 
   useEffect(() => {
     setCheckData({
