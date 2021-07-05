@@ -46,7 +46,7 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
                   <Link
                     to={{
                       pathname: `/main/issue-detail/${issueId}`,
-                      state: issue,
+                      state: issueId,
                     }}
                   >
                     <IssueUpper>

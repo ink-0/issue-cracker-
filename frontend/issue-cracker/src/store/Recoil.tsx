@@ -112,6 +112,26 @@ export const issueAddData = selector({
     };
   },
 });
+
+// IssueData
+export const issueDetailData = selector({
+  key: 'issueDetailData',
+  get: async ({ get }) => {
+    const issueID = get(issueDetailID);
+    const response = await fetch(U.ISSUES);
+    const data = await response.json();
+    return data;
+  },
+});
+
+//IssueDetailID
+export const issueDetailID = atom({
+  key: 'issueDetailID',
+  default: 0,
+});
+
+export const IssueDetail;
+
 //GET :DATA
 //POST :DATA
 // POST IssueAdd POST

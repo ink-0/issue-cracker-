@@ -6,18 +6,21 @@ import { Line as S } from '../../styles/CommonStyles';
 import IssueDetailBox from './IssueDetailBox';
 import { IssueDataProps } from '../../../utils/types/IssueDataType';
 import { useSetRecoilState } from 'recoil';
-import { dropCheckState } from '../../../store/Recoil';
+import { dropCheckState, issueDetailID } from '../../../store/Recoil';
 
 const IssueDetail = (): JSX.Element => {
-  const { state } = useLocation<IssueDataProps>();
-  const setCheckData = useSetRecoilState(dropCheckState);
+  const { state } = useLocation<number>();
+  // const setCheckData = useSetRecoilState(dropCheckState);
+  const setIssueDetailID = useSetRecoilState(issueDetailID);
 
   useEffect(() => {
-    setCheckData({
-      assignee: state.assignees,
-      label: state.labels,
-      milestone: [state.milestoneInfo],
-    });
+    // setCheckData({
+    //   assignee: state.assignees,
+    //   label: state.labels,
+    //   milestone: [sta4te.milestoneInfo],
+    // });
+
+    setIssueDetailID(state);
   }, [state]);
 
   return (
