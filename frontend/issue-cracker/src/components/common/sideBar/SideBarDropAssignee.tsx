@@ -13,7 +13,7 @@ const SideBarDropAssignee = ({
   data: AssigneeProps;
 }): JSX.Element => {
   const decoded = decodedToken && useRecoilValue(decodedToken);
-  const profileURL = decoded && decoded.profileImageUrl;
+  const profileURL = decoded && decoded.avatarUrl;
   const [isCheck, setIsCheck] = useState(false);
   const [dropCheck, setDropCheck] = useRecoilState(dropCheckState);
 

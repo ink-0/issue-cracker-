@@ -17,10 +17,11 @@ import { useHistory } from 'react-router';
 
 const IssueAddButton = (): JSX.Element => {
   const issueAdd = useRecoilValue(issueAddState);
-  // const userToken = useRecoilValue(token);
+
   const userToken = localStorage.getItem('token');
   console.log('issueAdd', issueAdd);
   const history = useHistory();
+
   const handleClickCompleteButton = async () => {
     return await fetch(U.ISSUES, {
       method: 'POST',
@@ -29,38 +30,16 @@ const IssueAddButton = (): JSX.Element => {
         Authorization: `Bearer ${userToken}`,
       },
       body: JSON.stringify({
-        title: '이슈 제목2',
-        comment: '이슈 내용',
-        assignees: [
-          {
-            email: 'noel@codesquad.com',
-            name: 'neo',
-            avatarUrl: 'profiel.image.url',
-          },
-          {
-            email: 'pyro@codesquad.com',
-            name: 'san',
-            avatarUrl: 'profiel.image.url',
-          },
-        ],
-        labels: [
-          {
-            id: '5',
-            title: '라벨',
-            description: '설명',
-            backgroundColorHexa: '#111',
-            textColorHexa: '#112',
-          },
-        ],
-        milestoneId: 1,
+        title: issueAdd.title,
+        comment: issueAdd.comment,
+        milestoneId: issueAdd.milestoneId,
       }),
     })
-      .then((res) => {
-        return res.json();
-      })
-      .then((response) => console.log('Success:', JSON.stringify(response)))
-      .catch((error) => console.error('Error:', error));
+      .then((res) => console.log('SUCCESS', res))
+      .then((error) => console.error(error))
+      .then(() => history.push(P.ISSUE_LIST));
   };
+
   return (
     <IssueAddButtonStyle>
       <Link to={P.ISSUE_LIST}>

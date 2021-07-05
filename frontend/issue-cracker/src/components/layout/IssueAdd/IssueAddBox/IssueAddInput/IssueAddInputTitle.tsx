@@ -7,7 +7,7 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { decodedToken, issueAddInputState } from '../../../../../store/Recoil';
 const IssueAddInputTitle = (): JSX.Element => {
   const decoded = decodedToken && useRecoilValue(decodedToken);
-  const profileURL = decoded && decoded.profileImageUrl;
+  const profileURL = decoded && decoded.avatarUrl;
 
   const [issueAddInput, setIssueAddInput] = useRecoilState(issueAddInputState);
 

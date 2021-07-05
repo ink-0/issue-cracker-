@@ -10,7 +10,7 @@ import { decodedToken } from '../../../store/Recoil';
 
 interface TokenProps {
   name: string;
-  profileImageUrl: string;
+  avatarUrl: string;
 }
 const Header: FC = () => {
   const token = localStorage.getItem('token');
@@ -20,12 +20,12 @@ const Header: FC = () => {
     decoded &&
       setDecodedToken({
         name: decoded.name,
-        profileImageUrl: decoded.profileImageUrl,
+        avatarUrl: decoded.avatarUrl,
       });
   }, []);
-  const profileURL = decoded && decoded.profileImageUrl;
+  const profileURL = decoded && decoded.avatarUrl;
   const profileName = decoded && decoded.name;
-
+  console.log('헤더프로필', decoded);
   return (
     <HeaderDiv>
       <Link to="/">
