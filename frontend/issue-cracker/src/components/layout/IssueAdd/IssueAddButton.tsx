@@ -11,12 +11,12 @@ import {
   BUTTON_NAME as BN,
   URL as U,
 } from '../../../utils/const';
-import { issueAddData } from '../../../store/Recoil';
+import { issueAddState } from '../../../store/Recoil';
 import { useRecoilValue } from 'recoil';
 import { useHistory } from 'react-router';
 
 const IssueAddButton = (): JSX.Element => {
-  const issueAdd = useRecoilValue(issueAddData);
+  const issueAdd = useRecoilValue(issueAddState);
   // const userToken = useRecoilValue(token);
   const userToken = localStorage.getItem('token');
   console.log('issueAdd', issueAdd);

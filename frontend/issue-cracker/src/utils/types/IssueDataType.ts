@@ -11,4 +11,15 @@ export interface IssueDataProps {
   createdDateTime: string;
   assignees: AssigneeProps[];
   labels: LabelProps[];
+  comments?: CommentsProps[];
+}
+
+export interface CommentsProps {
+  id: number;
+  writer: {
+    id: string;
+    avatarUrl: string;
+  };
+  content: string;
+  dateTime: string;
 }

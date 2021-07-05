@@ -6,7 +6,7 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import FlagIcon from '@material-ui/icons/Flag';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import styled from 'styled-components';
-import { milestoneListData } from '../../../store/Recoil';
+import { milestoneListState } from '../../../store/Recoil';
 import TextGroup from '../group/TextGroup';
 import CountGroup from '../group/CountGroup';
 import { TEXT as TT, TYPE as T, PATH as P } from '../../../utils/const';
@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const TabGroup = (): JSX.Element => {
   const classes = useStyles();
-  const milestoneData = useRecoilValue(milestoneListData);
-  const milestones = milestoneData.milestones;
+  const milestone = useRecoilValue(milestoneListState);
+  const milestones = milestone.milestones;
   const milestoneCount = milestones.length;
 
   return (

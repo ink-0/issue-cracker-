@@ -1,6 +1,6 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {
@@ -11,7 +11,7 @@ import {
 import CheckBoxes from '../../../common/CheckBoxes';
 import IssueOpenIcon from '../../../styles/svg/IssueOpenIcon';
 import LabelSmallGroup from '../../../common/group/LabelSmallGroup';
-import { decodedToken } from '../../../../store/Recoil';
+import { decodedToken, issueDetailID } from '../../../../store/Recoil';
 import { IssueDataProps } from '../../../../utils/types/IssueDataType';
 import { getElapsedTime, getIssue } from '../../../../utils/util';
 
@@ -21,6 +21,9 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
 
   const openIssue = getIssue(issues, 'OPEN');
   const closedIssue = getIssue(issues, 'CLOSED');
+  const setIssueDetailID = useSetRecoilState(issueDetailID);
+
+  const handleClickIssueCell = (id: number) => setIssueDetailID(id);
 
   return (
     <>
@@ -46,10 +49,9 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
                   <Link
                     to={{
                       pathname: `/main/issue-detail/${issueId}`,
-                      state: issue,
                     }}
                   >
-                    <IssueUpper>
+                    <IssueUpper onClick={() => handleClickIssueCell(issueId)}>
                       <IssueOpenIcon
                         color="#3f51b5"
                         style={{ width: 24, height: 24 }}
@@ -86,7 +88,7 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
                 {assignees.map((assignee) => {
                   return (
                     <P.ProfileImgSmall
-                      src={assignee.profileImageUrl}
+                      src={assignee.avatarUrl}
                       key={uuidv4()}
                     />
                   );

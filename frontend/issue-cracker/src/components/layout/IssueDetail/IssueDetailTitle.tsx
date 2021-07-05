@@ -8,13 +8,12 @@ import LabelLargeGroup from '../../common/group/LabelLargeGroup';
 import { TYPE as T, TEXT as TT } from '../../../utils/const';
 import { IssueDataProps } from '../../../utils/types/IssueDataType';
 import { getElapsedTime } from '../../../utils/util';
-
-const IssueDetailTitle = ({
-  state,
-}: {
-  state: IssueDataProps;
-}): JSX.Element => {
-  const { createdDateTime, issueId, status, title, writer } = state;
+import { useRecoilValue } from 'recoil';
+import { issueDetailState } from '../../../store/Recoil';
+const IssueDetailTitle = (): JSX.Element => {
+  const issueDetail = useRecoilValue<IssueDataProps>(issueDetailState);
+  const { createdDateTime, issueId, status, title, writer, comments } =
+    issueDetail;
   const isOpen = status === 'OPEN' ? true : false;
   const [issueState, setIssueState] = useState(isOpen);
 
@@ -63,13 +62,13 @@ const IssueDetailTitle = ({
           {issueState ? (
             <TextGroup
               type={T.SMALL}
-              content={`이 이슈가 ${elapsedTime}에 ${writer.name}님에 의해 열렸습니다 ∙ 코멘트 1개`}
+              content={`이 이슈가 ${elapsedTime}에 ${writer.name}님에 의해 열렸습니다 ∙ 코멘트 ${comments?.length}개`}
               color="#6E7191"
             />
           ) : (
             <TextGroup
               type={T.SMALL}
-              content={`이 이슈가 ${elapsedTime}에 ${writer.name}님에 의해 닫혔습니다 ∙ 코멘트 1개`}
+              content={`이 이슈가 ${elapsedTime}에 ${writer.name}님에 의해 닫혔습니다 ∙ 코멘트 ${comments?.length}개`}
               color="#6E7191"
             />
           )}

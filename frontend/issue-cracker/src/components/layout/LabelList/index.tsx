@@ -1,18 +1,18 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { addState } from '../../../store/Recoil';
+import { labelAddState } from '../../../store/Recoil';
 import LabelAdd from './LabelAdd';
 import LabelNav from './LabelNav';
 import LabelTable from './LabelTable';
 
 const LabelList = (): JSX.Element => {
-  const issueAddState = useRecoilValue(addState);
+  const labelAdd = useRecoilValue(labelAddState);
 
   return (
     <LabeListStyle>
       <LabelNav />
-      {issueAddState && <LabelAdd />}
+      {labelAdd && <LabelAdd />}
       <LabelTable />
     </LabeListStyle>
   );

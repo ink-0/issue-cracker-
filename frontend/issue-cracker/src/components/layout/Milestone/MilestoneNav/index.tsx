@@ -6,12 +6,12 @@ import TapGroup from '../../../common/group/TabGroup';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { useRecoilState } from 'recoil';
-import { addState } from '../../../../store/Recoil';
+import { milestoneAddState } from '../../../../store/Recoil';
 
 const MilestoneNav: FC = () => {
-  const [issueAddState, setIssueAddState] = useRecoilState(addState);
+  const [milestoneAdd, setMilestoneAdd] = useRecoilState(milestoneAddState);
 
-  const handleClickbutton = () => setIssueAddState((prev) => !prev);
+  const handleClickbutton = () => setMilestoneAdd((prev) => !prev);
 
   return (
     <MilestoneNavDiv>
@@ -21,7 +21,7 @@ const MilestoneNav: FC = () => {
             <TapGroup />
           </React.Suspense>
         </TabBox>
-        {issueAddState ? (
+        {milestoneAdd ? (
           <ButtonBox onClick={handleClickbutton}>
             <ButtonGroup
               type={BS.SMALL_FILL}

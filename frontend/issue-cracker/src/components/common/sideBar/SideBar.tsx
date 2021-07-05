@@ -20,7 +20,7 @@ import MilestoneData from './data/MilestoneData';
 import AssigneeContent from './content/AssigneeContent';
 import LabelContent from './content/LabelContent';
 import MilestoneContent from './content/MilestoneContent';
-import { issueForm } from '../../../store/Recoil';
+import { issueFormState } from '../../../store/Recoil';
 
 interface TokenProps {
   name: string;
@@ -40,7 +40,7 @@ const SideBar = (): JSX.Element => {
   const dropLabelElement = useRef<HTMLDivElement>(null);
   const dropMilestoneElement = useRef<HTMLDivElement>(null);
 
-  const issueFormData = useRecoilValue(issueForm);
+  const issueFormData = useRecoilValue(issueFormState);
 
   const [userData, labelData, milestoneData] = [
     issueFormData.assignees,

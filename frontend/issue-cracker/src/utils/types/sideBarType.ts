@@ -3,6 +3,7 @@ export interface AssigneeProps {
   name: string;
   profileImageUrl: string;
   emails: string[];
+  avatarUrl?: string;
 }
 
 export interface LabelProps {

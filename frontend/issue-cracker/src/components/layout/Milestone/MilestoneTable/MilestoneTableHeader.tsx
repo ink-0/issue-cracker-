@@ -8,11 +8,11 @@ import CountGroup from '../../../common/group/CountGroup';
 import TextGroup from '../../../common/group/TextGroup';
 import { Issue as S } from '../../../styles/CommonStyles';
 import { TEXT as TT, TYPE as T } from '../../../../utils/const';
-import { milestoneListData } from '../../../../store/Recoil';
+import { milestoneListState } from '../../../../store/Recoil';
 
 const MilestoneTableHeader = (): JSX.Element => {
-  const milestoneData = useRecoilValue(milestoneListData);
-  const milestones = milestoneData.milestones;
+  const milestone = useRecoilValue(milestoneListState);
+  const milestones = milestone.milestones;
   const openMilestoneCount = milestones.length;
   const closeMilestoneCount = milestones.length;
 

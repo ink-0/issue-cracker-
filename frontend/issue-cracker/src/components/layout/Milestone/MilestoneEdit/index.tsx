@@ -13,11 +13,11 @@ import {
 } from '../../../../utils/const';
 import AddIcon from '@material-ui/icons/Add';
 import { useSetRecoilState } from 'recoil';
-import { addState } from '../../../../store/Recoil';
+import { milestoneAddState } from '../../../../store/Recoil';
 
 const MilestoneEdit = (): JSX.Element => {
-  const setAddState = useSetRecoilState(addState);
-  const handleClickButton = () => setAddState((prev) => !prev);
+  const setMilestoneAdd = useSetRecoilState(milestoneAddState);
+  const handleClickButton = () => setMilestoneAdd((prev) => !prev);
 
   return (
     <MilestoneEditStyle>

@@ -40,7 +40,9 @@ function App(): JSX.Element {
             <IssueAdd />
           </Route>
           <Route exact path={P.ISSUE_DETAIL}>
-            <IssueDetail />
+            <React.Suspense fallback={null}>
+              <IssueDetail />
+            </React.Suspense>
           </Route>
           <Route exact path={P.ISSUE_LABELLIST}>
             <LabelList />

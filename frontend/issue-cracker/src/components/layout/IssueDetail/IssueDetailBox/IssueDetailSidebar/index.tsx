@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import SideBar from '../../../../common/sideBar/SideBar';
-import { IssueDataProps } from '../../../../../utils/types/IssueDataType';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { issueDetailState, dropCheckState } from '../../../../../store/Recoil';
+const IssueDetailSidebar = (): JSX.Element => {
+  const issueDetail = useRecoilValue(issueDetailState);
+  const setDropCheck = useSetRecoilState(dropCheckState);
 
-const IssueDetailSidebar = ({
-  state,
-}: {
-  state: IssueDataProps;
-}): JSX.Element => {
+  useEffect(() => {
+    setDropCheck({
+      assignee: issueDetail.assignees,
+      label: issueDetail.labels,
+      milestone: [issueDetail.milestoneInfo],
+    });
+  }, []);
+
   return (
     <IssueDetailSidebarStyle>
       <React.Suspense fallback={null}>

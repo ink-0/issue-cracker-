@@ -12,13 +12,13 @@ import ProgressBar from '../../../common/ProgressBar';
 import { Issue as S } from '../../../styles/CommonStyles';
 import { TYPE as T, BUTTON_NAME as BN } from '../../../../utils/const';
 import { useRecoilValue } from 'recoil';
-import { milestoneListData } from '../../../../store/Recoil';
+import { milestoneListState } from '../../../../store/Recoil';
 import { MilestoneDataProps } from '../../../../utils/types/milestoneDataType';
 import { IssueDataProps } from '../../../../utils/types/IssueDataType';
 
 const MilestoneCell = (): JSX.Element => {
-  const milestoneData = useRecoilValue(milestoneListData);
-  const milestones = milestoneData.milestones;
+  const milestone = useRecoilValue(milestoneListState);
+  const milestones = milestone.milestones;
 
   const getIssueCount = (list: IssueDataProps[], str: string): number =>
     list.filter((el) => el.status === str).length;
