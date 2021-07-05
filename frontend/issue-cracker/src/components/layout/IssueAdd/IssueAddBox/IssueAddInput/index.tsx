@@ -1,7 +1,5 @@
 import React from 'react';
-import { useRecoilValue, useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { issueAddData, dropCheckState } from '../../../../../store/Recoil';
 import IssueAddInputContent from './IssueAddInputContent';
 import IssueAddInputTitle from './IssueAddInputTitle';
 

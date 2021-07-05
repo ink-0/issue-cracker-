@@ -19,25 +19,31 @@ const SideBarDropMilestone = ({
     setIsCheck(!isCheck);
 
     if (!isCheck) {
-      setDropCheck({
-        ...dropCheck,
-        milestone: [...dropCheck.milestone, data],
-      });
+      {
+        dropCheck.milestone &&
+          setDropCheck({
+            ...dropCheck,
+            milestone: [data],
+          });
+      }
     } else {
-      setDropCheck({
-        ...dropCheck,
-        milestone: dropCheck.milestone.filter(
-          (el: MilestoneProps) => el.id !== data.id
-        ),
-      });
+      {
+        dropCheck.milestone &&
+          setDropCheck({
+            ...dropCheck,
+            milestone: dropCheck.milestone.filter(
+              (el: MilestoneProps) => el.id !== data.id
+            ),
+          });
+      }
     }
   };
 
   useEffect(() => {
-    const milestoneList = dropCheck.milestone?.map(
-      (el: MilestoneProps) => el.id
-    );
-    if (milestoneList.includes(data.id)) {
+    const milestoneList =
+      dropCheck.milestone[0] &&
+      dropCheck.milestone?.map((el: MilestoneProps) => el.id);
+    if (milestoneList?.includes(data.id)) {
       setIsCheck(true);
     }
   }, []);

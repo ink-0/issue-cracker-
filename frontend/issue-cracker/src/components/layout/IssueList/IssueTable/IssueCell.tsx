@@ -37,7 +37,6 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
           writer,
         } = issue;
         const elapsedTime = getElapsedTime(createdDateTime);
-
         return (
           <S.IssueCell key={uuidv4()}>
             <>
@@ -47,15 +46,7 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
                   <Link
                     to={{
                       pathname: `/main/issue-detail/${issueId}`,
-                      state: {
-                        issueId: issueId,
-                        title: title,
-                        content: content,
-                        isOpen: status,
-                        writer: writer.id,
-                        elapsedTime: elapsedTime,
-                        assignees: assignees,
-                      },
+                      state: issue,
                     }}
                   >
                     <IssueUpper>
@@ -83,9 +74,10 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
                     <IssueLower>
                       <IssueID>#{issueId}</IssueID>
                       <IssueContent>
-                        이 이슈가 {elapsedTime}, ink-0님에 의해 작성되었습니다.
+                        이 이슈가 {elapsedTime}, {writer.name}님에 의해
+                        작성되었습니다.
                       </IssueContent>
-                      <IssueMileStone>{milestoneInfo.title}</IssueMileStone>
+                      <IssueMileStone>{milestoneInfo?.title}</IssueMileStone>
                     </IssueLower>
                   </T.TextSmall>
                 </IssueCellContent>

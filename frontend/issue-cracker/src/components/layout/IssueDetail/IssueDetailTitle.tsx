@@ -6,25 +6,28 @@ import IssueClosedIcon from '../../styles/svg/IssueClosedIcon';
 import TextGroup from '../../common/group/TextGroup';
 import LabelLargeGroup from '../../common/group/LabelLargeGroup';
 import { TYPE as T, TEXT as TT } from '../../../utils/const';
+import { IssueDataProps } from '../../../utils/types/IssueDataType';
+import { getElapsedTime } from '../../../utils/util';
 
 const IssueDetailTitle = ({
-  title,
-  isOpen,
-  elapsedTime,
+  state,
 }: {
-  title: string;
-  isOpen: boolean;
-  elapsedTime: string;
+  state: IssueDataProps;
 }): JSX.Element => {
+  const { createdDateTime, issueId, status, title, writer } = state;
+  const isOpen = status === 'OPEN' ? true : false;
   const [issueState, setIssueState] = useState(isOpen);
+
   const handleClickIssueButton = () => setIssueState(false);
+
+  const elapsedTime = getElapsedTime(createdDateTime);
 
   return (
     <IssueDetailTitleStyle>
       <TitleUpperBox>
         <TextBox>
           <TextGroup type={T.LARGE} content={title} color="#222" />
-          <TextGroup type={T.LARGE} content={`#1`} color="#6E7191" />
+          <TextGroup type={T.LARGE} content={`#${issueId}`} color="#6E7191" />
         </TextBox>
         <ButtonBox>
           <TitleEditButton startIcon={<TitleEditIcon />} color="primary">
@@ -60,13 +63,13 @@ const IssueDetailTitle = ({
           {issueState ? (
             <TextGroup
               type={T.SMALL}
-              content={`이 이슈가 ${elapsedTime}에 writer님에 의해 열렸습니다 ∙ 코멘트 1개`}
+              content={`이 이슈가 ${elapsedTime}에 ${writer.name}님에 의해 열렸습니다 ∙ 코멘트 1개`}
               color="#6E7191"
             />
           ) : (
             <TextGroup
               type={T.SMALL}
-              content={`이 이슈가 ${elapsedTime}에 writer님에 의해 닫혔습니다 ∙ 코멘트 1개`}
+              content={`이 이슈가 ${elapsedTime}에 ${writer.name}님에 의해 닫혔습니다 ∙ 코멘트 1개`}
               color="#6E7191"
             />
           )}

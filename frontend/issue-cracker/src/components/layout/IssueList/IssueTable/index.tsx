@@ -8,7 +8,7 @@ import IssueCell from './IssueCell';
 const IssueTable = (): JSX.Element => {
   const issueData = useRecoilValue(issueListData);
   const issues = issueData.issues;
-
+  // recoil selector로 openIssue, closeIssue 나눠서 세팅하고 불러서 쓰기
   return (
     <IssueTableContainer>
       <IssueTableHeader {...{ issues }} />

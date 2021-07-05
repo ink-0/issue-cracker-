@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import IssueDetailInput from './IssueDetailInput';
-import IssueDetailSidebar from './IssueDetailSidebar';
+import { IssueDataProps } from '../../../../utils/types/IssueDataType';
+import IssueDetailSidebar from '../IssueDetailBox/IssueDetailSidebar';
 
-const IssueDetailBox = (): JSX.Element => {
+const IssueDetailBox = ({ state }: { state: IssueDataProps }): JSX.Element => {
   return (
     <IssueDetailBoxStyle>
-      <IssueDetailInput />
-      <IssueDetailSidebar />
+      <IssueDetailInput {...{ state }} />
+      <IssueDetailSidebar {...{ state }} />
     </IssueDetailBoxStyle>
   );
 };

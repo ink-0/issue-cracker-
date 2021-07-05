@@ -1,9 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { Issue as S } from '../../styles/CommonStyles';
-import { TYPE as T, SIDEBAR_TYPE as ST, TOKEN } from '../../../utils/const';
-import TextGroup from '../group/TextGroup';
+import TextGroup from '../../../../common/group/TextGroup';
 import AddIcon from '@material-ui/icons/Add';
+import { IssueDataProps } from '../../../../../utils/types/IssueDataType';
+import { Issue as S } from '../../../../styles/CommonStyles';
+import {
+  TYPE as T,
+  SIDEBAR_TYPE as ST,
+  TOKEN,
+} from '../../../../../utils/const';
 import jwtDecode from 'jwt-decode';
 import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
 import {
@@ -12,22 +17,28 @@ import {
   dropCheckState,
   dropLabelState,
   dropMilestoneState,
-} from '../../../store/Recoil';
-import SideBarDrop from './SideBarDrop';
-import AssigneeData from './data/AssigneeData';
-import LabelData from './data/LabelData';
-import MilestoneData from './data/MilestoneData';
-import AssigneeContent from './content/AssigneeContent';
-import LabelContent from './content/LabelContent';
-import MilestoneContent from './content/MilestoneContent';
-import { issueForm } from '../../../store/Recoil';
+  issueForm,
+} from '../../../../../store/Recoil';
+import LabelData from '../../../../common/sideBar/data/LabelData';
+import AssigneeData from '../../../../common/sideBar/data/AssigneeData';
+import MilestoneData from '../../../../common/sideBar/data/MilestoneData';
+import SideBarDrop from '../../../../common/sideBar/SideBarDrop';
+import AssigneeContent from '../../../../common/sideBar/content/AssigneeContent';
+import LabelContent from '../../../../common/sideBar/content/LabelContent';
+import MilestoneContent from '../../../../common/sideBar/content/MilestoneContent';
 
 interface TokenProps {
   name: string;
   profileImageUrl: string;
 }
 
-const SideBar = (): JSX.Element => {
+const IssueDetailSidebar = ({
+  state,
+}: {
+  state: IssueDataProps;
+}): JSX.Element => {
+  const { assignees, labels, milestoneInfo } = state;
+
   const token = localStorage.getItem(TOKEN);
   const decoded = token && jwtDecode<TokenProps>(token);
   const setDecodedToken = useSetRecoilState(decodedToken);
@@ -41,20 +52,6 @@ const SideBar = (): JSX.Element => {
   const dropMilestoneElement = useRef<HTMLDivElement>(null);
 
   const issueFormData = useRecoilValue(issueForm);
-
-  const [userData, labelData, milestoneData] = [
-    issueFormData.assignees,
-    issueFormData.labels,
-    issueFormData.milestones,
-  ];
-
-  const checkedData = useRecoilValue(dropCheckState);
-
-  const [checkedAssignee, checkedLabel, checkedMilestone] = [
-    checkedData.assignee,
-    checkedData.label,
-    checkedData.milestone,
-  ];
 
   const dropAssigneeHandler = () => {
     setIsDropAssignee(!isDropAssignee);
@@ -93,16 +90,28 @@ const SideBar = (): JSX.Element => {
       setIsDropLabel(false);
       setIsDropMilestone(false);
     };
-
     document.addEventListener('mousedown', dropCloseHandler);
-
     return () => {
       document.removeEventListener('mousedown', dropCloseHandler);
     };
   }, []);
 
+  const [userData, labelData, milestoneData] = [
+    issueFormData.assignees,
+    issueFormData.labels,
+    issueFormData.milestones,
+  ];
+
+  const checkedData = useRecoilValue(dropCheckState);
+
+  const [checkedAssignee, checkedLabel, checkedMilestone] = [
+    checkedData.assignee,
+    checkedData.label,
+    checkedData.milestone,
+  ];
+
   return (
-    <SideBarStyle>
+    <IssueDetailSidebarStyle>
       <SideBarCell>
         <SideBarTitle>
           <TextGroup type={T.SMALL} content={ST.ASSIGNEE} color="#6E7191" />
@@ -117,7 +126,7 @@ const SideBar = (): JSX.Element => {
           </SideBarDropDiv>
         </SideBarTitle>
         <SideBarContent>
-          <AssigneeContent {...{ checkedAssignee }} />
+          <AssigneeContent {...{ assignees }} />
         </SideBarContent>
       </SideBarCell>
       <SideBarCell>
@@ -155,21 +164,27 @@ const SideBar = (): JSX.Element => {
           <MilestoneContent {...{ checkedMilestone }} />
         </SideBarMilestoneContent>
       </SideBarCell>
-    </SideBarStyle>
+    </IssueDetailSidebarStyle>
   );
 };
 
-export default SideBar;
+export default IssueDetailSidebar;
 
-const SideBarStyle = styled.div``;
+const IssueDetailSidebarStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 300px;
+  padding: 10px;
+`;
 
 const SideBarCell = styled(S.IssueCell)`
   min-height: 96px;
-  height: fit-content;
   padding: 32px;
   display: flex;
   align-items: center;
   flex-direction: column;
+  height: fit-content;
 
   :first-child {
     border-radius: 16px 16px 0px 0px;

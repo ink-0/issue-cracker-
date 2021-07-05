@@ -6,7 +6,7 @@ export const getIssue = (
 ): IssueDataProps[] => list.filter((el) => el.status === str);
 
 export const getElapsedTime = (date: string): string => {
-  const createdTime = new Date(2021, 5, 24, 4, 13, 0);
+  const createdTime = new Date(date);
   const current = new Date();
   const gapMin = Math.floor((+current - +createdTime) / 1000 / 60);
 
