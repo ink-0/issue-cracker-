@@ -24,7 +24,7 @@ import { issueFormState } from '../../../store/Recoil';
 
 interface TokenProps {
   name: string;
-  profileImageUrl: string;
+  avatarUrl: string;
 }
 
 const SideBar = (): JSX.Element => {
@@ -70,7 +70,7 @@ const SideBar = (): JSX.Element => {
     decoded &&
       setDecodedToken({
         name: decoded.name,
-        profileImageUrl: decoded.profileImageUrl,
+        avatarUrl: decoded.avatarUrl,
       });
 
     const dropCloseHandler = (e: MouseEvent): void => {

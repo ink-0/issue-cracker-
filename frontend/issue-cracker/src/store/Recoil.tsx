@@ -17,7 +17,7 @@ export const decodedToken = atom({
   key: 'decodedToken',
   default: {
     name: '',
-    profileImageUrl: '',
+    avatarUrl: '',
   },
 });
 
@@ -55,6 +55,11 @@ export const dropCheckState = atom<dropCheckStateProps>({
 
 //IssueList
 
+export const issueListAtom = atom({
+  key: 'issueListAtom',
+  default: null,
+});
+
 export const issueListState = selector({
   key: 'issueListState',
   get: async () => {
@@ -63,6 +68,20 @@ export const issueListState = selector({
     return data;
   },
 });
+
+// // tami test
+// export const issueListState = selector({
+//   key: 'issueListState',
+//   get: async ({ get }) => {
+//     const issueListAtomData = get(issueListAtom)
+//     return issueListAtomData;
+//   },
+//   set: async ({ set }) => {
+//     const response = await fetch(U.ISSUES);
+//     const data = await response.json();
+//     set((issueListAtom,prev) => ({ data }));
+//   },
+// });
 
 // MilestoneList
 
@@ -105,15 +124,15 @@ export const issueAddState = selector({
   key: 'issueAddState',
   get: ({ get }) => {
     const inputData = get(issueAddInputState);
-    const dropData = get(dropCheckState);
-    const assigneesIdList = dropData.assignee.map((ele) => ele.id);
-    const labelsIdList = dropData.label.map((ele) => ele.id);
-    const milestonesIdList = dropData.milestone?.map((ele) => ele?.id);
+    const dropCheck = get(dropCheckState);
+    const assigneesIdList = dropCheck.assignee.map((ele) => ele.id);
+    const labelsIdList = dropCheck.label.map((ele) => ele.id);
+    const milestonesIdList = dropCheck.milestone?.map((ele) => ele?.id);
     return {
       title: inputData.title,
       comment: inputData.comment,
-      assigneesId: dropData.assignee,
-      labelsId: dropData.label,
+      assigneesId: assigneesIdList,
+      labelsId: labelsIdList,
       milestoneId: milestonesIdList[0],
     };
   },

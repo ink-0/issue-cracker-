@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 
 interface TokenProps {
   name: string;
-  profileImageUrl: string;
+  avatarUrl: string;
 }
 
 const useToken = (): TokenProps | undefined => {

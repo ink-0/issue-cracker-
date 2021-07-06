@@ -17,7 +17,7 @@ import { getElapsedTime, getIssue } from '../../../../utils/util';
 
 const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
   const decoded = decodedToken && useRecoilValue(decodedToken);
-  const profileURL = decoded && decoded.profileImageUrl;
+  const profileURL = decoded && decoded.avatarUrl;
 
   const openIssue = getIssue(issues, 'OPEN');
   const closedIssue = getIssue(issues, 'CLOSED');
