@@ -8,8 +8,6 @@ const MilestoneTable = (): JSX.Element => {
     <IssueTableContainer>
       <React.Suspense fallback={null}>
         <MilestoneTableHeader />
-      </React.Suspense>
-      <React.Suspense fallback={null}>
         <MilestoneCell />
       </React.Suspense>
     </IssueTableContainer>
