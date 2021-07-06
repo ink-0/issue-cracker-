@@ -16,6 +16,7 @@ const IssueHeaderButton = ({
   onClick,
   id,
 }: IssueHeaderButtonProps): JSX.Element => {
+  console.log('id', id);
   return (
     <IssueHeaderButtonStyle {...{ onClick }} id={`${id}`}>
       <IconBox>{icon}</IconBox>
