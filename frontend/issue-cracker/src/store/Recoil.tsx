@@ -55,6 +55,11 @@ export const dropCheckState = atom<dropCheckStateProps>({
 
 //IssueList
 
+export const issueListAtom = atom({
+  key: 'issueListAtom',
+  default: null,
+});
+
 export const issueListState = selector({
   key: 'issueListState',
   get: async () => {
@@ -63,6 +68,20 @@ export const issueListState = selector({
     return data;
   },
 });
+
+// // tami test
+// export const issueListState = selector({
+//   key: 'issueListState',
+//   get: async ({ get }) => {
+//     const issueListAtomData = get(issueListAtom)
+//     return issueListAtomData;
+//   },
+//   set: async ({ set }) => {
+//     const response = await fetch(U.ISSUES);
+//     const data = await response.json();
+//     set((issueListAtom,prev) => ({ data }));
+//   },
+// });
 
 // MilestoneList
 
@@ -112,8 +131,8 @@ export const issueAddState = selector({
     return {
       title: inputData.title,
       comment: inputData.comment,
-      assigneesId: dropCheck.assignee,
-      labelsId: dropCheck.label,
+      assigneesId: assigneesIdList,
+      labelsId: labelsIdList,
       milestoneId: milestonesIdList[0],
     };
   },

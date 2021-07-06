@@ -33,13 +33,17 @@ const IssueAddButton = (): JSX.Element => {
         title: issueAdd.title,
         comment: issueAdd.comment,
         milestoneId: issueAdd.milestoneId,
+        assigneeIds: issueAdd.assigneesId,
+        labelIds: issueAdd.labelsId,
       }),
     })
       .then((res) => console.log('SUCCESS', res))
       .then((error) => console.error(error))
-      .then(() => history.push(P.ISSUE_LIST));
+      .then(() => history.push('/'));
   };
 
+  // const issueList = useRecoilValue(issueListState);
+  // console.log('issueList', issueList);
   return (
     <IssueAddButtonStyle>
       <Link to={P.ISSUE_LIST}>
