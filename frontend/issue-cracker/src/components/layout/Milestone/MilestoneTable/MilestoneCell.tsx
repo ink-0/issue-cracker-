@@ -74,20 +74,22 @@ const MilestoneCell = (): JSX.Element => {
                     id={`${milestone.id}`}
                   />
 
-                  <IssueHeaderButton
-                    icon={
-                      <CalendarTodayTwoToneIcon
-                        style={{ fontSize: 'small', color: '#6E7191' }}
-                      />
-                    }
-                    text={
-                      <TextGroup
-                        type={T.SMALL}
-                        content={getDate(milestone.milestoneInfo.dueDate)}
-                        color="#6E7191"
-                      />
-                    }
-                  />
+                  {milestone.milestoneInfo.dueDate && (
+                    <IssueHeaderButton
+                      icon={
+                        <CalendarTodayTwoToneIcon
+                          style={{ fontSize: 'small', color: '#6E7191' }}
+                        />
+                      }
+                      text={
+                        <TextGroup
+                          type={T.SMALL}
+                          content={getDate(milestone.milestoneInfo.dueDate)}
+                          color="#6E7191"
+                        />
+                      }
+                    />
+                  )}
                 </LeftUpper>
                 <LeftLower>
                   <TextGroup
