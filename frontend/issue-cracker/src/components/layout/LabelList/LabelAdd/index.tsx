@@ -1,24 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import AddIcon from '@material-ui/icons/Add';
 import LabelBox from './LabelBox';
 import InputColorBox from './InputColorBox';
 import InputContentBox from './InputContentBox';
 import TextGroup from '../../../common/group/TextGroup';
 import ButtonGroup from '../../../common/group/ButtonGroup';
-import { labelAddState } from '../../../../store/Recoil';
+import { labelAddState, labelAddInputState } from '../../../../store/Recoil';
 import {
   TYPE as T,
   LABEL as L,
   BUTTON_SIZE as BS,
   BUTTON_NAME as BN,
+  URL as U,
 } from '../../../../utils/const';
 import { Issue as S } from '../../../styles/CommonStyles';
+import { getPost } from '../../../../utils/restAPI';
 const LabelAdd = (): JSX.Element => {
   const setLabelAddState = useSetRecoilState(labelAddState);
-  const handleClickButton = () => setLabelAddState((prev) => !prev);
+  const userToken = localStorage.getItem('token');
+  const labelAddInput = useRecoilValue(labelAddInputState);
 
+  const handleClickButton = () => {
+    getPost(U.LABELS, userToken, labelAddInput);
+    setLabelAddState((prev) => !prev);
+  };
   return (
     <LabelAddStyle>
       <LabelAddHeader>
