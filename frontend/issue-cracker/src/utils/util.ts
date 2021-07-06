@@ -1,4 +1,5 @@
 import { IssueDataProps } from './types/IssueDataType';
+import { MilestoneDataProps } from './types/milestoneDataType';
 
 export const getIssue = (
   list: IssueDataProps[],
@@ -28,3 +29,8 @@ export const getElapsedTime = (date: string): string => {
 
 export const getIssueCount = (list: IssueDataProps[], str: string): number =>
   list.filter((el) => el.status === str).length;
+
+export const getMilestoneCount = (
+  list: MilestoneDataProps[],
+  str: 'OPEN' | 'CLOSE'
+): number => list.filter((el) => el.milestoneInfo.status === str).length;
