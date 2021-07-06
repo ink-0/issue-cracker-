@@ -1,10 +1,5 @@
 import { atom, selector } from 'recoil';
-import {
-  AssigneeProps,
-  dropCheckStateProps,
-  LabelProps,
-  MilestoneProps,
-} from '../utils/types/sideBarType';
+import { dropCheckStateProps } from '../utils/types/sideBarType';
 import { URL as U } from '../utils/const';
 
 // Login
@@ -69,24 +64,15 @@ export const issueListState = selector({
   },
 });
 
-// // tami test
-// export const issueListState = selector({
-//   key: 'issueListState',
-//   get: async ({ get }) => {
-//     const issueListAtomData = get(issueListAtom)
-//     return issueListAtomData;
-//   },
-//   set: async ({ set }) => {
-//     const response = await fetch(U.ISSUES);
-//     const data = await response.json();
-//     set((issueListAtom,prev) => ({ data }));
-//   },
-// });
-
 // MilestoneList
 
 export const milestoneAddState = atom({
   key: 'milestoneAddState',
+  default: false,
+});
+
+export const milestoneEditState = atom({
+  key: 'milestoneEditState',
   default: false,
 });
 
@@ -96,6 +82,19 @@ export const milestoneListState = selector({
     const response = await fetch(U.MILESTONE);
     const data = await response.json();
     return data;
+  },
+});
+
+interface MilestoneAddInputProps {
+  title: string;
+  description: string;
+}
+
+export const milestoneAddInputState = atom<MilestoneAddInputProps>({
+  key: 'milestoneAddInputState',
+  default: {
+    title: '',
+    description: '',
   },
 });
 

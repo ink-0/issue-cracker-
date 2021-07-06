@@ -28,9 +28,9 @@ const Header: FC = () => {
 
   return (
     <HeaderDiv>
-      <Link to="/">
+      <a href="/">
         <Logo type={BS.MEDIUM} name={LOGO_TITLE} />
-      </Link>
+      </a>
       <UserDiv>
         <AccountName>{profileName}</AccountName>
         {profileURL && <S.ProfileImgLarge src={profileURL} />}

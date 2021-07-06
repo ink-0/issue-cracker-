@@ -9,12 +9,14 @@ import TextGroup from '../../../common/group/TextGroup';
 import { Issue as S } from '../../../styles/CommonStyles';
 import { TEXT as TT, TYPE as T } from '../../../../utils/const';
 import { milestoneListState } from '../../../../store/Recoil';
+import { getMilestoneCount } from '../../../../utils/util';
 
 const MilestoneTableHeader = (): JSX.Element => {
   const milestone = useRecoilValue(milestoneListState);
   const milestones = milestone.milestones;
-  const openMilestoneCount = milestones.length;
-  const closeMilestoneCount = milestones.length;
+
+  const openMilestoneCount = getMilestoneCount(milestones, 'OPEN');
+  const closeMilestoneCount = getMilestoneCount(milestones, 'CLOSE');
 
   return (
     <S.IssueTableHeader>

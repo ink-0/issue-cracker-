@@ -10,15 +10,57 @@ import {
   MILESTONE as M,
   BUTTON_SIZE as BS,
   BUTTON_NAME as BN,
+  URL as U,
 } from '../../../../utils/const';
 import AddIcon from '@material-ui/icons/Add';
-import { useSetRecoilState } from 'recoil';
-import { milestoneAddState } from '../../../../store/Recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import {
+  milestoneAddInputState,
+  milestoneAddState,
+} from '../../../../store/Recoil';
 
 const MilestoneAdd = (): JSX.Element => {
   const setMilestoneAdd = useSetRecoilState(milestoneAddState);
-  const handleClickButton = () => setMilestoneAdd((prev) => !prev);
+  const userToken = localStorage.getItem('token');
 
+  const handleClickButton = () => {
+    getPostMilestonAdd();
+    setMilestoneAdd((prev) => !prev);
+  };
+
+  const [milestoneAddInput, setMilestoneAddInput] = useRecoilState(
+    milestoneAddInputState
+  );
+
+  const getPostMilestonAdd = async () => {
+    return await fetch(U.MILESTONE, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userToken}`,
+      },
+      body: JSON.stringify(milestoneAddInput),
+    })
+      .then((res) => console.log('SUCCESS', res))
+      .then((error) => console.error(error));
+  };
+
+  const handleChangeInputTitle = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void =>
+    setMilestoneAddInput({
+      ...milestoneAddInput,
+      title: e.target.value,
+    });
+  const handleChangeInputDescription = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void =>
+    setMilestoneAddInput({
+      ...milestoneAddInput,
+      description: e.target.value,
+    });
+
+  console.log(milestoneAddInput);
   return (
     <MilestoneAddStyle>
       <MilestoneAddHeader>
@@ -30,7 +72,12 @@ const MilestoneAdd = (): JSX.Element => {
         <InputContainer>
           <AddUpper>
             <InputBox>
-              <InputGroup variant="outlined" name={M.NAME} type={T.LARGE} />
+              <InputGroup
+                variant="outlined"
+                name={M.NAME}
+                type={T.LARGE}
+                onChange={handleChangeInputTitle}
+              />
             </InputBox>
             <InputBox>
               <InputGroup variant="outlined" name={M.DUE} type={T.LARGE} />
@@ -38,7 +85,12 @@ const MilestoneAdd = (): JSX.Element => {
           </AddUpper>
           <AddLower>
             <InputBox>
-              <InputGroup variant="outlined" name={M.DESC} type={T.LARGE} />
+              <InputGroup
+                variant="outlined"
+                name={M.DESC}
+                type={T.LARGE}
+                onChange={handleChangeInputDescription}
+              />
             </InputBox>
           </AddLower>
         </InputContainer>

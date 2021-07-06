@@ -11,23 +11,37 @@ import ClosedIconGroup from '../../../common/group/ClosedIconGroup';
 import ProgressBar from '../../../common/ProgressBar';
 import { Issue as S } from '../../../styles/CommonStyles';
 import { TYPE as T, BUTTON_NAME as BN } from '../../../../utils/const';
-import { useRecoilValue } from 'recoil';
-import { milestoneListState } from '../../../../store/Recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  milestoneEditState,
+  milestoneListState,
+} from '../../../../store/Recoil';
 import { MilestoneDataProps } from '../../../../utils/types/milestoneDataType';
-import { IssueDataProps } from '../../../../utils/types/IssueDataType';
+import {
+  getDate,
+  getIssueCount,
+  getProgressRate,
+} from '../../../../utils/util';
+import MilestoneAdd from '../MilestoneAdd';
 
 const MilestoneCell = (): JSX.Element => {
   const milestone = useRecoilValue(milestoneListState);
+  const setMilestoneEdit = useSetRecoilState(milestoneEditState);
+
   const milestones = milestone.milestones;
+  console.log(milestones);
 
-  const getIssueCount = (list: IssueDataProps[], str: string): number =>
-    list.filter((el) => el.status === str).length;
-
-  const getDate = (date: string): string => date.split('T')[0];
-
-  const getProgressRate = (open: number, close: number): number =>
-    Math.floor((open + close) / open) * 100;
-
+  const handleClickCloseButton = () => {
+    console.log('closed');
+  };
+  const handleClickEditButton = (e: React.MouseEvent<HTMLInputElement>) => {
+    console.log(e.currentTarget);
+    setMilestoneEdit((prev) => !prev);
+  };
+  const handleClickDeleteButton = () => {
+    console.log('delete');
+  };
+  console.log(milestones);
   return (
     <>
       {milestones.map((milestone: MilestoneDataProps) => {
@@ -56,22 +70,25 @@ const MilestoneCell = (): JSX.Element => {
                       color="#222"
                     />
                   }
+                  id={`${milestone.id}`}
                 />
 
-                <IssueHeaderButton
-                  icon={
-                    <CalendarTodayTwoToneIcon
-                      style={{ fontSize: 'small', color: '#6E7191' }}
-                    />
-                  }
-                  text={
-                    <TextGroup
-                      type={T.SMALL}
-                      content={getDate(milestone.milestoneInfo.dueDate)}
-                      color="#6E7191"
-                    />
-                  }
-                />
+                {milestone.milestoneInfo.dueDate && (
+                  <IssueHeaderButton
+                    icon={
+                      <CalendarTodayTwoToneIcon
+                        style={{ fontSize: 'small', color: '#6E7191' }}
+                      />
+                    }
+                    text={
+                      <TextGroup
+                        type={T.SMALL}
+                        content={getDate(milestone.milestoneInfo.dueDate)}
+                        color="#6E7191"
+                      />
+                    }
+                  />
+                )}
               </LeftUpper>
               <LeftLower>
                 <TextGroup
@@ -92,6 +109,7 @@ const MilestoneCell = (): JSX.Element => {
                       color="#6E7191"
                     />
                   }
+                  onClick={handleClickCloseButton}
                 />
                 <IssueHeaderButton
                   icon={<EditIcon style={{ color: '#6E7191', fontSize: 16 }} />}
@@ -102,6 +120,7 @@ const MilestoneCell = (): JSX.Element => {
                       color="#6E7191"
                     />
                   }
+                  onClick={handleClickEditButton}
                 />
                 <IssueHeaderButton
                   icon={
@@ -116,6 +135,7 @@ const MilestoneCell = (): JSX.Element => {
                       color="#FF3B30"
                     />
                   }
+                  onClick={handleClickDeleteButton}
                 />
               </RightUpper>
               <RightCenter>
