@@ -69,20 +69,6 @@ export const issueListState = selector({
   },
 });
 
-// // tami test
-// export const issueListState = selector({
-//   key: 'issueListState',
-//   get: async ({ get }) => {
-//     const issueListAtomData = get(issueListAtom)
-//     return issueListAtomData;
-//   },
-//   set: async ({ set }) => {
-//     const response = await fetch(U.ISSUES);
-//     const data = await response.json();
-//     set((issueListAtom,prev) => ({ data }));
-//   },
-// });
-
 // MilestoneList
 
 export const milestoneAddState = atom({

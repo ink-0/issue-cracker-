@@ -25,12 +25,12 @@ const Header: FC = () => {
   }, []);
   const profileURL = decoded && decoded.avatarUrl;
   const profileName = decoded && decoded.name;
-  console.log('헤더프로필', decoded);
+
   return (
     <HeaderDiv>
-      <Link to="/">
+      <a href="/">
         <Logo type={BS.MEDIUM} name={LOGO_TITLE} />
-      </Link>
+      </a>
       <UserDiv>
         <AccountName>{profileName}</AccountName>
         {profileURL && <S.ProfileImgLarge src={profileURL} />}
