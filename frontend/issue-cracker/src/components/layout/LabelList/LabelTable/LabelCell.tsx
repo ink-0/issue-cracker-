@@ -1,26 +1,34 @@
 import React from 'react';
 import { Issue as S } from '../../../styles/CommonStyles';
 import styled from 'styled-components';
-import LabelSmallGroup from '../../../common/group/LabelSmallGroup';
-import TextGroup from '../../../common/group/TextGroup';
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import LabelSmallGroup from '../../../common/group/LabelSmallGroup';
+import TextGroup from '../../../common/group/TextGroup';
+import { LabelProps } from '../../../../utils/types/sideBarType';
 import { TYPE as T } from '../../../../utils/const';
 
-const LabelCell = (): JSX.Element => {
+const LabelCell = ({ label }: { label: LabelProps }): JSX.Element => {
+  const [labelTitle, labelColor, labelBackgroundColor, labelContent] = [
+    label.title,
+    label.textColor,
+    label.backgroundColor,
+    label.description,
+  ];
+
   return (
     <LabelCellStyle>
       <LabelContent>
         <LabelBox>
           <LabelSmallGroup
             color={'#fff'}
-            backgroundColor={'#1E4174'}
-            label="밥에 관한 것"
+            backgroundColor={labelBackgroundColor}
+            label={labelTitle}
           ></LabelSmallGroup>{' '}
         </LabelBox>
         <TextBox>
-          <TextGroup type={T.SMALL} content={'content'} color="#6E7191" />
+          <TextGroup type={T.SMALL} content={labelContent} color="#6E7191" />
         </TextBox>
       </LabelContent>
       <ButtonBox>

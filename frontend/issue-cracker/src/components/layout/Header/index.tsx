@@ -25,7 +25,7 @@ const Header: FC = () => {
   }, []);
   const profileURL = decoded && decoded.avatarUrl;
   const profileName = decoded && decoded.name;
-  console.log('헤더프로필', decoded);
+
   return (
     <HeaderDiv>
       <Link to="/">
