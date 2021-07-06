@@ -34,3 +34,10 @@ export const getMilestoneCount = (
   list: MilestoneDataProps[],
   str: 'OPEN' | 'CLOSE'
 ): number => list.filter((el) => el.milestoneInfo.status === str).length;
+
+export const getDate = (date: string): string => date.split('T')[0];
+
+export const getProgressRate = (open: number, close: number): number => {
+  if (open === 0 && close === 0) return 0;
+  return Math.floor((open + close) / open) * 100;
+};

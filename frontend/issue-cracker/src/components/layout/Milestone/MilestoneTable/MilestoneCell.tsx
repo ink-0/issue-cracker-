@@ -14,19 +14,15 @@ import { TYPE as T, BUTTON_NAME as BN } from '../../../../utils/const';
 import { useRecoilValue } from 'recoil';
 import { milestoneListState } from '../../../../store/Recoil';
 import { MilestoneDataProps } from '../../../../utils/types/milestoneDataType';
-import { IssueDataProps } from '../../../../utils/types/IssueDataType';
+import {
+  getDate,
+  getIssueCount,
+  getProgressRate,
+} from '../../../../utils/util';
 
 const MilestoneCell = (): JSX.Element => {
   const milestone = useRecoilValue(milestoneListState);
   const milestones = milestone.milestones;
-
-  const getIssueCount = (list: IssueDataProps[], str: string): number =>
-    list.filter((el) => el.status === str).length;
-
-  const getDate = (date: string): string => date.split('T')[0];
-
-  const getProgressRate = (open: number, close: number): number =>
-    Math.floor((open + close) / open) * 100;
 
   return (
     <>

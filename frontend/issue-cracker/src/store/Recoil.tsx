@@ -85,6 +85,19 @@ export const milestoneListState = selector({
   },
 });
 
+interface MilestoneAddInputProps {
+  title: string;
+  description: string;
+}
+
+export const milestoneAddInputState = atom<MilestoneAddInputProps>({
+  key: 'milestoneAddInputState',
+  default: {
+    title: '',
+    description: '',
+  },
+});
+
 // LabelList
 
 export const labelAddState = atom({
