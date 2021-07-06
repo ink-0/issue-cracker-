@@ -13,7 +13,9 @@ const LabelList = (): JSX.Element => {
     <LabeListStyle>
       <LabelNav />
       {labelAdd && <LabelAdd />}
-      <LabelTable />
+      <React.Suspense fallback={null}>
+        <LabelTable />
+      </React.Suspense>
     </LabeListStyle>
   );
 };

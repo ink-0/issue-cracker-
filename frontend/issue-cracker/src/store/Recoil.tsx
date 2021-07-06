@@ -115,8 +115,22 @@ export const labelListState = selector({
   },
 });
 
+//labelAdd
+export interface labelAddStateInputProps {
+  title: string;
+  description: string;
+}
+
+export const labelAddInputState = atom<labelAddStateInputProps>({
+  key: 'labelAddInputState',
+  default: {
+    title: '',
+    description: '',
+  },
+});
+
 // //IssueAdd
-interface IssueAddStateInputProps {
+export interface IssueAddStateInputProps {
   title: string;
   comment: string;
 }

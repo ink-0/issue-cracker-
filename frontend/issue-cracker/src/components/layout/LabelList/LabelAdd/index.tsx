@@ -13,13 +13,32 @@ import {
   BUTTON_NAME as BN,
 } from '../../../../utils/const';
 import AddIcon from '@material-ui/icons/Add';
-import { useSetRecoilState } from 'recoil';
-import { labelAddState } from '../../../../store/Recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import {
+  labelAddInputState,
+  labelAddState,
+  labelAddStateInputProps,
+} from '../../../../store/Recoil';
 
 const LabelAdd = (): JSX.Element => {
   const setLabelAddState = useSetRecoilState(labelAddState);
+  const [labelAdd, setLabelAdd] = useRecoilState(labelAddInputState);
   const handleClickButton = () => setLabelAddState((prev) => !prev);
+  const handleInputLabelTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLabelAdd({
+      ...labelAdd,
+      title: e.target.value,
+    });
+  };
 
+  const handleInputLabelDescription = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setLabelAdd({
+      ...labelAdd,
+      description: e.target.value,
+    });
+  };
   return (
     <LabelAddStyle>
       <LabelAddHeader>
@@ -30,19 +49,37 @@ const LabelAdd = (): JSX.Element => {
       <LabelAddCell>
         <LabelContainer>
           <LabelBox>
-            <LabelSmallGroup
-              label={L.NAME}
-              backgroundColor="#EFF0F6"
-              color="#14142B"
-            />
+            {labelAdd.title === '' ? (
+              <LabelSmallGroup
+                label={L.NAME}
+                backgroundColor="#EFF0F6"
+                color="#14142B"
+              />
+            ) : (
+              <LabelSmallGroup
+                label={labelAdd.title}
+                backgroundColor="#EFF0F6"
+                color="#14142B"
+              />
+            )}
           </LabelBox>
         </LabelContainer>
         <InputContainer>
           <InputBox>
-            <InputGroup variant="outlined" name={L.NAME} type={T.LARGE} />
+            <InputGroup
+              variant="outlined"
+              name={L.NAME}
+              type={T.LARGE}
+              onChange={handleInputLabelTitle}
+            />
           </InputBox>
           <InputBox>
-            <InputGroup variant="outlined" name={L.DESC} type={T.LARGE} />
+            <InputGroup
+              variant="outlined"
+              name={L.DESC}
+              type={T.LARGE}
+              onChange={handleInputLabelDescription}
+            />
           </InputBox>
           <InputColorBox>
             <BackgroundColorBox>
