@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { ProfileImg as S } from '../../styles/CommonStyles';
 import Logo from '../../common/Logo';
 import { LOGO_TITLE, BUTTON_SIZE as BS } from '../../../utils/const';
-import { Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import { useSetRecoilState } from 'recoil';
 import { decodedToken } from '../../../store/Recoil';

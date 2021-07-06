@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { Issue as S } from '../../../styles/CommonStyles';
 import { v4 as uuidv4 } from 'uuid';
 import SideBarDropMilestone from '../SideBarDropMileStone';
-import { MilestoneDataProps } from '../../../../utils/types/sideBarType';
+import { MilestoneStateProps } from '../../../../utils/types/commonTypes';
 
-const MilestoneData = ({ milestoneData }: MilestoneDataProps): JSX.Element => {
+const MilestoneData = ({ milestoneData }: MilestoneStateProps): JSX.Element => {
   return (
     <>
       {milestoneData?.map((milestone) => (

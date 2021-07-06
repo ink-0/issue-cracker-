@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { Issue as S } from '../../../styles/CommonStyles';
 import { v4 as uuidv4 } from 'uuid';
 import SideBarDropLabel from '../SideBarDropLabel';
-import { LabelDataProps } from '../../../../utils/types/sideBarType';
+import { LabelStateProps } from '../../../../utils/types/commonTypes';
 
-const LabelData = ({ labelData }: LabelDataProps): JSX.Element => {
+const LabelData = ({ labelData }: LabelStateProps): JSX.Element => {
   return (
     <>
       {labelData?.map((label) => (

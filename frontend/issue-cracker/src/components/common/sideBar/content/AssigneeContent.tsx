@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { ProfileImg as P } from '../../../styles/CommonStyles';
 import { v4 as uuidv4 } from 'uuid';
-import { AssigneeDataProps } from '../../../../utils/types/sideBarType';
+import { AssigneeStateProps } from '../../../../utils/types/commonTypes';
 
 const AssigneeContent = ({
   checkedAssignee,
-}: AssigneeDataProps): JSX.Element => {
+}: AssigneeStateProps): JSX.Element => {
   return (
     <>
       {checkedAssignee?.map((assignee) => (

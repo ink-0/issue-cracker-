@@ -5,16 +5,16 @@ import styled from 'styled-components';
 import LabelTableHeader from './LabelTableHeader';
 import LabelCell from './LabelCell';
 import { labelListState } from '../../../../store/Recoil';
-import { LabelProps } from '../../../../utils/types/sideBarType';
+import { LabelProps } from '../../../../utils/types/commonTypes';
 
 const LabelTable = (): JSX.Element => {
   const labelList = useRecoilValue(labelListState);
-  const labelListArr = labelList?.labels;
+  const labels = labelList?.labels;
 
   return (
     <IssueTableContainer>
       <LabelTableHeader />
-      {labelListArr?.map((label: LabelProps) => (
+      {labels?.map((label: LabelProps) => (
         <LabelCell key={uuidv4()} {...{ label }} />
       ))}
     </IssueTableContainer>

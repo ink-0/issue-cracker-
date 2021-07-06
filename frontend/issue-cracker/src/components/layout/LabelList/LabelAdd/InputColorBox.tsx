@@ -7,11 +7,11 @@ import TextGroup from '../../../common/group/TextGroup';
 import { labelAddInputState } from '../../../../store/Recoil';
 import { TYPE as T, LABEL as L } from '../../../../utils/const';
 
-const InputColorBox = () => {
+const InputColorBox = (): JSX.Element => {
   const [labelAdd, setLabelAdd] = useRecoilState(labelAddInputState);
   const [labelTextColor, setLabelTextColor] = useState(false);
 
-  const getRandomColor = () => {
+  const getRandomColor = (): string => {
     const randomColor = [
       '#815854',
       '#1E4174',

@@ -5,7 +5,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { decodedToken, dropCheckState } from '../../../store/Recoil';
 import CheckOffIcon from '../../styles/svg/CheckOffIcon';
 import CheckOnIcon from '../../styles/svg/CheckOnIcon';
-import { AssigneeProps } from '../../../utils/types/sideBarType';
+import { AssigneeProps } from '../../../utils/types/commonTypes';
 
 const SideBarDropAssignee = ({
   data,

@@ -5,7 +5,7 @@ import LabelSmallGroup from '../../../common/group/LabelSmallGroup';
 import { labelAddInputState } from '../../../../store/Recoil';
 import { LABEL as L } from '../../../../utils/const';
 //labelAdd
-const LabelBox = () => {
+const LabelBox = (): JSX.Element => {
   const labelAdd = useRecoilValue(labelAddInputState);
   return (
     <LabelBoxStyle>

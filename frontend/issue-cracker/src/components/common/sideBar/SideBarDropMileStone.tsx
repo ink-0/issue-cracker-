@@ -5,7 +5,7 @@ import CheckOffIcon from '../../styles/svg/CheckOffIcon';
 import { Text as S } from '../../styles/CommonStyles';
 import { useRecoilState } from 'recoil';
 import { dropCheckState } from '../../../store/Recoil';
-import { MilestoneProps } from '../../../utils/types/sideBarType';
+import { MilestoneProps } from '../../../utils/types/commonTypes';
 
 const SideBarDropMilestone = ({
   data,

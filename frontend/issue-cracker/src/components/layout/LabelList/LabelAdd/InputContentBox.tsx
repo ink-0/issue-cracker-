@@ -5,7 +5,7 @@ import InputGroup from '../../../common/group/InputGroup';
 import { labelAddInputState } from '../../../../store/Recoil';
 import { TYPE as T, LABEL as L } from '../../../../utils/const';
 
-const InputContentBox = () => {
+const InputContentBox = (): JSX.Element => {
   const [labelAdd, setLabelAdd] = useRecoilState(labelAddInputState);
 
   const handleInputLabelTitle = (e: React.ChangeEvent<HTMLInputElement>) => {

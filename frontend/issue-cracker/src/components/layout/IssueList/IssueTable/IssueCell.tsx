@@ -12,7 +12,11 @@ import CheckBoxes from '../../../common/CheckBoxes';
 import IssueOpenIcon from '../../../styles/svg/IssueOpenIcon';
 import LabelSmallGroup from '../../../common/group/LabelSmallGroup';
 import { decodedToken, issueDetailID } from '../../../../store/Recoil';
-import { IssueDataProps } from '../../../../utils/types/IssueDataType';
+import {
+  IssueDataProps,
+  LabelProps,
+  AssigneeProps,
+} from '../../../../utils/types/commonTypes';
 import { getElapsedTime, getIssue } from '../../../../utils/util';
 
 const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
@@ -57,7 +61,7 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
                         style={{ width: 24, height: 24 }}
                       />
                       <IssueTitle>{title}</IssueTitle>
-                      {labels.map((label) => {
+                      {labels.map((label: LabelProps) => {
                         const { textColor, backgroundColor, title } = label;
 
                         return (
@@ -84,7 +88,7 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
                 </IssueCellContent>
               </LeftBox>
               <RightBox>
-                {assignees.map((assignee) => {
+                {assignees.map((assignee: AssigneeProps) => {
                   return (
                     <P.ProfileImgSmall
                       src={assignee.avatarUrl}

@@ -6,7 +6,7 @@ import IssueClosedIcon from '../../styles/svg/IssueClosedIcon';
 import TextGroup from '../../common/group/TextGroup';
 import LabelLargeGroup from '../../common/group/LabelLargeGroup';
 import { TYPE as T, TEXT as TT } from '../../../utils/const';
-import { IssueDataProps } from '../../../utils/types/IssueDataType';
+import { IssueDataProps } from '../../../utils/types/commonTypes';
 import { getElapsedTime } from '../../../utils/util';
 import { useRecoilValue } from 'recoil';
 import { issueDetailState } from '../../../store/Recoil';

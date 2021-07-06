@@ -10,8 +10,8 @@ import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import IssueDetailComment from './IssueDetailComment';
 import { TYPE as T } from '../../../../../utils/const';
 import { useRecoilValue } from 'recoil';
-import { decodedToken, issueDetailState } from '../../../../../store/Recoil';
-import { IssueDataProps } from '../../../../../utils/types/IssueDataType';
+import { issueDetailState } from '../../../../../store/Recoil';
+import { IssueDataProps } from '../../../../../utils/types/commonTypes';
 import { getElapsedTime } from '../../../../../utils/util';
 
 const IssueDetailDisplay = (): JSX.Element => {

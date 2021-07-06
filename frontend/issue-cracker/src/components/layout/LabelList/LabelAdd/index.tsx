@@ -15,7 +15,6 @@ import {
   BUTTON_NAME as BN,
 } from '../../../../utils/const';
 import { Issue as S } from '../../../styles/CommonStyles';
-
 const LabelAdd = (): JSX.Element => {
   const setLabelAddState = useSetRecoilState(labelAddState);
   const handleClickButton = () => setLabelAddState((prev) => !prev);

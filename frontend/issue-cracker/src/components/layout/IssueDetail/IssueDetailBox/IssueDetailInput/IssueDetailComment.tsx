@@ -7,11 +7,11 @@ import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import TextGroup from '../../../../common/group/TextGroup';
 import { getElapsedTime } from '../../../../../utils/util';
 import { issueDetailState } from '../../../../../store/Recoil';
-import { IssueDataProps } from '../../../../../utils/types/IssueDataType';
+import { IssueDataProps } from '../../../../../utils/types/commonTypes';
 import { ProfileImg as P, Issue as S } from '../../../../styles/CommonStyles';
 import { TYPE as T } from '../../../../../utils/const';
 
-const IssueDetailComment = () => {
+const IssueDetailComment = (): JSX.Element => {
   const issueDetail = useRecoilValue<IssueDataProps>(issueDetailState);
   const { comments } = issueDetail;
 
@@ -101,10 +101,6 @@ const WriterBox = styled.div`
 const DateBox = styled.div`
   padding: 0px 5px;
 `;
-
-const EditButtonBox = styled.div``;
-
-const LabelBox = styled.div``;
 
 const EmoticonBox = styled.div``;
 

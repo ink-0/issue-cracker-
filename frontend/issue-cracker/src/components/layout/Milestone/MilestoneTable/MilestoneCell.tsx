@@ -16,13 +16,12 @@ import {
   milestoneEditState,
   milestoneListState,
 } from '../../../../store/Recoil';
-import { MilestoneDataProps } from '../../../../utils/types/milestoneDataType';
+import { MilestoneDataProps } from '../../../../utils/types/commonTypes';
 import {
   getDate,
   getIssueCount,
   getProgressRate,
 } from '../../../../utils/util';
-import MilestoneAdd from '../MilestoneAdd';
 
 const MilestoneCell = (): JSX.Element => {
   const milestone = useRecoilValue(milestoneListState);

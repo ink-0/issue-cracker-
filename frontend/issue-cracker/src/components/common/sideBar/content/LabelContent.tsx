@@ -2,9 +2,9 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import LabelSmallGroup from '../../group/LabelSmallGroup';
-import { LabelDataProps } from '../../../../utils/types/sideBarType';
+import { LabelStateProps } from '../../../../utils/types/commonTypes';
 
-const LabelContent = ({ checkedLabel }: LabelDataProps): JSX.Element => {
+const LabelContent = ({ checkedLabel }: LabelStateProps): JSX.Element => {
   return (
     <>
       {checkedLabel?.map((label) => (
