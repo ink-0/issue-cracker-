@@ -14,7 +14,7 @@ import { getMilestoneCount } from '../../../../utils/util';
 const MilestoneTableHeader = (): JSX.Element => {
   const milestone = useRecoilValue(milestoneListState);
   const milestones = milestone.milestones;
-  console.log(milestones);
+
   const openMilestoneCount = getMilestoneCount(milestones, 'OPEN');
   const closeMilestoneCount = getMilestoneCount(milestones, 'CLOSE');
 

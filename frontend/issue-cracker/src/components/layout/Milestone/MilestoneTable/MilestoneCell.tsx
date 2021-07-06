@@ -11,19 +11,37 @@ import ClosedIconGroup from '../../../common/group/ClosedIconGroup';
 import ProgressBar from '../../../common/ProgressBar';
 import { Issue as S } from '../../../styles/CommonStyles';
 import { TYPE as T, BUTTON_NAME as BN } from '../../../../utils/const';
-import { useRecoilValue } from 'recoil';
-import { milestoneListState } from '../../../../store/Recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  milestoneEditState,
+  milestoneListState,
+} from '../../../../store/Recoil';
 import { MilestoneDataProps } from '../../../../utils/types/milestoneDataType';
 import {
   getDate,
   getIssueCount,
   getProgressRate,
 } from '../../../../utils/util';
+import MilestoneAdd from '../MilestoneAdd';
 
 const MilestoneCell = (): JSX.Element => {
   const milestone = useRecoilValue(milestoneListState);
-  const milestones = milestone.milestones;
+  const setMilestoneEdit = useSetRecoilState(milestoneEditState);
 
+  const milestones = milestone.milestones;
+  console.log(milestones);
+
+  const handleClickCloseButton = () => {
+    console.log('closed');
+  };
+  const handleClickEditButton = (e: React.MouseEvent<HTMLInputElement>) => {
+    console.log(e.currentTarget);
+    setMilestoneEdit((prev) => !prev);
+  };
+  const handleClickDeleteButton = () => {
+    console.log('delete');
+  };
+  console.log(milestones);
   return (
     <>
       {milestones.map((milestone: MilestoneDataProps) => {
@@ -32,113 +50,121 @@ const MilestoneCell = (): JSX.Element => {
         const progressRate = getProgressRate(openIssue, closeIssue);
 
         return (
-          <MilestoneCellStyle key={uuidv4()}>
-            <LeftBox>
-              <LeftUpper>
-                <IssueHeaderButton
-                  icon={
-                    <FlagTwoToneIcon
-                      style={{
-                        width: '16px',
-                        height: '16px',
-                        color: '#007AFF',
-                      }}
-                    />
-                  }
-                  text={
-                    <TextGroup
-                      type={T.MEDIUM}
-                      content={milestone.milestoneInfo.title}
-                      color="#222"
-                    />
-                  }
-                />
+          <>
+            <MilestoneCellStyle key={uuidv4()}>
+              <LeftBox>
+                <LeftUpper>
+                  <IssueHeaderButton
+                    icon={
+                      <FlagTwoToneIcon
+                        style={{
+                          width: '16px',
+                          height: '16px',
+                          color: '#007AFF',
+                        }}
+                      />
+                    }
+                    text={
+                      <TextGroup
+                        type={T.MEDIUM}
+                        content={milestone.milestoneInfo.title}
+                        color="#222"
+                      />
+                    }
+                    id={`${milestone.id}`}
+                  />
 
-                <IssueHeaderButton
-                  icon={
-                    <CalendarTodayTwoToneIcon
-                      style={{ fontSize: 'small', color: '#6E7191' }}
-                    />
-                  }
-                  text={
-                    <TextGroup
-                      type={T.SMALL}
-                      content={getDate(milestone.milestoneInfo.dueDate)}
-                      color="#6E7191"
-                    />
-                  }
-                />
-              </LeftUpper>
-              <LeftLower>
-                <TextGroup
-                  type={T.SMALL}
-                  content={milestone.milestoneInfo.description}
-                  color="#6E7191"
-                />
-              </LeftLower>
-            </LeftBox>
-            <RightBox>
-              <RightUpper>
-                <IssueHeaderButton
-                  icon={<ClosedIconGroup type={'disabled'} />}
-                  text={
-                    <TextGroup
-                      type={T.SMALL}
-                      content={BN.CLOSE}
-                      color="#6E7191"
-                    />
-                  }
-                />
-                <IssueHeaderButton
-                  icon={<EditIcon style={{ color: '#6E7191', fontSize: 16 }} />}
-                  text={
-                    <TextGroup
-                      type={T.SMALL}
-                      content={BN.EDIT}
-                      color="#6E7191"
-                    />
-                  }
-                />
-                <IssueHeaderButton
-                  icon={
-                    <DeleteOutlineIcon
-                      style={{ color: '#FF3B30', fontSize: 16 }}
-                    />
-                  }
-                  text={
-                    <TextGroup
-                      type={T.SMALL}
-                      content={BN.DELETE}
-                      color="#FF3B30"
-                    />
-                  }
-                />
-              </RightUpper>
-              <RightCenter>
-                <ProgressBar value={progressRate} />
-              </RightCenter>
-              <RightLower>
-                <TextGroup
-                  type={T.SMALL}
-                  content={`${progressRate}%`}
-                  color="#6E7191"
-                />
-                <IssueButtonBox>
+                  <IssueHeaderButton
+                    icon={
+                      <CalendarTodayTwoToneIcon
+                        style={{ fontSize: 'small', color: '#6E7191' }}
+                      />
+                    }
+                    text={
+                      <TextGroup
+                        type={T.SMALL}
+                        content={getDate(milestone.milestoneInfo.dueDate)}
+                        color="#6E7191"
+                      />
+                    }
+                  />
+                </LeftUpper>
+                <LeftLower>
                   <TextGroup
                     type={T.SMALL}
-                    content={`열린이슈(${openIssue})`}
+                    content={milestone.milestoneInfo.description}
                     color="#6E7191"
                   />
-                  &nbsp;
+                </LeftLower>
+              </LeftBox>
+              <RightBox>
+                <RightUpper>
+                  <IssueHeaderButton
+                    icon={<ClosedIconGroup type={'disabled'} />}
+                    text={
+                      <TextGroup
+                        type={T.SMALL}
+                        content={BN.CLOSE}
+                        color="#6E7191"
+                      />
+                    }
+                    onClick={handleClickCloseButton}
+                  />
+                  <IssueHeaderButton
+                    icon={
+                      <EditIcon style={{ color: '#6E7191', fontSize: 16 }} />
+                    }
+                    text={
+                      <TextGroup
+                        type={T.SMALL}
+                        content={BN.EDIT}
+                        color="#6E7191"
+                      />
+                    }
+                    onClick={handleClickEditButton}
+                  />
+                  <IssueHeaderButton
+                    icon={
+                      <DeleteOutlineIcon
+                        style={{ color: '#FF3B30', fontSize: 16 }}
+                      />
+                    }
+                    text={
+                      <TextGroup
+                        type={T.SMALL}
+                        content={BN.DELETE}
+                        color="#FF3B30"
+                      />
+                    }
+                    onClick={handleClickDeleteButton}
+                  />
+                </RightUpper>
+                <RightCenter>
+                  <ProgressBar value={progressRate} />
+                </RightCenter>
+                <RightLower>
                   <TextGroup
                     type={T.SMALL}
-                    content={`닫힌이슈(${closeIssue})`}
+                    content={`${progressRate}%`}
                     color="#6E7191"
                   />
-                </IssueButtonBox>
-              </RightLower>
-            </RightBox>
-          </MilestoneCellStyle>
+                  <IssueButtonBox>
+                    <TextGroup
+                      type={T.SMALL}
+                      content={`열린이슈(${openIssue})`}
+                      color="#6E7191"
+                    />
+                    &nbsp;
+                    <TextGroup
+                      type={T.SMALL}
+                      content={`닫힌이슈(${closeIssue})`}
+                      color="#6E7191"
+                    />
+                  </IssueButtonBox>
+                </RightLower>
+              </RightBox>
+            </MilestoneCellStyle>
+          </>
         );
       })}
     </>

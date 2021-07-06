@@ -1,10 +1,5 @@
 import { atom, selector } from 'recoil';
-import {
-  AssigneeProps,
-  dropCheckStateProps,
-  LabelProps,
-  MilestoneProps,
-} from '../utils/types/sideBarType';
+import { dropCheckStateProps } from '../utils/types/sideBarType';
 import { URL as U } from '../utils/const';
 
 // Login
@@ -73,6 +68,11 @@ export const issueListState = selector({
 
 export const milestoneAddState = atom({
   key: 'milestoneAddState',
+  default: false,
+});
+
+export const milestoneEditState = atom({
+  key: 'milestoneEditState',
   default: false,
 });
 

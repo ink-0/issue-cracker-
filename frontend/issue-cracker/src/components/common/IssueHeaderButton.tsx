@@ -5,15 +5,19 @@ interface IssueHeaderButtonProps {
   icon: JSX.Element;
   text: JSX.Element;
   count?: JSX.Element;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  id?: string;
 }
 
 const IssueHeaderButton = ({
   icon,
   text,
   count,
+  onClick,
+  id,
 }: IssueHeaderButtonProps): JSX.Element => {
   return (
-    <IssueHeaderButtonStyle>
+    <IssueHeaderButtonStyle {...{ onClick }} id={`${id}`}>
       <IconBox>{icon}</IconBox>
       <div>
         <TextBox>{text}</TextBox>
