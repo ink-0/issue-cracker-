@@ -10,7 +10,6 @@ import { LabelProps } from '../../../../utils/types/sideBarType';
 const LabelTable = (): JSX.Element => {
   const labelList = useRecoilValue(labelListState);
   const labelListArr = labelList?.labels;
-  console.log('labelListArr', labelListArr);
 
   return (
     <IssueTableContainer>

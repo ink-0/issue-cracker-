@@ -119,6 +119,8 @@ export const labelListState = selector({
 export interface labelAddStateInputProps {
   title: string;
   description: string;
+  textColor: string;
+  backgroundColor: string;
 }
 
 export const labelAddInputState = atom<labelAddStateInputProps>({
@@ -126,6 +128,8 @@ export const labelAddInputState = atom<labelAddStateInputProps>({
   default: {
     title: '',
     description: '',
+    textColor: '#000',
+    backgroundColor: '#EFF0F6',
   },
 });
 
