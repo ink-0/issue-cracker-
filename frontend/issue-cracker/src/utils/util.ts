@@ -36,8 +36,7 @@ export const getMilestoneCount = (
 ): number => list.filter((el) => el.milestoneInfo.status === str).length;
 
 export const getDate = (date: string | null): string => {
-  if (!date) return '';
-  return date.split('T')[0];
+  return date ? date.split('T')[0] : '';
 };
 
 export const getProgressRate = (open: number, close: number): number => {
