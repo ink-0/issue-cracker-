@@ -58,13 +58,12 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
                       />
                       <IssueTitle>{title}</IssueTitle>
                       {labels.map((label) => {
-                        const { textColorHexa, backgroundColorHexa, title } =
-                          label;
+                        const { textColor, backgroundColor, title } = label;
 
                         return (
                           <LabelSmallGroup
-                            color={textColorHexa}
-                            backgroundColor={backgroundColorHexa}
+                            color={textColor}
+                            backgroundColor={backgroundColor}
                             label={title}
                             key={uuidv4()}
                           />

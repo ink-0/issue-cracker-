@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Issue as S } from '../../../styles/CommonStyles';
+import { useSetRecoilState } from 'recoil';
+import AddIcon from '@material-ui/icons/Add';
+import LabelBox from './LabelBox';
+import InputColorBox from './InputColorBox';
+import InputContentBox from './InputContentBox';
 import TextGroup from '../../../common/group/TextGroup';
-import InputGroup from '../../../common/group/InputGroup';
 import ButtonGroup from '../../../common/group/ButtonGroup';
-import LabelSmallGroup from '../../../common/group/LabelSmallGroup';
-import SyncIcon from '@material-ui/icons/Sync';
+import { labelAddState } from '../../../../store/Recoil';
 import {
   TYPE as T,
   LABEL as L,
   BUTTON_SIZE as BS,
   BUTTON_NAME as BN,
 } from '../../../../utils/const';
-import AddIcon from '@material-ui/icons/Add';
-import { useSetRecoilState } from 'recoil';
-import { labelAddState } from '../../../../store/Recoil';
+import { Issue as S } from '../../../styles/CommonStyles';
 
 const LabelAdd = (): JSX.Element => {
   const setLabelAddState = useSetRecoilState(labelAddState);
@@ -29,59 +29,11 @@ const LabelAdd = (): JSX.Element => {
       </LabelAddHeader>
       <LabelAddCell>
         <LabelContainer>
-          <LabelBox>
-            <LabelSmallGroup
-              label={L.NAME}
-              backgroundColor="#EFF0F6"
-              color="#14142B"
-            />
-          </LabelBox>
+          <LabelBox />
         </LabelContainer>
         <InputContainer>
-          <InputBox>
-            <InputGroup variant="outlined" name={L.NAME} type={T.LARGE} />
-          </InputBox>
-          <InputBox>
-            <InputGroup variant="outlined" name={L.DESC} type={T.LARGE} />
-          </InputBox>
-          <InputColorBox>
-            <BackgroundColorBox>
-              <TextGroup
-                type={T.XSMALL}
-                content={L.BACKGROUND_COLOR}
-                color="#6E7191"
-              />
-              <TextGroup type={T.SMALL} content={'#FFFFFF'} color="#14142B" />
-              <div>
-                <SyncIcon
-                  style={{
-                    color: '#6E7191',
-                    fontSize: 20,
-                    transform: `rotate(-45deg)`,
-                    cursor: 'pointer',
-                  }}
-                />
-              </div>
-            </BackgroundColorBox>
-            <TextColorBox>
-              <TextGroup
-                type={T.XSMALL}
-                content={L.TEXT_COLOR}
-                color="#6E7191"
-              />
-              <TextGroup type={T.SMALL} content={'#FFFFFF'} color="#14142B" />
-              <div>
-                <SyncIcon
-                  style={{
-                    color: '#6E7191',
-                    fontSize: 20,
-                    transform: `rotate(-45deg)`,
-                    cursor: 'pointer',
-                  }}
-                />
-              </div>
-            </TextColorBox>
-          </InputColorBox>
+          <InputContentBox />
+          <InputColorBox />
         </InputContainer>
       </LabelAddCell>
       <ButtonContainer>
@@ -138,71 +90,8 @@ const LabelContainer = styled.div`
   align-items: center;
 `;
 
-const InputBox = styled.div`
-  padding: 10px 20px;
-
-  div {
-    width: 100%;
-  }
-
-  input {
-    background: #eff0f6;
-    border-radius: 16px;
-  }
-
-  fieldset {
-    border-radius: 16px;
-  }
-`;
-
 const InputContainer = styled.div`
   width: 100%;
-`;
-
-const LabelBox = styled.div``;
-
-const InputColorBox = styled.div`
-  display: flex;
-  padding: 10px 20px;
-`;
-
-const BackgroundColorBox = styled.div`
-  width: fit-content;
-  height: 40px;
-  background: #eff0f6;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  color: #6e7191;
-
-  div {
-    display: flex;
-    margin-left: 20px;
-
-    :last-child {
-      margin-right: 20px;
-    }
-  }
-`;
-
-const TextColorBox = styled.div`
-  width: fit-content;
-  height: 40px;
-  background: #eff0f6;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  margin: 0px 10px;
-  color: #6e7191;
-
-  div {
-    display: flex;
-    margin-left: 20px;
-
-    :last-child {
-      margin-right: 20px;
-    }
-  }
 `;
 
 const ButtonBox = styled.div`

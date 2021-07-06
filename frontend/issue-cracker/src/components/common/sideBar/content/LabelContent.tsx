@@ -10,8 +10,8 @@ const LabelContent = ({ checkedLabel }: LabelDataProps): JSX.Element => {
       {checkedLabel?.map((label) => (
         <LabelSmallGroup
           key={uuidv4()}
-          color={label.textColorHexa}
-          backgroundColor={label.backgroundColorHexa}
+          color={label.textColor}
+          backgroundColor={label.backgroundColor}
           label={label.title}
         />
       ))}

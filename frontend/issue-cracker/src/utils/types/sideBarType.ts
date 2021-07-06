@@ -9,8 +9,8 @@ export interface LabelProps {
   id: number;
   title: string;
   description: string;
-  backgroundColorHexa: string;
-  textColorHexa: string;
+  backgroundColor: string;
+  textColor: string;
 }
 export interface MilestoneProps {
   id?: number;

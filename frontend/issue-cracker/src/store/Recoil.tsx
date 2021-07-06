@@ -106,8 +106,35 @@ export const labelAddState = atom({
   default: false,
 });
 
+export const labelListState = selector({
+  key: 'labelListState',
+  get: async () => {
+    const response = await fetch(U.LABELS);
+    const data = await response.json();
+    return data;
+  },
+});
+
+//labelAdd
+export interface labelAddStateInputProps {
+  title: string;
+  description: string;
+  textColor: string;
+  backgroundColor: string;
+}
+
+export const labelAddInputState = atom<labelAddStateInputProps>({
+  key: 'labelAddInputState',
+  default: {
+    title: '',
+    description: '',
+    textColor: '#000',
+    backgroundColor: '#EFF0F6',
+  },
+});
+
 // //IssueAdd
-interface IssueAddStateInputProps {
+export interface IssueAddStateInputProps {
   title: string;
   comment: string;
 }
