@@ -42,8 +42,6 @@ const IssueAddButton = (): JSX.Element => {
       .then(() => history.push('/'));
   };
 
-  // const issueList = useRecoilValue(issueListState);
-  // console.log('issueList', issueList);
   return (
     <IssueAddButtonStyle>
       <Link to={P.ISSUE_LIST}>

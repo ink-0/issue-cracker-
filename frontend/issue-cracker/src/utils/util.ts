@@ -4,7 +4,10 @@ import { MilestoneDataProps } from './types/commonTypes';
 export const getIssue = (
   list: IssueDataProps[],
   str: string
-): IssueDataProps[] => list.filter((el) => el.status === str);
+): IssueDataProps[] | null => {
+  if (!list) return null;
+  else return list?.filter((el) => el.status === str);
+};
 
 export const getElapsedTime = (date: string): string => {
   const createdTime = new Date(date);
@@ -27,8 +30,13 @@ export const getElapsedTime = (date: string): string => {
   return '몇 년 전';
 };
 
-export const getIssueCount = (list: IssueDataProps[], str: string): number =>
-  list.filter((el) => el.status === str).length;
+export const getIssueCount = (
+  list: IssueDataProps[] | undefined,
+  str: 'OPEN' | 'CLOSE'
+): number => {
+  if (!list) return 0;
+  else return list?.filter((el) => el.status === str).length;
+};
 
 export const getMilestoneCount = (
   list: MilestoneDataProps[] | undefined,

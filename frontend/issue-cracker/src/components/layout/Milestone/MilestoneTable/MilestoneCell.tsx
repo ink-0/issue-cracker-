@@ -53,7 +53,7 @@ const MilestoneCell = (): JSX.Element => {
         const openIssue = getIssueCount(milestone.issues, 'OPEN');
         const closeIssue = getIssueCount(milestone.issues, 'CLOSE');
         const progressRate = getProgressRate(openIssue, closeIssue);
-        console.log(milestone.id);
+
         return (
           <MilestoneCellStyle
             key={uuidv4()}

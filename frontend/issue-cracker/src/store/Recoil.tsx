@@ -101,15 +101,6 @@ export const labelAddState = atom({
   default: false,
 });
 
-export const labelListState = selector({
-  key: 'labelListState',
-  get: async () => {
-    const response = await fetch(U.LABELS);
-    const data = await response.json();
-    return data;
-  },
-});
-
 //labelAdd
 export interface labelAddStateInputProps {
   title: string;

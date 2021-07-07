@@ -31,7 +31,7 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
 
   return (
     <>
-      {openIssue.map((issue) => {
+      {openIssue?.map((issue) => {
         const {
           assignees,
           content,

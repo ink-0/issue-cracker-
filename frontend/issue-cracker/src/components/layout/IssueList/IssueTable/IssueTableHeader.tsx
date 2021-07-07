@@ -23,7 +23,7 @@ const IssueTableHeader = ({
   issues: IssueDataProps[];
 }): JSX.Element => {
   const openIssue = getIssueCount(issues, 'OPEN');
-  const closedIssue = getIssueCount(issues, 'CLOSED');
+  const closedIssue = getIssueCount(issues, 'CLOSE');
 
   return (
     <S.IssueTableHeader>
