@@ -6,7 +6,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import LabelSmallGroup from '../../../common/group/LabelSmallGroup';
 import TextGroup from '../../../common/group/TextGroup';
-import { LabelProps } from '../../../../utils/types/sideBarType';
+import { LabelProps } from '../../../../utils/types/commonTypes';
 import { TYPE as T } from '../../../../utils/const';
 
 const LabelCell = ({ label }: { label: LabelProps }): JSX.Element => {
@@ -22,7 +22,7 @@ const LabelCell = ({ label }: { label: LabelProps }): JSX.Element => {
       <LabelContent>
         <LabelBox>
           <LabelSmallGroup
-            color={'#fff'}
+            color={labelColor}
             backgroundColor={labelBackgroundColor}
             label={labelTitle}
           ></LabelSmallGroup>{' '}

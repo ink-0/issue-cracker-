@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { milestoneAddState, milestoneEditState } from '../../../store/Recoil';
+import { milestoneAddState } from '../../../store/Recoil';
 import MilestoneAdd from './MilestoneAdd';
 import MilestoneNav from './MilestoneNav';
 import MilestoneTable from './MilestoneTable';

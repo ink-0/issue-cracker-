@@ -1,5 +1,5 @@
 import { atom, selector } from 'recoil';
-import { dropCheckStateProps } from '../utils/types/sideBarType';
+import { dropCheckStateProps } from '../utils/types/commonTypes';
 import { URL as U } from '../utils/const';
 
 // Login

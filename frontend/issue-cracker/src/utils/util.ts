@@ -1,5 +1,5 @@
-import { IssueDataProps } from './types/IssueDataType';
-import { MilestoneDataProps } from './types/milestoneDataType';
+import { IssueDataProps } from './types/commonTypes';
+import { MilestoneDataProps } from './types/commonTypes';
 
 export const getIssue = (
   list: IssueDataProps[],

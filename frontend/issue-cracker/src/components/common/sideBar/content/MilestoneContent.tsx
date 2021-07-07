@@ -1,12 +1,12 @@
 import React from 'react';
 import ProgressBar from '../../../common/ProgressBar';
 import { Text as S } from '../../../styles/CommonStyles';
-import { MilestoneDataProps } from '../../../../utils/types/sideBarType';
+import { MilestoneStateProps } from '../../../../utils/types/commonTypes';
 import styled from 'styled-components';
 
 const MilestoneContent = ({
   checkedMilestone,
-}: MilestoneDataProps): JSX.Element => {
+}: MilestoneStateProps): JSX.Element => {
   return (
     <>
       <ProgressBox>

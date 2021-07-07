@@ -4,7 +4,7 @@ import { Issue as S } from '../../../styles/CommonStyles';
 import TextGroup from '../../../common/group/TextGroup';
 import InputGroup from '../../../common/group/InputGroup';
 import ButtonGroup from '../../../common/group/ButtonGroup';
-
+import { getPost } from '../../../../utils/restAPI';
 import {
   TYPE as T,
   MILESTONE as M,
@@ -24,26 +24,13 @@ const MilestoneAdd = (): JSX.Element => {
   const userToken = localStorage.getItem('token');
 
   const handleClickButton = () => {
-    getPostMilestonAdd();
+    getPost(U.MILESTONE, userToken, milestoneAddInput);
     setMilestoneAdd((prev) => !prev);
   };
 
   const [milestoneAddInput, setMilestoneAddInput] = useRecoilState(
     milestoneAddInputState
   );
-
-  const getPostMilestonAdd = async () => {
-    return await fetch(U.MILESTONE, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userToken}`,
-      },
-      body: JSON.stringify(milestoneAddInput),
-    })
-      .then((res) => console.log('SUCCESS', res))
-      .then((error) => console.error(error));
-  };
 
   const handleChangeInputTitle = (
     e: React.ChangeEvent<HTMLInputElement>

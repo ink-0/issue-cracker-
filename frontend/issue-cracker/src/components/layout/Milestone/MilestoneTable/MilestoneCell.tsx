@@ -16,13 +16,12 @@ import {
   milestoneEditState,
   milestoneListState,
 } from '../../../../store/Recoil';
-import { MilestoneDataProps } from '../../../../utils/types/milestoneDataType';
+import { MilestoneDataProps } from '../../../../utils/types/commonTypes';
 import {
   getDate,
   getIssueCount,
   getProgressRate,
 } from '../../../../utils/util';
-import MilestoneAdd from '../MilestoneAdd';
 
 const MilestoneCell = (): JSX.Element => {
   const milestone = useRecoilValue(milestoneListState);
@@ -35,7 +34,8 @@ const MilestoneCell = (): JSX.Element => {
     console.log('closed');
   };
   const handleClickEditButton = (e: React.MouseEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget);
+    console.log(e.target);
+    console.log('here');
     setMilestoneEdit((prev) => !prev);
   };
   const handleClickDeleteButton = () => {
@@ -50,7 +50,11 @@ const MilestoneCell = (): JSX.Element => {
         const progressRate = getProgressRate(openIssue, closeIssue);
 
         return (
-          <MilestoneCellStyle key={uuidv4()}>
+          <MilestoneCellStyle
+            key={uuidv4()}
+            id={`${milestone.id}`}
+            onClick={handleClickEditButton}
+          >
             <LeftBox>
               <LeftUpper>
                 <IssueHeaderButton
@@ -70,7 +74,7 @@ const MilestoneCell = (): JSX.Element => {
                       color="#222"
                     />
                   }
-                  id={`${milestone.id}`}
+                  // id={1}
                 />
 
                 {milestone.milestoneInfo.dueDate && (

@@ -14,7 +14,7 @@ import TextGroup from '../../../common/group/TextGroup';
 import CountGroup from '../../../common/group/CountGroup';
 import IssueHeaderButton from '../../../common/IssueHeaderButton';
 import FilterMenu from '../../../common/FilterMenu';
-import { IssueDataProps } from '../../../../utils/types/IssueDataType';
+import { IssueDataProps } from '../../../../utils/types/commonTypes';
 import { getIssueCount } from '../../../../utils/util';
 
 const IssueTableHeader = ({
