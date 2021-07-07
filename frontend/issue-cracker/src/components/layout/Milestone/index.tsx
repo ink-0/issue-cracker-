@@ -8,7 +8,6 @@ import MilestoneTable from './MilestoneTable';
 
 const MilestoneList = (): JSX.Element => {
   const milestoneAdd = useRecoilValue(milestoneAddState);
-
   return (
     <MilestoneistStyle>
       <MilestoneNav />

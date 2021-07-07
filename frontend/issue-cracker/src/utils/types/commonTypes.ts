@@ -30,6 +30,10 @@ export interface MilestoneDataProps {
   milestoneInfo: MilestoneProps;
 }
 
+export interface Milestones {
+  milestones: MilestoneDataProps[];
+}
+
 //comment
 export interface CommentsProps {
   id: number;
@@ -75,4 +79,13 @@ export interface dropCheckStateProps {
   assignee: AssigneeProps[];
   label: LabelProps[];
   milestone: MilestoneProps[];
+}
+
+// Common
+export interface CommonButtonProps {
+  icon: JSX.Element;
+  text: JSX.Element;
+  count?: JSX.Element;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  id?: number;
 }

@@ -19,7 +19,6 @@ const IssueAddButton = (): JSX.Element => {
   const issueAdd = useRecoilValue(issueAddState);
 
   const userToken = localStorage.getItem('token');
-  console.log('issueAdd', issueAdd);
   const history = useHistory();
 
   const handleClickCompleteButton = async () => {
@@ -42,8 +41,6 @@ const IssueAddButton = (): JSX.Element => {
       .then(() => history.push('/'));
   };
 
-  // const issueList = useRecoilValue(issueListState);
-  // console.log('issueList', issueList);
   return (
     <IssueAddButtonStyle>
       <Link to={P.ISSUE_LIST}>

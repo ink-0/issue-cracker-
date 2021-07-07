@@ -1,13 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-interface CommonButtonProps {
-  icon: JSX.Element;
-  text: JSX.Element;
-  count?: JSX.Element;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-  id?: number;
-}
+import { CommonButtonProps } from '../../utils/types/commonTypes';
 
 const CommonButton = ({
   icon,

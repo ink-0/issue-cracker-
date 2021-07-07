@@ -38,7 +38,7 @@ const SideBarDropLabel = ({ data }: { data: LabelProps }): JSX.Element => {
   return (
     <SideBarDropLabelStyle onClick={() => handleClickLabel()}>
       <DropLeft>
-        <LabelColorIcon color="#DDA94B" />
+        <LabelColorIcon color={data.backgroundColor} />
         <LabelName>{data.title}</LabelName>
       </DropLeft>
       <DropRight>{isCheck ? <CheckOnIcon /> : <CheckOffIcon />}</DropRight>

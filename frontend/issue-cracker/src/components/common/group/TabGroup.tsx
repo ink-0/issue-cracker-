@@ -1,16 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import FlagIcon from '@material-ui/icons/Flag';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import styled from 'styled-components';
-import { milestoneListState } from '../../../store/Recoil';
 import TextGroup from '../group/TextGroup';
 import CountGroup from '../group/CountGroup';
 import { TEXT as TT, TYPE as T, PATH as P } from '../../../utils/const';
-import { useRecoilValue } from 'recoil';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,9 +32,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const TabGroup = (): JSX.Element => {
   const classes = useStyles();
-  const milestone = useRecoilValue(milestoneListState);
-  const milestones = milestone.milestones;
-  const milestoneCount = milestones.length;
 
   return (
     <div className={classes.root}>
@@ -62,7 +57,7 @@ const TabGroup = (): JSX.Element => {
           to={P.ISSUE_MILESTONE}
         >
           <TextGroup type={T.SMALL} content={TT.MILESTONE} color="#6E7191" />
-          <CountGroup count={milestoneCount} color="#6E7191" />
+          <CountGroup count={1} color="#6E7191" />
         </Button>
       </CustomTabGroup>
     </div>

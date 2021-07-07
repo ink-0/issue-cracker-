@@ -1,8 +1,8 @@
 // Logo
 export const LOGO_TITLE = 'Issue Cracker..🍪';
-const DEPLOY = 'http://issue-tracker.pyro-squad.com';
-// const LOCAL = 'http://localhost:8080';
-const BASE_URL = DEPLOY;
+// const DEPLOY = 'http://issue-tracker.pyro-squad.com';
+const LOCAL = 'http://localhost:8080';
+const BASE_URL = LOCAL;
 //url
 export const URL = {
   // AUTH: 'http://localhost:8080/api/web/auth',
