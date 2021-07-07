@@ -3,51 +3,33 @@ import { Issue as S } from '../../../styles/CommonStyles';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
 import LabelSmallGroup from '../../../common/group/LabelSmallGroup';
 import TextGroup from '../../../common/group/TextGroup';
+import LabelEditButton from './LabelEditButton';
 import { LabelProps } from '../../../../utils/types/commonTypes';
 import { TYPE as T } from '../../../../utils/const';
+import LabelDeleteButton from './LabelDeleteButton';
 
 const LabelCell = ({ label }: { label: LabelProps }): JSX.Element => {
-  const [labelTitle, labelColor, labelBackgroundColor, labelContent] = [
-    label.title,
-    label.textColor,
-    label.backgroundColor,
-    label.description,
-  ];
+  const { title, textColor, backgroundColor, description } = label;
 
   return (
     <LabelCellStyle>
       <LabelContent>
         <LabelBox>
           <LabelSmallGroup
-            color={labelColor}
-            backgroundColor={labelBackgroundColor}
-            label={labelTitle}
-          ></LabelSmallGroup>{' '}
+            color={textColor}
+            backgroundColor={backgroundColor}
+            label={title}
+          ></LabelSmallGroup>
         </LabelBox>
         <TextBox>
-          <TextGroup type={T.SMALL} content={labelContent} color="#6E7191" />
+          <TextGroup type={T.SMALL} content={description} color="#6E7191" />
         </TextBox>
       </LabelContent>
       <ButtonBox>
-        <EditButtonBox>
-          <Button
-            startIcon={<EditIcon style={{ color: '#6E7191', fontSize: 16 }} />}
-          >
-            <TextGroup type={T.SMALL} content={'편집'} color="#6E7191" />
-          </Button>
-        </EditButtonBox>
-        <DeleteButtonBox>
-          <Button
-            startIcon={
-              <DeleteIcon style={{ color: '#FF3B30', fontSize: 16 }} />
-            }
-          >
-            <TextGroup type={T.SMALL} content={'삭제'} color="#FF3B30" />
-          </Button>
-        </DeleteButtonBox>
+        <LabelEditButton />
+        <LabelDeleteButton />
       </ButtonBox>
     </LabelCellStyle>
   );
@@ -75,12 +57,4 @@ const TextBox = styled.div``;
 const ButtonBox = styled.div`
   display: flex;
   margin-right: 20px;
-`;
-
-const EditButtonBox = styled.div`
-  padding: 0px 5px;
-`;
-
-const DeleteButtonBox = styled.div`
-  padding: 0px 5px;
 `;

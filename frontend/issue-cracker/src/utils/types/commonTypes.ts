@@ -80,3 +80,12 @@ export interface dropCheckStateProps {
   label: LabelProps[];
   milestone: MilestoneProps[];
 }
+
+// Common
+export interface CommonButtonProps {
+  icon: JSX.Element;
+  text: JSX.Element;
+  count?: JSX.Element;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  id?: number;
+}

@@ -12,7 +12,7 @@ import {
 } from '../../../../utils/const';
 import TextGroup from '../../../common/group/TextGroup';
 import CountGroup from '../../../common/group/CountGroup';
-import IssueHeaderButton from '../../../common/IssueHeaderButton';
+import CommonButton from '../../../common/CommonButton';
 import FilterMenu from '../../../common/FilterMenu';
 import { IssueDataProps } from '../../../../utils/types/commonTypes';
 import { getIssueCount } from '../../../../utils/util';
@@ -29,14 +29,14 @@ const IssueTableHeader = ({
     <S.IssueTableHeader>
       <S.IssueTableHeaderLeft>
         <CheckBoxes />
-        <IssueHeaderButton
+        <CommonButton
           icon={<OpenIconGroup type={'default'} />}
           text={
             <TextGroup type={T.SMALL} content={TT.OPEN_ISSUE} color="#222" />
           }
           count={<CountGroup count={openIssue} color="#222" />}
         />
-        <IssueHeaderButton
+        <CommonButton
           icon={<ClosedIconGroup type={'disabled'} />}
           text={
             <TextGroup

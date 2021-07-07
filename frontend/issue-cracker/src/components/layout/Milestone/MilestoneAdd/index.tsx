@@ -47,7 +47,6 @@ const MilestoneAdd = (): JSX.Element => {
       description: e.target.value,
     });
 
-  console.log(milestoneAddInput);
   return (
     <MilestoneAddStyle>
       <MilestoneAddHeader>

@@ -19,7 +19,6 @@ const IssueAddButton = (): JSX.Element => {
   const issueAdd = useRecoilValue(issueAddState);
 
   const userToken = localStorage.getItem('token');
-  console.log('issueAdd', issueAdd);
   const history = useHistory();
 
   const handleClickCompleteButton = async () => {

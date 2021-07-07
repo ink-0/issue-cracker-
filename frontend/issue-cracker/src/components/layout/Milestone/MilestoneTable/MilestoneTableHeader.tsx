@@ -2,7 +2,7 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import FlagTwoToneIcon from '@material-ui/icons/FlagTwoTone';
-import IssueHeaderButton from '../../../common/IssueHeaderButton';
+import CommonButton from '../../../common/CommonButton';
 import ClosedIconGroup from '../../../common/group/ClosedIconGroup';
 import CountGroup from '../../../common/group/CountGroup';
 import TextGroup from '../../../common/group/TextGroup';
@@ -22,7 +22,7 @@ const MilestoneTableHeader = (): JSX.Element => {
   return (
     <S.IssueTableHeader>
       <MilestoneTableHeaderWrapper>
-        <IssueHeaderButton
+        <CommonButton
           icon={<FlagTwoToneIcon />}
           text={
             <TextGroup
@@ -33,7 +33,7 @@ const MilestoneTableHeader = (): JSX.Element => {
           }
           count={<CountGroup count={openMilestoneCount} color="#222" />}
         />
-        <IssueHeaderButton
+        <CommonButton
           icon={<ClosedIconGroup type={'disabled'} />}
           text={
             <TextGroup

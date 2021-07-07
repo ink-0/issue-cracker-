@@ -49,7 +49,7 @@ const SideBarDropAssignee = ({
       }}
     >
       <DropLeft>
-        <S.ProfileImgSmall src={profileURL}></S.ProfileImgSmall>
+        <S.ProfileImgSmall src={data.avatarUrl}></S.ProfileImgSmall>
         <ProfileName>{data.name}</ProfileName>
       </DropLeft>
       <DropRight>{isCheck ? <CheckOnIcon /> : <CheckOffIcon />}</DropRight>
