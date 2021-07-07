@@ -76,11 +76,18 @@ export const milestoneEditState = atom({
   default: false,
 });
 
+export const milestoneListData = atom({
+  key: 'milestoneListData',
+  default: null,
+});
+
 export const milestoneListState = selector({
   key: 'milestoneListState',
-  get: async () => {
+  get: async ({ get }) => {
+    let data = get(milestoneListData);
     const response = await fetch(U.MILESTONE);
-    const data = await response.json();
+    data = await response.json();
+
     return data;
   },
 });

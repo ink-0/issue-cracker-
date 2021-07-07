@@ -41,7 +41,6 @@ const MilestoneCell = (): JSX.Element => {
   const handleClickDeleteButton = () => {
     console.log('delete');
   };
-  console.log(milestones);
   return (
     <>
       {milestones.map((milestone: MilestoneDataProps) => {
@@ -74,7 +73,7 @@ const MilestoneCell = (): JSX.Element => {
                       color="#222"
                     />
                   }
-                  // id={1}
+                  id={milestone.id}
                 />
 
                 {milestone.milestoneInfo.dueDate && (

@@ -30,6 +30,10 @@ export interface MilestoneDataProps {
   milestoneInfo: MilestoneProps;
 }
 
+export interface Milestones {
+  milestones: MilestoneDataProps[];
+}
+
 //comment
 export interface CommentsProps {
   id: number;

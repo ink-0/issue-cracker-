@@ -6,7 +6,7 @@ interface IssueHeaderButtonProps {
   text: JSX.Element;
   count?: JSX.Element;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
-  // id?: number;
+  id?: number;
 }
 
 const IssueHeaderButton = ({
@@ -14,9 +14,9 @@ const IssueHeaderButton = ({
   text,
   count,
   onClick,
-}: // id,
-IssueHeaderButtonProps): JSX.Element => {
-  // console.log('id', id);
+  id,
+}: IssueHeaderButtonProps): JSX.Element => {
+  console.log('id', id);
 
   return (
     <IssueHeaderButtonStyle {...{ onClick }}>
