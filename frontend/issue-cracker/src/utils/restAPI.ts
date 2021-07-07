@@ -8,7 +8,7 @@ export const getPost = async (
   path: string,
   token: string | null,
   body: any
-): Promise<any> => {
+): Promise<string | void> => {
   return await fetch(path, {
     method: 'POST',
     headers: {

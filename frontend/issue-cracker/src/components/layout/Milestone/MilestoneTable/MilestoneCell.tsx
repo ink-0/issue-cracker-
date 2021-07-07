@@ -34,8 +34,8 @@ const MilestoneCell = (): JSX.Element => {
     console.log('closed');
   };
   const handleClickEditButton = (e: React.MouseEvent<HTMLInputElement>) => {
-    console.log(e.target);
-    console.log('here');
+    console.log(e.currentTarget.id);
+
     setMilestoneEdit((prev) => !prev);
   };
   const handleClickDeleteButton = () => {
@@ -47,7 +47,7 @@ const MilestoneCell = (): JSX.Element => {
         const openIssue = getIssueCount(milestone.issues, 'OPEN');
         const closeIssue = getIssueCount(milestone.issues, 'CLOSE');
         const progressRate = getProgressRate(openIssue, closeIssue);
-
+        console.log(milestone.id);
         return (
           <MilestoneCellStyle
             key={uuidv4()}
@@ -73,7 +73,6 @@ const MilestoneCell = (): JSX.Element => {
                       color="#222"
                     />
                   }
-                  id={milestone.id}
                 />
 
                 {milestone.milestoneInfo.dueDate && (
@@ -124,6 +123,7 @@ const MilestoneCell = (): JSX.Element => {
                     />
                   }
                   onClick={handleClickEditButton}
+                  id={milestone.id}
                 />
                 <IssueHeaderButton
                   icon={
