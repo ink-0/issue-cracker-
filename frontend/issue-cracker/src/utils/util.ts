@@ -31,9 +31,12 @@ export const getIssueCount = (list: IssueDataProps[], str: string): number =>
   list.filter((el) => el.status === str).length;
 
 export const getMilestoneCount = (
-  list: MilestoneDataProps[],
+  list: MilestoneDataProps[] | undefined,
   str: 'OPEN' | 'CLOSE'
-): number => list.filter((el) => el.milestoneInfo.status === str).length;
+): number => {
+  if (!list) return 0;
+  else return list?.filter((el) => el.milestoneInfo.status === str).length;
+};
 
 export const getDate = (date: string | null): string => {
   return date ? date.split('T')[0] : '';

@@ -1,9 +1,3 @@
-// interface PostProps {
-//   path: string;
-//   token: string;
-//   body: any;
-// }
-
 export const getPost = async (
   path: string,
   token: string | null,

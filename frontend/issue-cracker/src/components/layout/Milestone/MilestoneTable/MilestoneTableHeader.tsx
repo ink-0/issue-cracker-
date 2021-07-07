@@ -6,15 +6,16 @@ import IssueHeaderButton from '../../../common/IssueHeaderButton';
 import ClosedIconGroup from '../../../common/group/ClosedIconGroup';
 import CountGroup from '../../../common/group/CountGroup';
 import TextGroup from '../../../common/group/TextGroup';
-import { Issue as S } from '../../../styles/CommonStyles';
-import { TEXT as TT, TYPE as T } from '../../../../utils/const';
-import { milestoneListState } from '../../../../store/Recoil';
+import { milestoneAddState } from '../../../../store/Recoil';
 import { getMilestoneCount } from '../../../../utils/util';
+import useFetch from '../../../../utils/useFetch';
+import { Issue as S } from '../../../styles/CommonStyles';
+import { TEXT as TT, TYPE as T, URL as U } from '../../../../utils/const';
 
 const MilestoneTableHeader = (): JSX.Element => {
-  const milestone = useRecoilValue(milestoneListState);
-  const milestones = milestone.milestones;
-
+  const milestoneAdd = useRecoilValue(milestoneAddState);
+  const milestone = useFetch(U.MILESTONE, [milestoneAdd]);
+  const milestones = milestone?.milestones;
   const openMilestoneCount = getMilestoneCount(milestones, 'OPEN');
   const closeMilestoneCount = getMilestoneCount(milestones, 'CLOSE');
 

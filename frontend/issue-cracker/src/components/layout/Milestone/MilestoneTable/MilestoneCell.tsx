@@ -1,49 +1,55 @@
 import React from 'react';
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import FlagTwoToneIcon from '@material-ui/icons/FlagTwoTone';
 import CalendarTodayTwoToneIcon from '@material-ui/icons/CalendarTodayTwoTone';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import EditIcon from '@material-ui/icons/Edit';
-import { v4 as uuidv4 } from 'uuid';
 import TextGroup from '../../../common/group/TextGroup';
 import IssueHeaderButton from '../../../common/IssueHeaderButton';
 import ClosedIconGroup from '../../../common/group/ClosedIconGroup';
 import ProgressBar from '../../../common/ProgressBar';
-import { Issue as S } from '../../../styles/CommonStyles';
-import { TYPE as T, BUTTON_NAME as BN } from '../../../../utils/const';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import {
-  milestoneEditState,
-  milestoneListState,
-} from '../../../../store/Recoil';
-import { MilestoneDataProps } from '../../../../utils/types/commonTypes';
 import {
   getDate,
   getIssueCount,
   getProgressRate,
 } from '../../../../utils/util';
+import {
+  milestoneAddState,
+  milestoneEditState,
+} from '../../../../store/Recoil';
+import useFetch from '../../../../utils/useFetch';
+import { MilestoneDataProps } from '../../../../utils/types/commonTypes';
+import { Issue as S } from '../../../styles/CommonStyles';
+import {
+  TYPE as T,
+  BUTTON_NAME as BN,
+  URL as U,
+} from '../../../../utils/const';
 
 const MilestoneCell = (): JSX.Element => {
-  const milestone = useRecoilValue(milestoneListState);
+  const milestoneAdd = useRecoilValue(milestoneAddState);
+  const milestone = useFetch(U.MILESTONE, [milestoneAdd]);
   const setMilestoneEdit = useSetRecoilState(milestoneEditState);
-
-  const milestones = milestone.milestones;
-  console.log(milestones);
+  const milestones = milestone?.milestones;
 
   const handleClickCloseButton = () => {
     console.log('closed');
   };
+
   const handleClickEditButton = (e: React.MouseEvent<HTMLInputElement>) => {
     console.log(e.currentTarget.id);
-
     setMilestoneEdit((prev) => !prev);
   };
+
   const handleClickDeleteButton = () => {
     console.log('delete');
   };
+
   return (
     <>
-      {milestones.map((milestone: MilestoneDataProps) => {
+      {milestones?.map((milestone: MilestoneDataProps) => {
         const openIssue = getIssueCount(milestone.issues, 'OPEN');
         const closeIssue = getIssueCount(milestone.issues, 'CLOSE');
         const progressRate = getProgressRate(openIssue, closeIssue);

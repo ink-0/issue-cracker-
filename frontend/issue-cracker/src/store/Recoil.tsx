@@ -1,5 +1,5 @@
 import { atom, selector } from 'recoil';
-import { dropCheckStateProps } from '../utils/types/commonTypes';
+import { dropCheckStateProps, Milestones } from '../utils/types/commonTypes';
 import { URL as U } from '../utils/const';
 
 // Login
@@ -76,20 +76,9 @@ export const milestoneEditState = atom({
   default: false,
 });
 
-export const milestoneListData = atom({
-  key: 'milestoneListData',
-  default: null,
-});
-
-export const milestoneListState = selector({
+export const milestoneListState = atom<Milestones | null>({
   key: 'milestoneListState',
-  get: async ({ get }) => {
-    let data = get(milestoneListData);
-    const response = await fetch(U.MILESTONE);
-    data = await response.json();
-
-    return data;
-  },
+  default: null,
 });
 
 interface MilestoneAddInputProps {
@@ -187,46 +176,3 @@ export const issueDetailID = atom({
   key: 'issueDetailID',
   default: 0,
 });
-
-//GET :DATA
-//POST :DATA
-// POST IssueAdd POST
-
-// export const issueAddPostData = selector({
-//   key: 'issueAddPostData',
-//   get: async ({ get }) => {
-//     const userToken = get(token);
-//     const userIssueAddData = get(issueAddData);
-//     return await fetch(U.ISSUES, {
-//       method: 'POST',
-//       body: JSON.stringify(userIssueAddData),
-//       headers: {
-//         'Content-Type': 'application/json',
-//         Authorization: `Bearer ${userToken}`,
-//       },
-//     })
-//       .then((res) => res.json())
-//       .then((response) => console.log('Success:', JSON.stringify(response)))
-//       .catch((error) => console.error('Error:', error));
-//   },
-// });
-
-// interface issuePostProps {
-//   title: string;
-//   comment: string;
-//   assigneesId: string[];
-//   labelsId: number[];
-//   milestoneId: number;
-// }
-
-// export const issuePost = atom<issuePostProps>({
-//   key: 'issuePost',
-//   default: {
-//     title: '',
-//     comment: '',
-//     assigneesId: [],
-//     labelsId: [],
-//     milestoneId: 0,
-//   },
-// });
-//

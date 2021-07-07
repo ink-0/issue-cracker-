@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import { BUTTON_SIZE as BS, BUTTON_NAME as BN } from '../../../../utils/const';
 import ButtonGroup from '../../../common/group/ButtonGroup';
-import TapGroup from '../../../common/group/TabGroup';
+import TabGroup from '../../../common/group/TabGroup';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { useRecoilState } from 'recoil';
@@ -17,9 +17,7 @@ const MilestoneNav: FC = () => {
     <MilestoneNavDiv>
       <MilestoneNavContainer>
         <TabBox>
-          <React.Suspense fallback={null}>
-            <TapGroup />
-          </React.Suspense>
+          <TabGroup />
         </TabBox>
         {milestoneAdd ? (
           <ButtonBox onClick={handleClickbutton}>
