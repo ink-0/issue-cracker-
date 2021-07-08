@@ -1,8 +1,6 @@
 import React from 'react';
 import { Issue as S } from '../../../styles/CommonStyles';
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
-import EditIcon from '@material-ui/icons/Edit';
 import LabelSmallGroup from '../../../common/group/LabelSmallGroup';
 import TextGroup from '../../../common/group/TextGroup';
 import LabelEditButton from './LabelEditButton';
@@ -11,7 +9,7 @@ import { TYPE as T } from '../../../../utils/const';
 import LabelDeleteButton from './LabelDeleteButton';
 
 const LabelCell = ({ label }: { label: LabelProps }): JSX.Element => {
-  const { title, textColor, backgroundColor, description } = label;
+  const { id, title, textColor, backgroundColor, description } = label;
 
   return (
     <LabelCellStyle>
@@ -28,8 +26,8 @@ const LabelCell = ({ label }: { label: LabelProps }): JSX.Element => {
         </TextBox>
       </LabelContent>
       <ButtonBox>
-        <LabelEditButton />
-        <LabelDeleteButton />
+        <LabelEditButton {...{ id }} />
+        <LabelDeleteButton {...{ id }} />
       </ButtonBox>
     </LabelCellStyle>
   );

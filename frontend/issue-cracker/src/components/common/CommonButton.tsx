@@ -27,6 +27,7 @@ const CommonButtonStyle = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0px 10px;
+  cursor: pointer;
 
   div {
     display: flex;
