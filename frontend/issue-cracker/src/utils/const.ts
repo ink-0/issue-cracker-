@@ -103,6 +103,7 @@ export const LABEL = {
 export const MILESTONE = {
   TITLE: '마일스톤 제목',
   ADD: '새로운 마일스톤 추가',
+  EDIT: '마일스톤 수정',
   NAME: '마일스톤 이름',
   DESC: '설명(선택)',
   DUE: '완료일(선택) ex. YYYY-MM-DD',

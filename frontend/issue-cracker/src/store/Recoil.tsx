@@ -1,5 +1,9 @@
 import { atom, selector } from 'recoil';
-import { dropCheckStateProps, Milestones } from '../utils/types/commonTypes';
+import {
+  dropCheckStateProps,
+  MilestoneProps,
+  Milestones,
+} from '../utils/types/commonTypes';
 import { URL as U } from '../utils/const';
 
 // Login
@@ -81,6 +85,11 @@ export const milestoneListState = atom<Milestones | null>({
   default: null,
 });
 
+export const milestoneEditIdState = atom({
+  key: 'milestoneEditIdState',
+  default: 0,
+});
+
 interface MilestoneAddInputProps {
   title: string;
   description: string;
@@ -91,6 +100,17 @@ export const milestoneAddInputState = atom<MilestoneAddInputProps>({
   default: {
     title: '',
     description: '',
+  },
+});
+
+export const milestoneEditInputState = atom<MilestoneProps>({
+  key: 'milestoneEditInputState',
+  default: {
+    id: 0,
+    title: '',
+    description: '',
+    dueDate: '',
+    status: '',
   },
 });
 
