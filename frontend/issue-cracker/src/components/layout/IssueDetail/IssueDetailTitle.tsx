@@ -2,31 +2,37 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
-import IssueClosedIcon from '../../styles/svg/IssueClosedIcon';
+import { useRecoilValue } from 'recoil';
 import TextGroup from '../../common/group/TextGroup';
 import LabelLargeGroup from '../../common/group/LabelLargeGroup';
-import { TYPE as T, TEXT as TT } from '../../../utils/const';
-import { IssueDataProps } from '../../../utils/types/commonTypes';
-import { getElapsedTime } from '../../../utils/util';
-import { useRecoilValue } from 'recoil';
+import IssueClosedIcon from '../../styles/svg/IssueClosedIcon';
 import { issueDetailState } from '../../../store/Recoil';
+import { getElapsedTime } from '../../../utils/util';
+import { TYPE as T, TEXT as TT } from '../../../utils/const';
+
 const IssueDetailTitle = (): JSX.Element => {
-  const issueDetail = useRecoilValue<IssueDataProps>(issueDetailState);
-  const { createdDateTime, issueId, status, title, writer, comments } =
-    issueDetail;
+  const issueDetails = useRecoilValue<any | null>(issueDetailState);
+  // const { issueId, status, title, writer, comments } = issueDetails;
   const isOpen = status === 'OPEN' ? true : false;
   const [issueState, setIssueState] = useState(isOpen);
+  const elapsedTime = getElapsedTime(issueDetails?.createdDateTime);
 
   const handleClickIssueButton = () => setIssueState(false);
-
-  const elapsedTime = getElapsedTime(createdDateTime);
 
   return (
     <IssueDetailTitleStyle>
       <TitleUpperBox>
         <TextBox>
-          <TextGroup type={T.LARGE} content={title} color="#222" />
-          <TextGroup type={T.LARGE} content={`#${issueId}`} color="#6E7191" />
+          <TextGroup
+            type={T.LARGE}
+            content={issueDetails?.title}
+            color="#222"
+          />
+          <TextGroup
+            type={T.LARGE}
+            content={`#${issueDetails?.issueId}`}
+            color="#6E7191"
+          />
         </TextBox>
         <ButtonBox>
           <TitleEditButton startIcon={<TitleEditIcon />} color="primary">
@@ -62,13 +68,13 @@ const IssueDetailTitle = (): JSX.Element => {
           {issueState ? (
             <TextGroup
               type={T.SMALL}
-              content={`이 이슈가 ${elapsedTime}에 ${writer.name}님에 의해 열렸습니다 ∙ 코멘트 ${comments?.length}개`}
+              content={`이 이슈가 ${elapsedTime}에 ${issueDetails?.writer?.name}님에 의해 열렸습니다 ∙ 코멘트 ${issueDetails?.comments?.length}개`}
               color="#6E7191"
             />
           ) : (
             <TextGroup
               type={T.SMALL}
-              content={`이 이슈가 ${elapsedTime}에 ${writer.name}님에 의해 닫혔습니다 ∙ 코멘트 ${comments?.length}개`}
+              content={`이 이슈가 ${elapsedTime}에 ${issueDetails?.writer?.name}님에 의해 닫혔습니다 ∙ 코멘트 ${issueDetails?.comments?.length}개`}
               color="#6E7191"
             />
           )}

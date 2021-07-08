@@ -7,7 +7,6 @@ const IssueDetailInput = (): JSX.Element => {
   return (
     <IssueDetailInputStyle>
       <IssueDetailDisplay />
-
       <IssueDetailInputContent />
     </IssueDetailInputStyle>
   );

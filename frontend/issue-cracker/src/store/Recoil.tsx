@@ -3,6 +3,8 @@ import {
   dropCheckStateProps,
   MilestoneProps,
   Milestones,
+  IssueDataProps,
+
 } from '../utils/types/commonTypes';
 import { URL as U } from '../utils/const';
 
@@ -187,19 +189,33 @@ export const issueAddState = selector({
   },
 });
 
-// IssueData
-export const issueDetailState = selector({
+export const issueDetailState = atom<IssueDataProps>({
   key: 'issueDetailState',
-  get: async ({ get }) => {
-    const issueID = get(issueDetailID);
-    const response = await fetch(`${U.ISSUES}/${issueID}`);
-    const data = await response.json();
-    return data;
+  default: {
+    issueId: 0,
+    milestoneInfo: {
+      id: 0,
+      title: '',
+      description: '',
+      dueDate: '',
+      status: '',
+    },
+    title: '',
+    content: '',
+    status: '',
+    writer: {
+      name: '',
+      avatarUrl: '',
+    },
+    createdDateTime: '',
+    assignees: [],
+    labels: [],
+    comments: [],
   },
 });
 
 //IssueDetailID
-export const issueDetailID = atom({
-  key: 'issueDetailID',
+export const issueDetailIdState = atom({
+  key: 'issueDetailIdState',
   default: 0,
 });

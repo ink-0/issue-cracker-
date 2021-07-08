@@ -1,9 +1,14 @@
 //IssueForm 이슈 옵션 조회
 //assignee
 export interface AssigneeProps {
-  id: string;
+  id?: string;
   name: string;
-  emails: string[];
+  emails?: string[];
+  avatarUrl: string;
+}
+//writer
+export interface WriterProps {
+  name: string;
   avatarUrl: string;
 }
 
@@ -54,7 +59,7 @@ export interface IssueDataProps {
   status: string;
   writer: AssigneeProps;
   createdDateTime: string;
-  assignees: AssigneeProps[];
+  assignees: WriterProps[] | AssigneeProps[];
   labels: LabelProps[];
   comments?: CommentsProps[];
 }
