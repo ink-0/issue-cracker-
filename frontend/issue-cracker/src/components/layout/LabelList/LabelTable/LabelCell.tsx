@@ -35,16 +35,7 @@ const LabelCell = ({ label }: { label: LabelProps }): JSX.Element => {
 
 export default LabelCell;
 
-const LabelCellStyle = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  height: 100px;
-  background: #fff;
-  border: 1px solid #d9dbe9;
-  border-top: none;
-
+const LabelCellStyle = styled(S.IssueCell)`
   align-items: center;
 `;
 

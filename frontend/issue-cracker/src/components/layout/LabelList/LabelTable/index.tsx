@@ -24,21 +24,19 @@ const LabelTable = (): JSX.Element => {
   const labels = labelList?.labels;
 
   return (
-    <IssueTableContainer>
+    <>
       <LabelTableHeader />
       {labels?.map((label: LabelProps) => {
         labelEditId === label.id && setLabelEditInput(label);
         return (
-          <div key={uuidv4()}>
+          <React.Fragment key={uuidv4()}>
             <LabelCell {...{ label }} />
             {labelEditId === label.id && <LabelEdit />}
-          </div>
+          </React.Fragment>
         );
       })}
-    </IssueTableContainer>
+    </>
   );
 };
 
 export default LabelTable;
-
-const IssueTableContainer = styled.div``;
