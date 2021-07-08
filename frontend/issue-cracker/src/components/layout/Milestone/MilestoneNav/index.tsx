@@ -1,23 +1,29 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { BUTTON_SIZE as BS, BUTTON_NAME as BN } from '../../../../utils/const';
+import {
+  BUTTON_SIZE as BS,
+  BUTTON_NAME as BN,
+  URL as U,
+} from '../../../../utils/const';
 import ButtonGroup from '../../../common/group/ButtonGroup';
 import TabGroup from '../../../common/group/TabGroup';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { useRecoilState } from 'recoil';
 import { milestoneAddState } from '../../../../store/Recoil';
+import useFetch from '../../../../utils/useFetch';
 
 const MilestoneNav: FC = () => {
   const [milestoneAdd, setMilestoneAdd] = useRecoilState(milestoneAddState);
-
+  const milestoneList = useFetch(U.MILESTONE, [milestoneAdd]);
   const handleClickbutton = () => setMilestoneAdd((prev) => !prev);
+  console.log(milestoneList);
 
   return (
     <MilestoneNavDiv>
       <MilestoneNavContainer>
         <TabBox>
-          <TabGroup />
+          <TabGroup milestoneCount={milestoneList?.milestones.length} />
         </TabBox>
         {milestoneAdd ? (
           <ButtonBox onClick={handleClickbutton}>
