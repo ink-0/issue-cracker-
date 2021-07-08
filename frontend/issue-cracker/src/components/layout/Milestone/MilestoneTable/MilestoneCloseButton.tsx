@@ -4,7 +4,7 @@ import ClosedIconGroup from '../../../common/group/ClosedIconGroup';
 import TextGroup from '../../../common/group/TextGroup';
 import { TYPE as T, BUTTON_NAME as BN } from '../../../../utils/const';
 
-const MilestoneCloseButton = (): JSX.Element => {
+const MilestoneCloseButton = ({ id }: { id: number }): JSX.Element => {
   const handleClickCloseButton = () => {
     console.log('Close');
   };
@@ -13,6 +13,7 @@ const MilestoneCloseButton = (): JSX.Element => {
       icon={<ClosedIconGroup type={'disabled'} />}
       text={<TextGroup type={T.SMALL} content={BN.CLOSE} color="#6E7191" />}
       onClick={handleClickCloseButton}
+      id={id}
     />
   );
 };

@@ -30,7 +30,13 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const TabGroup = (): JSX.Element => {
+const TabGroup = ({
+  labelCount,
+  milestoneCount,
+}: {
+  labelCount?: number;
+  milestoneCount?: number;
+}): JSX.Element => {
   const classes = useStyles();
 
   return (
@@ -47,7 +53,7 @@ const TabGroup = (): JSX.Element => {
           to={P.ISSUE_LABELLIST}
         >
           <TextGroup type={T.SMALL} content={TT.LABEL} color="#6E7191" />
-          <CountGroup count={0} color="#6E7191" />
+          <CountGroup count={!labelCount ? 0 : labelCount} color="#6E7191" />
         </Button>
 
         <Button
@@ -57,7 +63,10 @@ const TabGroup = (): JSX.Element => {
           to={P.ISSUE_MILESTONE}
         >
           <TextGroup type={T.SMALL} content={TT.MILESTONE} color="#6E7191" />
-          <CountGroup count={1} color="#6E7191" />
+          <CountGroup
+            count={!milestoneCount ? 0 : milestoneCount}
+            color="#6E7191"
+          />
         </Button>
       </CustomTabGroup>
     </div>
