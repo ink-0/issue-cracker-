@@ -2,15 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import InputGroup from '../../../common/group/InputGroup';
-import { labelAddInputState } from '../../../../store/Recoil';
+import { labelEditInputState } from '../../../../store/Recoil';
 import { TYPE as T, LABEL as L } from '../../../../utils/const';
 
 const InputContentBox = (): JSX.Element => {
-  const [labelAdd, setLabelAdd] = useRecoilState(labelAddInputState);
+  const [labelEdit, setLabelEdit] = useRecoilState(labelEditInputState);
+  const { title, description } = labelEdit;
 
   const handleInputLabelTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLabelAdd({
-      ...labelAdd,
+    setLabelEdit({
+      ...labelEdit,
       title: e.target.value,
     });
   };
@@ -18,8 +19,8 @@ const InputContentBox = (): JSX.Element => {
   const handleInputLabelDescription = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setLabelAdd({
-      ...labelAdd,
+    setLabelEdit({
+      ...labelEdit,
       description: e.target.value,
     });
   };
@@ -31,6 +32,7 @@ const InputContentBox = (): JSX.Element => {
           variant="outlined"
           name={L.NAME}
           type={T.LARGE}
+          value={title}
           onChange={handleInputLabelTitle}
         />
       </InputBox>
@@ -39,6 +41,7 @@ const InputContentBox = (): JSX.Element => {
           variant="outlined"
           name={L.DESC}
           type={T.LARGE}
+          value={description}
           onChange={handleInputLabelDescription}
         />
       </InputBox>

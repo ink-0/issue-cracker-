@@ -6,7 +6,7 @@ import { BUTTON_SIZE as BS, BUTTON_NAME as BN } from '../../../../utils/const';
 import { useSetRecoilState } from 'recoil';
 import { labelEditIdState } from '../../../../store/Recoil';
 
-const LabelEditCompleteButton = () => {
+const LabelEditCompleteButton = (): JSX.Element => {
   const setLabelEditId = useSetRecoilState(labelEditIdState);
 
   const handleClickCompleteButton = () => {

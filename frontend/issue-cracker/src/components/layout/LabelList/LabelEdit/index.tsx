@@ -1,29 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-
 import LabelBox from './LabelBox';
 import InputColorBox from './InputColorBox';
 import InputContentBox from './InputContentBox';
-import TextGroup from '../../../common/group/TextGroup';
-import { labelAddInputState } from '../../../../store/Recoil';
-import {
-  TYPE as T,
-  LABEL as L,
-  BUTTON_SIZE as BS,
-  BUTTON_NAME as BN,
-  URL as U,
-} from '../../../../utils/const';
-import { Issue as S } from '../../../styles/CommonStyles';
-import { getPost } from '../../../../utils/restAPI';
 import LabelEditCompleteButton from './LabelEditCompleteButton';
 import LabelEditCancelButton from './LabelEditCancelButton';
+import TextGroup from '../../../common/group/TextGroup';
+import { TYPE as T, LABEL as L } from '../../../../utils/const';
+import { Issue as S } from '../../../styles/CommonStyles';
 
 const LabelEdit = (): JSX.Element => {
-  // const setLabelEditState = useSetRecoilState(labelEditState);
-  const userToken = localStorage.getItem('token');
-  const labelAddInput = useRecoilValue(labelAddInputState);
-
   return (
     <LabelEditStyle>
       <LabelEditHeader>
@@ -95,8 +81,4 @@ const LabelContainer = styled.div`
 
 const InputContainer = styled.div`
   width: 100%;
-`;
-
-const ButtonBox = styled.div`
-  display: flex;
 `;

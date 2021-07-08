@@ -2,17 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
 import LabelSmallGroup from '../../../common/group/LabelSmallGroup';
-import { labelAddInputState } from '../../../../store/Recoil';
+import { labelEditInputState } from '../../../../store/Recoil';
 import { LABEL as L } from '../../../../utils/const';
 
 const LabelBox = (): JSX.Element => {
-  const labelAdd = useRecoilValue(labelAddInputState);
+  const labelEdit = useRecoilValue(labelEditInputState);
+
   return (
     <LabelBoxStyle>
       <LabelSmallGroup
-        label={labelAdd.title === '' ? L.NAME : labelAdd.title}
-        backgroundColor={labelAdd.backgroundColor}
-        color={labelAdd.textColor}
+        label={labelEdit.title === '' ? L.NAME : labelEdit.title}
+        backgroundColor={labelEdit.backgroundColor}
+        color={labelEdit.textColor}
       />
     </LabelBoxStyle>
   );

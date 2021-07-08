@@ -1,8 +1,6 @@
 import React from 'react';
 import { Issue as S } from '../../../styles/CommonStyles';
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
-import EditIcon from '@material-ui/icons/Edit';
 import LabelSmallGroup from '../../../common/group/LabelSmallGroup';
 import TextGroup from '../../../common/group/TextGroup';
 import LabelEditButton from './LabelEditButton';

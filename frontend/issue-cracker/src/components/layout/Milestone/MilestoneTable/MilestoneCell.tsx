@@ -19,11 +19,7 @@ import {
 import useFetch from '../../../../utils/useFetch';
 import { MilestoneDataProps } from '../../../../utils/types/commonTypes';
 import { Issue as S } from '../../../styles/CommonStyles';
-import {
-  TYPE as T,
-  BUTTON_NAME as BN,
-  URL as U,
-} from '../../../../utils/const';
+import { TYPE as T, URL as U } from '../../../../utils/const';
 import MilestoneEditButton from './MilestoneEditButton';
 import MilestoneCloseButton from './MilestoneCloseButton';
 import MilestoneDeleteButton from './MilestoneDeleteButton';
@@ -35,7 +31,6 @@ const MilestoneCell = (): JSX.Element => {
   const milestones = milestone?.milestones;
 
   const handleClickEditButton = (e: React.MouseEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.id);
     setMilestoneEdit((prev) => !prev);
   };
 

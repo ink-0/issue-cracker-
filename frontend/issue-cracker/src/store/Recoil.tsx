@@ -95,15 +95,9 @@ export const milestoneAddInputState = atom<MilestoneAddInputProps>({
 });
 
 // LabelList
-
 export const labelAddState = atom({
   key: 'labelAddState',
   default: false,
-});
-
-export const labelEditIdState = atom({
-  key: 'labelEditIdState',
-  default: 0,
 });
 
 //labelAdd
@@ -116,6 +110,23 @@ export interface labelAddStateInputProps {
 
 export const labelAddInputState = atom<labelAddStateInputProps>({
   key: 'labelAddInputState',
+  default: {
+    title: '',
+    description: '',
+    textColor: '#000',
+    backgroundColor: '#EFF0F6',
+  },
+});
+
+//labelEdit
+
+export const labelEditIdState = atom({
+  key: 'labelEditIdState',
+  default: 0,
+});
+
+export const labelEditInputState = atom<labelAddStateInputProps>({
+  key: 'labelEditInputState',
   default: {
     title: '',
     description: '',

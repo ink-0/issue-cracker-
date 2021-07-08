@@ -4,12 +4,12 @@ import { useRecoilState } from 'recoil';
 import SyncIcon from '@material-ui/icons/Sync';
 import IconButton from '@material-ui/core/IconButton';
 import TextGroup from '../../../common/group/TextGroup';
-import { labelAddInputState } from '../../../../store/Recoil';
+import { labelEditInputState } from '../../../../store/Recoil';
 import { TYPE as T, LABEL as L } from '../../../../utils/const';
 
 const InputColorBox = (): JSX.Element => {
-  const [labelAdd, setLabelAdd] = useRecoilState(labelAddInputState);
   const [labelTextColor, setLabelTextColor] = useState(false);
+  const [labelEdit, setLabelEdit] = useRecoilState(labelEditInputState);
 
   const getRandomColor = (): string => {
     const randomColor = [
@@ -25,8 +25,8 @@ const InputColorBox = (): JSX.Element => {
   };
   const handleInputLabelBackgroundColor = () => {
     const randomColor = getRandomColor();
-    setLabelAdd({
-      ...labelAdd,
+    setLabelEdit({
+      ...labelEdit,
       backgroundColor: randomColor,
     });
   };
@@ -34,8 +34,8 @@ const InputColorBox = (): JSX.Element => {
   const handleInputLabelTextColor = () => {
     setLabelTextColor(!labelTextColor);
     const color = labelTextColor ? '#000' : '#fff';
-    setLabelAdd({
-      ...labelAdd,
+    setLabelEdit({
+      ...labelEdit,
       textColor: color,
     });
   };
@@ -50,7 +50,7 @@ const InputColorBox = (): JSX.Element => {
         />
         <TextGroup
           type={T.SMALL}
-          content={labelAdd.backgroundColor}
+          content={labelEdit.backgroundColor}
           color="#14142B"
         />
         <IconButton onClick={handleInputLabelBackgroundColor}>
@@ -68,7 +68,7 @@ const InputColorBox = (): JSX.Element => {
         <TextGroup type={T.XSMALL} content={L.TEXT_COLOR} color="#6E7191" />
         <TextGroup
           type={T.SMALL}
-          content={labelAdd.textColor === '#fff' ? '⚪️' : '⚫️'}
+          content={labelEdit.textColor === '#fff' ? '⚪️' : '⚫️'}
           color="#14142B"
         />
         <IconButton onClick={handleInputLabelTextColor}>

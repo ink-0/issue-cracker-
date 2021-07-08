@@ -9,9 +9,7 @@ import { TYPE as T, BUTTON_NAME as BN } from '../../../../utils/const';
 const LabelEditButton = ({ id }: { id: number }): JSX.Element => {
   const setLabelEditId = useSetRecoilState(labelEditIdState);
   const handleClickEditButton = (e: React.MouseEvent<HTMLInputElement>) => {
-    console.log('currentTarget', e.currentTarget.id);
-    console.log('id', id);
-    setLabelEditId(+e.currentTarget.id);
+    setLabelEditId((prev) => (prev === 0 ? +e.currentTarget.id : 0));
   };
 
   return (
