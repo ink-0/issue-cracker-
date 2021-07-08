@@ -17,7 +17,6 @@ const MilestoneNav: FC = () => {
   const [milestoneAdd, setMilestoneAdd] = useRecoilState(milestoneAddState);
   const milestoneList = useFetch(U.MILESTONE, [milestoneAdd]);
   const handleClickbutton = () => setMilestoneAdd((prev) => !prev);
-  console.log(milestoneList);
 
   return (
     <MilestoneNavDiv>
