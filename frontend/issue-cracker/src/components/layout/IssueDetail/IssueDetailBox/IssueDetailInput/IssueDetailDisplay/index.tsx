@@ -24,13 +24,14 @@ const IssueDetailDisplay = (): JSX.Element => {
   const [issueEditInput, setIssueEditInput] =
     useRecoilState(issueEditInputState);
   const issueEditContent = useRecoilValue(issueEditContentState);
+
   const handleChangeEditInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIssueEditInput({
       ...issueEditInput,
       comment: e.target.value,
     });
   };
-  console.log('wlrmasdfjasdf', issueEditInput);
+
   return (
     <IssueDisplayStyle>
       <DisplayWrapper>
@@ -49,7 +50,7 @@ const IssueDetailDisplay = (): JSX.Element => {
               ) : (
                 <TextGroup
                   type={T.SMALL}
-                  content={issueDetail?.content}
+                  content={issueEditInput?.comment}
                   color="#6e7191"
                 />
               )}

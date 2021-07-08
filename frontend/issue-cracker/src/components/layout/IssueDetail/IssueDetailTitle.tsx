@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
@@ -26,7 +26,7 @@ const IssueDetailTitle = (): JSX.Element => {
   const [issueState, setIssueState] = useState(isOpen);
   const elapsedTime = getElapsedTime(issueDetails?.createdDateTime);
   const issueEditInput = useRecoilValue(issueEditInputState);
-
+  const editRef = useRef<HTMLInputElement>(null);
   const handleClickIssueButton = () => setIssueState(false);
 
   const handleClickEditButton = () => setIssueEditTitle((prev) => !prev);
@@ -34,11 +34,23 @@ const IssueDetailTitle = (): JSX.Element => {
   const handleClickCompleteButton = () => {
     const issueEditUrl = U.ISSUES + '/' + issueDetails.issueId;
     const userToken = localStorage.getItem('token');
-    console.log(issueEditInput);
     getPut(issueEditUrl, userToken, issueEditInput);
-
     setIssueEditTitle((prev) => !prev);
   };
+
+  useEffect(() => {
+    const handleClickBody = (e: { target: HTMLInputElement }) => {
+      if (editRef.current && !editRef.current.contains(e.target)) {
+        setIssueEditTitle((prev) => !prev);
+      }
+      console.log(e.target);
+      console.log('current', editRef.current);
+      // setIssueEditTitle((prev) => !prev);
+    };
+    window.addEventListener('mousedown', handleClickBody);
+
+    return () => window.removeEventListener('mousedown', handleClickBody);
+  }, [editRef]);
 
   return (
     <IssueDetailTitleStyle>
@@ -60,7 +72,7 @@ const IssueDetailTitle = (): JSX.Element => {
           />
         </TextBox>
 
-        <ButtonBox>
+        <ButtonBox ref={editRef}>
           {issueEditTitle ? (
             <TitleEditButton
               startIcon={<TitleEditIcon />}
@@ -78,6 +90,7 @@ const IssueDetailTitle = (): JSX.Element => {
               startIcon={<TitleEditIcon />}
               color="primary"
               onClick={handleClickEditButton}
+              id={'editButton'}
             >
               <TextGroup
                 type={T.SMALL}

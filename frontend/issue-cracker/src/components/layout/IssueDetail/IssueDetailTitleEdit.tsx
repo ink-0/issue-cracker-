@@ -15,7 +15,7 @@ const IssueDetailTitleEdit = (): JSX.Element => {
   };
 
   return (
-    <IssueDetailTitleEditStyle>
+    <IssueDetailTitleEditStyle id={'editButton'}>
       <IssueDetailTitleEditInput
         placeholder={'제목'}
         value={issueEditInput.title}

@@ -11,9 +11,11 @@ import TextGroup from '../../../../../common/group/TextGroup';
 import {
   issueDetailState,
   issueEditContentState,
+  issueEditInputState,
 } from '../../../../../../store/Recoil';
 import { IssueDataProps } from '../../../../../../utils/types/commonTypes';
 import { getElapsedTime } from '../../../../../../utils/util';
+import { getPut } from '../../../../../../utils/restAPI';
 import {
   ProfileImg as P,
   Issue as S,
@@ -21,7 +23,10 @@ import {
 import { TYPE as T, URL as U } from '../../../../../../utils/const';
 
 const IssueDetailDisplayHeader = (): JSX.Element => {
-  const issueDetail = useRecoilValue<IssueDataProps>(issueDetailState);
+  const issueDetails = useRecoilValue<IssueDataProps>(issueDetailState);
+  const [issueEditInput, setIssueEditInput] =
+    useRecoilState(issueEditInputState);
+
   const [issueEditContent, setIssueEditContent] = useRecoilState(
     issueEditContentState
   );
@@ -29,14 +34,13 @@ const IssueDetailDisplayHeader = (): JSX.Element => {
   const handleClickEditButton = () => {
     setIssueEditContent((prev) => !prev);
   };
-  //   const handleClickCompleteButton = () => {
-  //     const issueEditUrl = U.ISSUES + '/' + issueDetails.issueId;
-  //     const userToken = localStorage.getItem('token');
-  //     console.log(issueEditInput);
-  //     getPut(issueEditUrl, userToken, issueEditInput);
+  const handleClickCompleteButton = () => {
+    const issueEditUrl = U.ISSUES + '/' + issueDetails.issueId;
+    const userToken = localStorage.getItem('token');
+    getPut(issueEditUrl, userToken, issueEditInput);
 
-  //     setIssueEditTitle((prev) => !prev);
-  //   };
+    setIssueEditContent((prev) => !prev);
+  };
 
   return (
     <IssueDetailDisplayHeaderStyle>
@@ -45,14 +49,14 @@ const IssueDetailDisplayHeader = (): JSX.Element => {
           <WriterBox>
             <TextGroup
               type={T.SMALL}
-              content={issueDetail?.writer?.name}
+              content={issueDetails?.writer?.name}
               color="#14142B"
             />
           </WriterBox>
           <DateBox>
             <TextGroup
               type={T.SMALL}
-              content={getElapsedTime(issueDetail?.createdDateTime)}
+              content={getElapsedTime(issueDetails?.createdDateTime)}
               color="#6E7191"
             />
           </DateBox>
@@ -78,7 +82,7 @@ const IssueDetailDisplayHeader = (): JSX.Element => {
               <TitleEditButton
                 startIcon={<TitleEditIcon style={{ fontSize: '14px' }} />}
                 color="primary"
-                onClick={handleClickEditButton}
+                onClick={handleClickCompleteButton}
               >
                 <TextGroup type={T.XSMALL} content={'편집'} color="#6e7191" />
               </TitleEditButton>
