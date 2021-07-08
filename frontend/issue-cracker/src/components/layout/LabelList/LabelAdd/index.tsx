@@ -17,6 +17,7 @@ import {
 } from '../../../../utils/const';
 import { Issue as S } from '../../../styles/CommonStyles';
 import { getPost } from '../../../../utils/restAPI';
+
 const LabelAdd = (): JSX.Element => {
   const setLabelAddState = useSetRecoilState(labelAddState);
   const userToken = localStorage.getItem('token');

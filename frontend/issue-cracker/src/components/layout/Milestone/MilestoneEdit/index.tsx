@@ -1,56 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Issue as S } from '../../../styles/CommonStyles';
-import TextGroup from '../../../common/group/TextGroup';
-import InputGroup from '../../../common/group/InputGroup';
-import ButtonGroup from '../../../common/group/ButtonGroup';
-
-import {
-  TYPE as T,
-  MILESTONE as M,
-  BUTTON_SIZE as BS,
-  BUTTON_NAME as BN,
-} from '../../../../utils/const';
-import AddIcon from '@material-ui/icons/Add';
-import { useSetRecoilState } from 'recoil';
-import { milestoneAddState } from '../../../../store/Recoil';
+import MilestoneEditHeader from './MilestoneEditHeader';
+import MilestoneEditName from './MilestoneEditName';
+import MilestoneEditDescription from './MilestoneEditDescription';
+import MilestoneEditDueDate from './MilestoneEditDueDate';
+import MilestoneEditCompleteButton from './MilestoneEditCompleteButton';
+import MilestoneEditCancelButton from './MilestoneEditCancelButton';
 
 const MilestoneEdit = (): JSX.Element => {
-  const setMilestoneAdd = useSetRecoilState(milestoneAddState);
-  const handleClickButton = () => setMilestoneAdd((prev) => !prev);
-
   return (
     <MilestoneEditStyle>
-      <MilestoneEditHeader>
-        <TextBox>
-          <TextGroup type={T.LARGE} content={M.ADD} color="#14142B" />
-        </TextBox>
-      </MilestoneEditHeader>
+      <MilestoneEditHeader />
       <MilestoneEditCell>
         <InputContainer>
-          <AddUpper>
-            <InputBox>
-              <InputGroup variant="outlined" name={M.NAME} type={T.LARGE} />
-            </InputBox>
-            <InputBox>
-              <InputGroup variant="outlined" name={M.DUE} type={T.LARGE} />
-            </InputBox>
-          </AddUpper>
-          <AddLower>
-            <InputBox>
-              <InputGroup variant="outlined" name={M.DESC} type={T.LARGE} />
-            </InputBox>
-          </AddLower>
+          <EditUpper>
+            <MilestoneEditName />
+            <MilestoneEditDueDate />
+          </EditUpper>
+          <EditLower>
+            <MilestoneEditDescription />
+          </EditLower>
         </InputContainer>
       </MilestoneEditCell>
       <ButtonContainer>
-        <ButtonBox onClick={handleClickButton}>
-          <ButtonGroup
-            type={BS.SMALL_FILL}
-            name={BN.COMPLETE}
-            icon={<AddIcon style={{ fontSize: 16 }} />}
-          />
-        </ButtonBox>
+        <MilestoneEditCancelButton />
+        <MilestoneEditCompleteButton />
       </ButtonContainer>
     </MilestoneEditStyle>
   );
@@ -58,16 +33,7 @@ const MilestoneEdit = (): JSX.Element => {
 
 export default MilestoneEdit;
 
-const MilestoneEditStyle = styled.div`
-  margin: 20px 0px;
-`;
-
-const MilestoneEditHeader = styled(S.IssueTableHeader)`
-  background: #fff;
-  border-bottom: none;
-  padding-bottom: 30px;
-  height: fit-content;
-`;
+const MilestoneEditStyle = styled.div``;
 
 const MilestoneEditCell = styled(S.IssueCell)`
   justify-content: center;
@@ -82,28 +48,9 @@ const ButtonContainer = styled(S.IssueCell)`
   justify-content: flex-end;
   height: fit-content;
   padding: 20px;
-`;
 
-const TextBox = styled.div`
-  margin-left: 20px;
-  margin-top: 20px;
-`;
-
-const InputBox = styled.div`
-  padding: 10px 20px;
-  width: 100%;
-
-  div {
-    width: 100%;
-  }
-
-  input {
-    background: #eff0f6;
-    border-radius: 16px;
-  }
-
-  fieldset {
-    border-radius: 16px;
+  :last-child {
+    border-radius: 0;
   }
 `;
 
@@ -111,13 +58,9 @@ const InputContainer = styled.div`
   width: 100%;
 `;
 
-const ButtonBox = styled.div`
-  display: flex;
-`;
-
-const AddUpper = styled.div`
+const EditUpper = styled.div`
   display: flex;
   width: 100%;
 `;
 
-const AddLower = styled.div``;
+const EditLower = styled.div``;

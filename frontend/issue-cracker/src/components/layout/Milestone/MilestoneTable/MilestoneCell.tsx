@@ -1,136 +1,70 @@
 import React from 'react';
 import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import FlagTwoToneIcon from '@material-ui/icons/FlagTwoTone';
-import CalendarTodayTwoToneIcon from '@material-ui/icons/CalendarTodayTwoTone';
 import TextGroup from '../../../common/group/TextGroup';
-import CommonButton from '../../../common/CommonButton';
 import ProgressBar from '../../../common/ProgressBar';
-import {
-  getDate,
-  getIssueCount,
-  getProgressRate,
-} from '../../../../utils/util';
-import {
-  milestoneAddState,
-  milestoneEditState,
-} from '../../../../store/Recoil';
-import useFetch from '../../../../utils/useFetch';
+import { getIssueCount, getProgressRate } from '../../../../utils/util';
 import { MilestoneDataProps } from '../../../../utils/types/commonTypes';
 import { Issue as S } from '../../../styles/CommonStyles';
-import { TYPE as T, URL as U } from '../../../../utils/const';
+import { TYPE as T } from '../../../../utils/const';
 import MilestoneEditButton from './MilestoneEditButton';
 import MilestoneCloseButton from './MilestoneCloseButton';
 import MilestoneDeleteButton from './MilestoneDeleteButton';
+import MilestoneTitle from './MilestoneTitle';
+import MilestoneDueDate from './MilestoneDueDate';
+import MilestoneDescription from './MilestoneDescription';
+import MilestoneProgressRate from './MilestoneProgressRate';
 
-const MilestoneCell = (): JSX.Element => {
-  const milestoneAdd = useRecoilValue(milestoneAddState);
-  const milestone = useFetch(U.MILESTONE, [milestoneAdd]);
-  const setMilestoneEdit = useSetRecoilState(milestoneEditState);
-  const milestones = milestone?.milestones;
+const MilestoneCell = ({
+  milestone,
+}: {
+  milestone: MilestoneDataProps;
+}): JSX.Element => {
+  const { id, issues, milestoneInfo } = milestone;
 
-  const handleClickEditButton = (e: React.MouseEvent<HTMLInputElement>) => {
-    setMilestoneEdit((prev) => !prev);
-  };
-
-  const handleClickDeleteButton = () => {
-    console.log('delete');
-  };
+  const openIssue = getIssueCount(issues, 'OPEN');
+  const closeIssue = getIssueCount(issues, 'CLOSE');
+  const progressRate = getProgressRate(openIssue, closeIssue);
 
   return (
-    <>
-      {milestones?.map((milestone: MilestoneDataProps) => {
-        const openIssue = getIssueCount(milestone.issues, 'OPEN');
-        const closeIssue = getIssueCount(milestone.issues, 'CLOSE');
-        const progressRate = getProgressRate(openIssue, closeIssue);
-
-        return (
-          <MilestoneCellStyle
-            key={uuidv4()}
-            id={`${milestone.id}`}
-            onClick={handleClickEditButton}
-          >
-            <LeftBox>
-              <LeftUpper>
-                <CommonButton
-                  icon={
-                    <FlagTwoToneIcon
-                      style={{
-                        width: '16px',
-                        height: '16px',
-                        color: '#007AFF',
-                      }}
-                    />
-                  }
-                  text={
-                    <TextGroup
-                      type={T.MEDIUM}
-                      content={milestone.milestoneInfo.title}
-                      color="#222"
-                    />
-                  }
-                />
-
-                {milestone.milestoneInfo.dueDate && (
-                  <CommonButton
-                    icon={
-                      <CalendarTodayTwoToneIcon
-                        style={{ fontSize: 'small', color: '#6E7191' }}
-                      />
-                    }
-                    text={
-                      <TextGroup
-                        type={T.SMALL}
-                        content={getDate(milestone.milestoneInfo.dueDate)}
-                        color="#6E7191"
-                      />
-                    }
-                  />
-                )}
-              </LeftUpper>
-              <LeftLower>
-                <TextGroup
-                  type={T.SMALL}
-                  content={milestone.milestoneInfo.description}
-                  color="#6E7191"
-                />
-              </LeftLower>
-            </LeftBox>
-            <RightBox>
-              <RightUpper>
-                <MilestoneCloseButton />
-                <MilestoneEditButton />
-                <MilestoneDeleteButton />
-              </RightUpper>
-              <RightCenter>
-                <ProgressBar value={progressRate} />
-              </RightCenter>
-              <RightLower>
-                <TextGroup
-                  type={T.SMALL}
-                  content={`${progressRate}%`}
-                  color="#6E7191"
-                />
-                <IssueButtonBox>
-                  <TextGroup
-                    type={T.SMALL}
-                    content={`열린이슈(${openIssue})`}
-                    color="#6E7191"
-                  />
-                  &nbsp;
-                  <TextGroup
-                    type={T.SMALL}
-                    content={`닫힌이슈(${closeIssue})`}
-                    color="#6E7191"
-                  />
-                </IssueButtonBox>
-              </RightLower>
-            </RightBox>
-          </MilestoneCellStyle>
-        );
-      })}
-    </>
+    <MilestoneCellStyle>
+      <LeftBox>
+        <LeftUpper>
+          <MilestoneTitle title={milestoneInfo.title} />
+          <MilestoneDueDate dueDate={milestoneInfo.dueDate} />
+        </LeftUpper>
+        <LeftLower>
+          <MilestoneDescription description={milestoneInfo.description} />
+        </LeftLower>
+      </LeftBox>
+      <RightBox>
+        <RightUpper>
+          <MilestoneCloseButton {...{ id }} />
+          <MilestoneEditButton {...{ id }} />
+          <MilestoneDeleteButton {...{ id }} />
+        </RightUpper>
+        <RightCenter>
+          <ProgressBar value={progressRate} />
+        </RightCenter>
+        <RightLower>
+          <MilestoneProgressRate progressRate={progressRate} />
+          <IssueButtonBox>
+            {/* 열린이슈 */}
+            <TextGroup
+              type={T.SMALL}
+              content={`열린이슈(${openIssue})`}
+              color="#6E7191"
+            />
+            &nbsp;
+            {/* 닫힌이슈 */}
+            <TextGroup
+              type={T.SMALL}
+              content={`닫힌이슈(${closeIssue})`}
+              color="#6E7191"
+            />
+          </IssueButtonBox>
+        </RightLower>
+      </RightBox>
+    </MilestoneCellStyle>
   );
 };
 
