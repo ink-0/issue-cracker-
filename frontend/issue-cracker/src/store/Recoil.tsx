@@ -101,6 +101,11 @@ export const labelAddState = atom({
   default: false,
 });
 
+export const labelEditIdState = atom({
+  key: 'labelEditIdState',
+  default: 0,
+});
+
 //labelAdd
 export interface labelAddStateInputProps {
   title: string;

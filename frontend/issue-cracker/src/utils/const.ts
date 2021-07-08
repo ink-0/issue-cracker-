@@ -40,6 +40,7 @@ export const BUTTON_NAME = {
   ADD: '추가',
   DELETE: '삭제',
   COMPLETE: '완료',
+  CANCEL: '취소',
   CLOSE: '닫기',
   EDIT: '편집',
   WRITING_ISSUE: '이슈작성',
@@ -92,6 +93,7 @@ export const FILTER = {
 
 export const LABEL = {
   ADD: '새로운 레이블 추가',
+  EDIT: '레이블 편집',
   NAME: '레이블 이름',
   DESC: '설명(선택)',
   BACKGROUND_COLOR: '배경색상',

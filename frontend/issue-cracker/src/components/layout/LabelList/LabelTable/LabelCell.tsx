@@ -11,7 +11,7 @@ import { TYPE as T } from '../../../../utils/const';
 import LabelDeleteButton from './LabelDeleteButton';
 
 const LabelCell = ({ label }: { label: LabelProps }): JSX.Element => {
-  const { title, textColor, backgroundColor, description } = label;
+  const { id, title, textColor, backgroundColor, description } = label;
 
   return (
     <LabelCellStyle>
@@ -28,7 +28,7 @@ const LabelCell = ({ label }: { label: LabelProps }): JSX.Element => {
         </TextBox>
       </LabelContent>
       <ButtonBox>
-        <LabelEditButton />
+        <LabelEditButton {...{ id }} />
         <LabelDeleteButton />
       </ButtonBox>
     </LabelCellStyle>
