@@ -11,7 +11,7 @@ import {
 import CheckBoxes from '../../../common/CheckBoxes';
 import IssueOpenIcon from '../../../styles/svg/IssueOpenIcon';
 import LabelSmallGroup from '../../../common/group/LabelSmallGroup';
-import { decodedToken, issueDetailID } from '../../../../store/Recoil';
+import { decodedToken, issueDetailIdState } from '../../../../store/Recoil';
 import {
   IssueDataProps,
   LabelProps,
@@ -24,10 +24,10 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
   const profileURL = decoded && decoded.avatarUrl;
 
   const openIssue = getIssue(issues, 'OPEN');
-  const closedIssue = getIssue(issues, 'CLOSED');
-  const setIssueDetailID = useSetRecoilState(issueDetailID);
+  // const closedIssue = getIssue(issues, 'CLOSED');
+  const setIssueDetailId = useSetRecoilState(issueDetailIdState);
 
-  const handleClickIssueCell = (id: number) => setIssueDetailID(id);
+  const handleClickIssueCell = (id: number) => setIssueDetailId(id);
 
   return (
     <>
@@ -44,6 +44,7 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
           writer,
         } = issue;
         const elapsedTime = getElapsedTime(createdDateTime);
+
         return (
           <S.IssueCell key={uuidv4()}>
             <>
@@ -53,6 +54,7 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
                   <Link
                     to={{
                       pathname: `/main/issue-detail/${issueId}`,
+                      state: { id: issueId },
                     }}
                   >
                     <IssueUpper onClick={() => handleClickIssueCell(issueId)}>

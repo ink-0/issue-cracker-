@@ -16,13 +16,13 @@ import { getElapsedTime } from '../../../../../utils/util';
 
 const IssueDetailDisplay = (): JSX.Element => {
   const issueDetail = useRecoilValue<IssueDataProps>(issueDetailState);
-  const { createdDateTime, writer, content } = issueDetail;
+  // const { createdDateTime, writer, content } = issueDetail;
 
   return (
     <IssueDisplayStyle>
       <DisplayWrapper>
         <ProfileImgStyle>
-          <P.ProfileImgLarge src={writer.avatarUrl} />
+          <P.ProfileImgLarge src={issueDetail?.writer?.avatarUrl} />
         </ProfileImgStyle>
         <DisplayBox>
           <S.IssueTableHeader>
@@ -30,14 +30,14 @@ const IssueDetailDisplay = (): JSX.Element => {
               <WriterBox>
                 <TextGroup
                   type={T.SMALL}
-                  content={writer.name}
+                  content={issueDetail?.writer?.name}
                   color="#14142B"
                 />
               </WriterBox>
               <DateBox>
                 <TextGroup
                   type={T.SMALL}
-                  content={getElapsedTime(createdDateTime)}
+                  content={getElapsedTime(issueDetail?.createdDateTime)}
                   color="#6E7191"
                 />
               </DateBox>
@@ -66,7 +66,11 @@ const IssueDetailDisplay = (): JSX.Element => {
           </S.IssueTableHeader>
           <S.IssueCell>
             <ContentBox>
-              <TextGroup type={T.SMALL} content={content} color="#6e7191" />
+              <TextGroup
+                type={T.SMALL}
+                content={issueDetail?.content}
+                color="#6e7191"
+              />
             </ContentBox>
           </S.IssueCell>
         </DisplayBox>

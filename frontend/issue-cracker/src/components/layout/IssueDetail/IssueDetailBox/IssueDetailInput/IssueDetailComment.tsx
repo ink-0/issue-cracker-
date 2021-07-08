@@ -13,11 +13,11 @@ import { TYPE as T } from '../../../../../utils/const';
 
 const IssueDetailComment = (): JSX.Element => {
   const issueDetail = useRecoilValue<IssueDataProps>(issueDetailState);
-  const { comments } = issueDetail;
+  // const { comments } = issueDetail;
 
   return (
     <>
-      {comments?.map((comment) => {
+      {issueDetail?.comments?.map((comment) => {
         return (
           <DisplayWrapper key={uuidv4()}>
             <ProfileImgStyle>
