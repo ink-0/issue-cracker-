@@ -1,94 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Issue as S } from '../../../styles/CommonStyles';
-import TextGroup from '../../../common/group/TextGroup';
-import InputGroup from '../../../common/group/InputGroup';
-import ButtonGroup from '../../../common/group/ButtonGroup';
-import { getPost } from '../../../../utils/restAPI';
-import {
-  TYPE as T,
-  MILESTONE as M,
-  BUTTON_SIZE as BS,
-  BUTTON_NAME as BN,
-  URL as U,
-} from '../../../../utils/const';
-import AddIcon from '@material-ui/icons/Add';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import {
-  milestoneAddInputState,
-  milestoneAddState,
-} from '../../../../store/Recoil';
+import MilestoneAddHeader from './MilestoneAddHeader';
+import MilestoneAddName from './MilestoneAddName';
+import MilestoneAddDescription from './MilestoneAddDescription';
+import MilestoneAddDueDate from './MilestoneAddDueDate';
+import MilestoneAddCompleteButton from './MilestoneAddCompleteButton';
 
 const MilestoneAdd = (): JSX.Element => {
-  const setMilestoneAdd = useSetRecoilState(milestoneAddState);
-  const userToken = localStorage.getItem('token');
-
-  const handleClickButton = () => {
-    getPost(U.MILESTONE, userToken, milestoneAddInput);
-    setMilestoneAdd((prev) => !prev);
-  };
-
-  const [milestoneAddInput, setMilestoneAddInput] = useRecoilState(
-    milestoneAddInputState
-  );
-
-  const handleChangeInputTitle = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void =>
-    setMilestoneAddInput({
-      ...milestoneAddInput,
-      title: e.target.value,
-    });
-  const handleChangeInputDescription = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void =>
-    setMilestoneAddInput({
-      ...milestoneAddInput,
-      description: e.target.value,
-    });
-
   return (
     <MilestoneAddStyle>
-      <MilestoneAddHeader>
-        <TextBox>
-          <TextGroup type={T.LARGE} content={M.ADD} color="#14142B" />
-        </TextBox>
-      </MilestoneAddHeader>
+      <MilestoneAddHeader />
       <MilestoneAddCell>
         <InputContainer>
           <AddUpper>
-            <InputBox>
-              <InputGroup
-                variant="outlined"
-                name={M.NAME}
-                type={T.LARGE}
-                onChange={handleChangeInputTitle}
-              />
-            </InputBox>
-            <InputBox>
-              <InputGroup variant="outlined" name={M.DUE} type={T.LARGE} />
-            </InputBox>
+            <MilestoneAddName />
+            <MilestoneAddDueDate />
           </AddUpper>
           <AddLower>
-            <InputBox>
-              <InputGroup
-                variant="outlined"
-                name={M.DESC}
-                type={T.LARGE}
-                onChange={handleChangeInputDescription}
-              />
-            </InputBox>
+            <MilestoneAddDescription />
           </AddLower>
         </InputContainer>
       </MilestoneAddCell>
       <ButtonContainer>
-        <ButtonBox onClick={handleClickButton}>
-          <ButtonGroup
-            type={BS.SMALL_FILL}
-            name={BN.COMPLETE}
-            icon={<AddIcon style={{ fontSize: 16 }} />}
-          />
-        </ButtonBox>
+        <MilestoneAddCompleteButton />
       </ButtonContainer>
     </MilestoneAddStyle>
   );
@@ -98,13 +33,6 @@ export default MilestoneAdd;
 
 const MilestoneAddStyle = styled.div`
   margin: 20px 0px;
-`;
-
-const MilestoneAddHeader = styled(S.IssueTableHeader)`
-  background: #fff;
-  border-bottom: none;
-  padding-bottom: 30px;
-  height: fit-content;
 `;
 
 const MilestoneAddCell = styled(S.IssueCell)`
@@ -122,35 +50,8 @@ const ButtonContainer = styled(S.IssueCell)`
   padding: 20px;
 `;
 
-const TextBox = styled.div`
-  margin-left: 20px;
-  margin-top: 20px;
-`;
-
-const InputBox = styled.div`
-  padding: 10px 20px;
-  width: 100%;
-
-  div {
-    width: 100%;
-  }
-
-  input {
-    background: #eff0f6;
-    border-radius: 16px;
-  }
-
-  fieldset {
-    border-radius: 16px;
-  }
-`;
-
 const InputContainer = styled.div`
   width: 100%;
-`;
-
-const ButtonBox = styled.div`
-  display: flex;
 `;
 
 const AddUpper = styled.div`
