@@ -44,7 +44,6 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
           writer,
         } = issue;
         const elapsedTime = getElapsedTime(createdDateTime);
-
         return (
           <S.IssueCell key={uuidv4()}>
             <>

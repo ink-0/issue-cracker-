@@ -7,7 +7,7 @@ const Issue = {
     justify-content: space-between;
     width: 100%;
     height: 100px;
-    background: #fff;
+    background: #ffffff;
     border: 1px solid #d9dbe9;
     border-top: none;
 

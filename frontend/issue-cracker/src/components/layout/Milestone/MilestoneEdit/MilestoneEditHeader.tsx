@@ -17,7 +17,7 @@ const MilestoneEditHeader = (): JSX.Element => {
 export default MilestoneEditHeader;
 
 const MilestoneEditHeaderStyle = styled(S.IssueTableHeader)`
-  background: #fff;
+  background: #ffffff;
   height: fit-content;
   padding-bottom: 30px;
   border-top: none;

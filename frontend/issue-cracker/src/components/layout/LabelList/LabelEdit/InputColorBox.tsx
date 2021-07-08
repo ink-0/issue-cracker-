@@ -33,7 +33,7 @@ const InputColorBox = (): JSX.Element => {
 
   const handleInputLabelTextColor = () => {
     setLabelTextColor(!labelTextColor);
-    const color = labelTextColor ? '#000' : '#fff';
+    const color = labelTextColor ? '#000' : '#ffffff';
     setLabelEdit({
       ...labelEdit,
       textColor: color,
@@ -68,7 +68,7 @@ const InputColorBox = (): JSX.Element => {
         <TextGroup type={T.XSMALL} content={L.TEXT_COLOR} color="#6E7191" />
         <TextGroup
           type={T.SMALL}
-          content={labelEdit.textColor === '#fff' ? '⚪️' : '⚫️'}
+          content={labelEdit.textColor === '#ffffff' ? '⚪️' : '⚫️'}
           color="#14142B"
         />
         <IconButton onClick={handleInputLabelTextColor}>

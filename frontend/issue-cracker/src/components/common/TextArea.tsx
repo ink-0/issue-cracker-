@@ -66,7 +66,7 @@ const TextAreaStyle = styled.div`
   border: 1px solid #eff0f6;
   :focus-within {
     border: 1px solid #222;
-    background: #fff;
+    background: #ffffff;
   }
 `;
 

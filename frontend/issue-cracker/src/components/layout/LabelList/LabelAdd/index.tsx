@@ -63,7 +63,7 @@ const LabelAddStyle = styled.div`
 `;
 
 const LabelAddHeader = styled(S.IssueTableHeader)`
-  background: #fff;
+  background: #ffffff;
   border-bottom: none;
   padding-bottom: 30px;
   height: fit-content;

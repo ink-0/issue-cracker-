@@ -69,6 +69,7 @@ export const TEXT = {
   OPEN_MILESTONE: '열린 마일스톤',
   CLOSED_MILESTONE: '닫힌 마일스톤',
   EDIT_TITLE: '제목 편집',
+  EDIT_COMPLETE: '편집 완료',
   CLOSE_ISSUE: '이슈 닫기',
 };
 export const SIDEBAR_TYPE = {

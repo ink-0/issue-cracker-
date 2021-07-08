@@ -2,42 +2,90 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import TextGroup from '../../common/group/TextGroup';
 import LabelLargeGroup from '../../common/group/LabelLargeGroup';
 import IssueClosedIcon from '../../styles/svg/IssueClosedIcon';
 import { issueDetailState } from '../../../store/Recoil';
 import { getElapsedTime } from '../../../utils/util';
-import { TYPE as T, TEXT as TT } from '../../../utils/const';
+import { TYPE as T, TEXT as TT, URL as U } from '../../../utils/const';
+import IssueDetailTitleEdit from './IssueDetailTitleEdit';
+import {
+  issueEditTitleState,
+  issueEditInputState,
+} from '../../../store/Recoil';
+import { getPut } from '../../../utils/restAPI';
 
 const IssueDetailTitle = (): JSX.Element => {
   const issueDetails = useRecoilValue<any | null>(issueDetailState);
+  const [issueEditTitle, setIssueEditTitle] =
+    useRecoilState(issueEditTitleState);
+
   // const { issueId, status, title, writer, comments } = issueDetails;
-  const isOpen = status === 'OPEN' ? true : false;
+  const isOpen = issueDetails?.status === 'OPEN' ? true : false;
   const [issueState, setIssueState] = useState(isOpen);
   const elapsedTime = getElapsedTime(issueDetails?.createdDateTime);
+  const issueEditInput = useRecoilValue(issueEditInputState);
 
   const handleClickIssueButton = () => setIssueState(false);
+
+  const handleClickEditButton = () => setIssueEditTitle((prev) => !prev);
+
+  const handleClickCompleteButton = () => {
+    const issueEditUrl = U.ISSUES + '/' + issueDetails.issueId;
+    const userToken = localStorage.getItem('token');
+    console.log(issueEditInput);
+    getPut(issueEditUrl, userToken, issueEditInput);
+
+    setIssueEditTitle((prev) => !prev);
+  };
 
   return (
     <IssueDetailTitleStyle>
       <TitleUpperBox>
         <TextBox>
-          <TextGroup
-            type={T.LARGE}
-            content={issueDetails?.title}
-            color="#222"
-          />
+          {issueEditTitle ? (
+            <IssueDetailTitleEdit />
+          ) : (
+            <TextGroup
+              type={T.LARGE}
+              content={issueDetails?.title}
+              color="#222"
+            />
+          )}
           <TextGroup
             type={T.LARGE}
             content={`#${issueDetails?.issueId}`}
             color="#6E7191"
           />
         </TextBox>
+
         <ButtonBox>
-          <TitleEditButton startIcon={<TitleEditIcon />} color="primary">
-            <TextGroup type={T.SMALL} content={TT.EDIT_TITLE} color="#007AFF" />
-          </TitleEditButton>
+          {issueEditTitle ? (
+            <TitleEditButton
+              startIcon={<TitleEditIcon />}
+              color="primary"
+              onClick={handleClickCompleteButton}
+            >
+              <TextGroup
+                type={T.SMALL}
+                content={TT.EDIT_COMPLETE}
+                color="#007AFF"
+              />
+            </TitleEditButton>
+          ) : (
+            <TitleEditButton
+              startIcon={<TitleEditIcon />}
+              color="primary"
+              onClick={handleClickEditButton}
+            >
+              <TextGroup
+                type={T.SMALL}
+                content={TT.EDIT_TITLE}
+                color="#007AFF"
+              />
+            </TitleEditButton>
+          )}
           <TitleEditButton
             onClick={handleClickIssueButton}
             startIcon={
@@ -105,6 +153,7 @@ const TitleLowerBox = styled.div`
 const TextBox = styled.div`
   display: flex;
   align-items: center;
+  width: 100%;
 
   div {
     :last-child {
@@ -115,6 +164,7 @@ const TextBox = styled.div`
 
 const ButtonBox = styled.div`
   margin-right: 10px;
+  display: flex;
 `;
 
 const TitleEditButton = styled(Button)`
