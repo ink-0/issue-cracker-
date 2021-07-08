@@ -2,15 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 import AddIcon from '@material-ui/icons/Add';
 import ButtonGroup from '../../../common/group/ButtonGroup';
-import { BUTTON_SIZE as BS, BUTTON_NAME as BN } from '../../../../utils/const';
-import { useSetRecoilState } from 'recoil';
-import { labelEditIdState } from '../../../../store/Recoil';
-
+import {
+  URL as U,
+  BUTTON_SIZE as BS,
+  BUTTON_NAME as BN,
+} from '../../../../utils/const';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import {
+  labelEditIdState,
+  labelEditInputState,
+} from '../../../../store/Recoil';
+import { getPut } from '../../../../utils/restAPI';
 const LabelEditCompleteButton = (): JSX.Element => {
-  const setLabelEditId = useSetRecoilState(labelEditIdState);
+  const [labelEditId, setLabelEditId] = useRecoilState(labelEditIdState);
+  const labelEditInput = useRecoilValue(labelEditInputState);
+  const userToken = localStorage.getItem('token');
+  const issueEditUrl = U.LABELS + '/' + labelEditId;
 
   const handleClickCompleteButton = () => {
-    // getPost(U.LABELS, userToken, labelAddInput);
+    getPut(issueEditUrl, userToken, labelEditInput);
     setLabelEditId(0);
   };
 

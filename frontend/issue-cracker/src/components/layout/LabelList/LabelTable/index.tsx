@@ -29,10 +29,10 @@ const LabelTable = (): JSX.Element => {
       {labels?.map((label: LabelProps) => {
         labelEditId === label.id && setLabelEditInput(label);
         return (
-          <>
-            <LabelCell key={uuidv4()} {...{ label }} />
+          <div key={uuidv4()}>
+            <LabelCell {...{ label }} />
             {labelEditId === label.id && <LabelEdit />}
-          </>
+          </div>
         );
       })}
     </IssueTableContainer>
