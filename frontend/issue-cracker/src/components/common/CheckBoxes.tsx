@@ -10,15 +10,23 @@ export default function Checkboxes(): JSX.Element {
   };
 
   return (
-    <CustomCheckBox
-      color="default"
-      inputProps={{ 'aria-label': 'checkbox with default color' }}
-    />
+    <CheckBoxesStyle>
+      <CustomCheckBox
+        color="default"
+        inputProps={{ 'aria-label': 'checkbox with default color' }}
+      />
+    </CheckBoxesStyle>
   );
 }
 
+const CheckBoxesStyle = styled.div`
+  display: flex;
+  height: fit-content;
+`;
+
 const CustomCheckBox = styled(Checkbox)`
   margin: 0px 15px;
+
   svg {
     fill: #d9dbe9;
   }

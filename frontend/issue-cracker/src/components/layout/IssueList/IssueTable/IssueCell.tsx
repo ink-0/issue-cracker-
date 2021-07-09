@@ -46,59 +46,54 @@ const IssueCell = ({ issues }: { issues: IssueDataProps[] }): JSX.Element => {
         const elapsedTime = getElapsedTime(createdDateTime);
         return (
           <S.IssueCell key={uuidv4()}>
-            <>
-              <LeftBox>
-                <CheckBoxes />
-                <IssueCellContent>
-                  <Link
-                    to={{
-                      pathname: `/main/issue-detail/${issueId}`,
-                      state: { id: issueId },
-                    }}
-                  >
-                    <IssueUpper onClick={() => handleClickIssueCell(issueId)}>
-                      <IssueOpenIcon
-                        color="#3f51b5"
-                        style={{ width: 24, height: 24 }}
-                      />
-                      <IssueTitle>{title}</IssueTitle>
-                      {labels.map((label: LabelProps) => {
-                        const { textColor, backgroundColor, title } = label;
-
-                        return (
-                          <LabelSmallGroup
-                            color={textColor}
-                            backgroundColor={backgroundColor}
-                            label={title}
-                            key={uuidv4()}
-                          />
-                        );
-                      })}
-                    </IssueUpper>
-                  </Link>
-                  <T.TextSmall color="#6E7191">
-                    <IssueLower>
-                      <IssueID>#{issueId}</IssueID>
-                      <IssueContent>
-                        이 이슈가 {elapsedTime}, {writer.name}님에 의해
-                        작성되었습니다.
-                      </IssueContent>
-                      <IssueMileStone>{milestoneInfo?.title}</IssueMileStone>
-                    </IssueLower>
-                  </T.TextSmall>
-                </IssueCellContent>
-              </LeftBox>
-              <RightBox>
-                {assignees.map((assignee: AssigneeProps) => {
-                  return (
-                    <P.ProfileImgSmall
-                      src={assignee.avatarUrl}
-                      key={uuidv4()}
+            <LeftBox>
+              <CheckBoxes />
+              <IssueCellContent>
+                <Link
+                  to={{
+                    pathname: `/main/issue-detail/${issueId}`,
+                    state: { id: issueId },
+                  }}
+                >
+                  <IssueUpper onClick={() => handleClickIssueCell(issueId)}>
+                    <IssueOpenIcon
+                      color="#3f51b5"
+                      style={{ width: 24, height: 24 }}
                     />
-                  );
-                })}
-              </RightBox>
-            </>
+                    <IssueTitle>{title}</IssueTitle>
+                    {labels.map((label: LabelProps) => {
+                      const { textColor, backgroundColor, title } = label;
+
+                      return (
+                        <LabelSmallGroup
+                          color={textColor}
+                          backgroundColor={backgroundColor}
+                          label={title}
+                          key={uuidv4()}
+                        />
+                      );
+                    })}
+                  </IssueUpper>
+                </Link>
+                <T.TextSmall color="#6E7191">
+                  <IssueLower>
+                    <IssueID>#{issueId}</IssueID>
+                    <IssueContent>
+                      이 이슈가 {elapsedTime}, {writer.name}님에 의해
+                      작성되었습니다.
+                    </IssueContent>
+                    <IssueMileStone>{milestoneInfo?.title}</IssueMileStone>
+                  </IssueLower>
+                </T.TextSmall>
+              </IssueCellContent>
+            </LeftBox>
+            <RightBox>
+              {assignees.map((assignee: AssigneeProps) => {
+                return (
+                  <P.ProfileImgSmall src={assignee.avatarUrl} key={uuidv4()} />
+                );
+              })}
+            </RightBox>
           </S.IssueCell>
         );
       })}
@@ -110,6 +105,7 @@ export default IssueCell;
 
 const LeftBox = styled.div`
   display: flex;
+  align-items: center;
 `;
 const RightBox = styled.div`
   display: flex;
@@ -120,6 +116,7 @@ const IssueCellContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  height: 100%;
 
   a {
     text-decoration: none;
