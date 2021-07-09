@@ -127,15 +127,19 @@ const IssueCellContent = styled.div`
 const IssueUpper = styled.div`
   display: flex;
   align-items: center;
+  width: 100%;
 `;
 const IssueLower = styled.div`
   display: flex;
 `;
 const IssueID = styled.div``;
+
 const IssueContent = styled.div`
   margin: 0 16px;
 `;
+
 const IssueMileStone = styled.div``;
+
 const IssueTitle = styled.div`
   font-weight: 600;
   margin: 0 9px;
