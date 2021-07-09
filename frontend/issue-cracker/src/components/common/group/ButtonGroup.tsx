@@ -60,7 +60,7 @@ function ButtonLarge({ classes, name, onClick, color }: IButton) {
       className={classes.buttonLarge}
       style={{
         backgroundColor: `${color}`,
-        color: `${color === 'white' ? '#222' : '#fff'}`,
+        color: `${color === 'white' ? '#222' : '#ffffff'}`,
       }}
       onClick={onClick}
     >
@@ -92,7 +92,7 @@ function ButtonSmallFill({ classes, name, onClick, color, icon }: IButton) {
       className={classes.buttonSmallFill}
       style={{
         backgroundColor: `${color}`,
-        color: `${color === 'white' ? '#222' : '#fff'}`,
+        color: `${color === 'white' ? '#222' : '#ffffff'}`,
       }}
       onClick={onClick}
     >

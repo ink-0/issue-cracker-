@@ -45,6 +45,7 @@ export const BUTTON_NAME = {
   EDIT: '편집',
   WRITING_ISSUE: '이슈작성',
   WRITING_CANCEL: '작성 취소',
+  DELETE_ISSUE: '이슈 삭제',
 };
 
 // ButtonSize
@@ -69,6 +70,8 @@ export const TEXT = {
   OPEN_MILESTONE: '열린 마일스톤',
   CLOSED_MILESTONE: '닫힌 마일스톤',
   EDIT_TITLE: '제목 편집',
+  EDIT_COMPLETE: '편집 완료',
+  EDIT_CANCEL: '편집 취소',
   CLOSE_ISSUE: '이슈 닫기',
 };
 export const SIDEBAR_TYPE = {

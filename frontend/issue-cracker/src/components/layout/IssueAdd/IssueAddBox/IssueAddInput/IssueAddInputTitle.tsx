@@ -58,7 +58,7 @@ const InputGroupStyle = styled.div`
 
     div {
       :focus-within {
-        background: #fff;
+        background: #ffffff;
       }
     }
   }

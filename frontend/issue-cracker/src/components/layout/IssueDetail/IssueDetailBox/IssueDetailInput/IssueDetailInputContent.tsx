@@ -1,7 +1,7 @@
 import React from 'react';
 import TextArea from '../../../../common/TextArea';
 import styled from 'styled-components';
-import IssueDetailButton from '../../IssueDetailButton';
+import IssueDetailButton from '../../IssueDetailHeader/IssueDetailHeaderInfoSection/IssueDetailButton';
 
 const IssueDetailInputContent = (): JSX.Element => {
   return (

@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import ButtonGroup from '../../common/group/ButtonGroup';
-import { BUTTON_SIZE as BS } from '../../../utils/const';
+import ButtonGroup from '../../../../common/group/ButtonGroup';
+import { BUTTON_SIZE as BS } from '../../../../../utils/const';
 const IssueDetailButton = (): JSX.Element => {
+  const handleClickPostCommentButton = () => {
+    console.log('comment');
+  };
+
   return (
-    <IssueDetailButtonStyle>
+    <IssueDetailButtonStyle onClick={handleClickPostCommentButton}>
       <ButtonGroup type={BS.SMALL_FILL} name="코멘트 작성" />
     </IssueDetailButtonStyle>
   );

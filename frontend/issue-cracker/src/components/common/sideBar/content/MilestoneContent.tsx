@@ -10,7 +10,7 @@ const MilestoneContent = ({
   return (
     <>
       <ProgressBox>
-        {checkedMilestone && checkedMilestone[0] && <ProgressBar value={0} />}
+        {checkedMilestone && checkedMilestone[0] && <ProgressBar value={70} />}
       </ProgressBox>
       <TextBox>
         <S.TextSmall>
@@ -24,9 +24,12 @@ const MilestoneContent = ({
 export default MilestoneContent;
 
 const ProgressBox = styled.div`
+  margin-top: 10px;
   margin-bottom: 5px;
 `;
 
 const TextBox = styled.div`
+  font-family: 'Montserrat', sans-serif;
   margin-left: 2px;
+  margin-top: 10px;
 `;

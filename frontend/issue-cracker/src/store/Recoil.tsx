@@ -4,7 +4,6 @@ import {
   MilestoneProps,
   Milestones,
   IssueDataProps,
-
 } from '../utils/types/commonTypes';
 import { URL as U } from '../utils/const';
 
@@ -188,7 +187,7 @@ export const issueAddState = selector({
     };
   },
 });
-
+//IssueDetail
 export const issueDetailState = atom<IssueDataProps>({
   key: 'issueDetailState',
   default: {
@@ -211,6 +210,25 @@ export const issueDetailState = atom<IssueDataProps>({
     assignees: [],
     labels: [],
     comments: [],
+  },
+});
+
+//IssueDetailEdit
+export const issueEditTitleState = atom({
+  key: 'issueEditTitleState',
+  default: false,
+});
+
+export const issueEditContentState = atom({
+  key: 'issueEditContentState',
+  default: false,
+});
+
+export const issueEditInputState = atom({
+  key: 'issueEditInputTitleState',
+  default: {
+    title: '',
+    comment: '',
   },
 });
 

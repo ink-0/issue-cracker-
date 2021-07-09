@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import IssueDetailTitle from './IssueDetailTitle';
+import IssueDetailHeader from './IssueDetailHeader';
 import IssueDetailBox from './IssueDetailBox';
 import useFetch from '../../../utils/useFetch';
-import { issueDetailState } from '../../../store/Recoil';
+import { issueDetailState, issueEditInputState } from '../../../store/Recoil';
 import { Line as S } from '../../styles/CommonStyles';
 import { URL as U } from '../../../utils/const';
 
@@ -14,13 +14,21 @@ const IssueDetail = (): JSX.Element => {
   const issueDetailUrl = U.ISSUES + '/' + location.state.id;
   const issueDetails = useFetch(issueDetailUrl, []);
   const [issueDetail, setIssueDetail] = useRecoilState(issueDetailState);
+  const setIssueEditInput = useSetRecoilState(issueEditInputState);
   setIssueDetail(issueDetails);
+
+  useEffect(() => {
+    setIssueEditInput({
+      title: issueDetails?.title,
+      comment: issueDetails?.content,
+    });
+  }, [issueDetails]);
 
   return (
     <>
       {issueDetail && (
         <IssueDetailStyle>
-          <IssueDetailTitle />
+          <IssueDetailHeader />
           <S.TableLine />
           <IssueDetailBox />
         </IssueDetailStyle>

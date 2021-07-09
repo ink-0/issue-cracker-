@@ -57,7 +57,7 @@ const IssueAddButton = (): JSX.Element => {
         type={BS.MEDIUM}
         name={BN.COMPLETE}
         onClick={handleClickCompleteButton}
-        color="#fff"
+        color="#ffffff"
       />
     </IssueAddButtonStyle>
   );

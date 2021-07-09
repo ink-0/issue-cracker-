@@ -39,7 +39,7 @@ export default LabelEdit;
 const LabelEditStyle = styled.div``;
 
 const LabelEditHeader = styled(S.IssueTableHeader)`
-  background: #fff;
+  background: #ffffff;
   height: fit-content;
   padding-bottom: 30px;
   border-top: none;
