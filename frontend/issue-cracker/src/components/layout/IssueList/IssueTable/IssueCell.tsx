@@ -117,6 +117,7 @@ const IssueCellContent = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   height: 100%;
+  padding: 15px 0;
 
   a {
     text-decoration: none;
