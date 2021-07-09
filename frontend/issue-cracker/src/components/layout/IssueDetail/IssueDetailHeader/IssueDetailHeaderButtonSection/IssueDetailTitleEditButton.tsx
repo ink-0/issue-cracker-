@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
-import TextGroup from '../../common/group/TextGroup';
-import { TYPE as T, TEXT as TT, URL as U } from '../../../utils/const';
+import TextGroup from '../../../../common/group/TextGroup';
+import { TYPE as T, TEXT as TT } from '../../../../../utils/const';
 import { useRecoilState } from 'recoil';
-import { issueEditTitleState } from '../../../store/Recoil';
+import { issueEditTitleState } from '../../../../../store/Recoil';
 
 const IssueDetailTitleEditButton = (): JSX.Element => {
   const [issueEditTitle, setIssueEditTitle] =

@@ -1,8 +1,8 @@
 import React from 'react';
-import TextGroup from '../../common/group/TextGroup';
-import { TYPE as T } from '../../../utils/const';
-import { getElapsedTime } from '../../../utils/util';
-import { IssueDataProps } from '../../../utils/types/commonTypes';
+import { TYPE as T } from '../../../../../utils/const';
+import { getElapsedTime } from '../../../../../utils/util';
+import { IssueDataProps } from '../../../../../utils/types/commonTypes';
+import TextGroup from '../../../../common/group/TextGroup';
 
 const IssueDetailDescription = ({
   state,

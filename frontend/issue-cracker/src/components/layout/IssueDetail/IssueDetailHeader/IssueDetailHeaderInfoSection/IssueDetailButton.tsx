@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import ButtonGroup from '../../common/group/ButtonGroup';
-import { BUTTON_SIZE as BS } from '../../../utils/const';
+import ButtonGroup from '../../../../common/group/ButtonGroup';
+import { BUTTON_SIZE as BS } from '../../../../../utils/const';
 const IssueDetailButton = (): JSX.Element => {
   return (
     <IssueDetailButtonStyle>

@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
-import TextGroup from '../../common/group/TextGroup';
-import { TYPE as T, TEXT as TT, URL as U } from '../../../utils/const';
-import { getPut } from '../../../utils/restAPI';
+import TextGroup from '../../../../common/group/TextGroup';
+import { TYPE as T, TEXT as TT, URL as U } from '../../../../../utils/const';
+import { getPut } from '../../../../../utils/restAPI';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import {
   issueEditTitleState,
   issueEditInputState,
-} from '../../../store/Recoil';
+} from '../../../../../store/Recoil';
 
 const IssueDetailTitleEditCompleteButton = ({
   id,

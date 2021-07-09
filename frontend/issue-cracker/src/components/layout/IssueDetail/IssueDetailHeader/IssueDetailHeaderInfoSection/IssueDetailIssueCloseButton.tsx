@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
-import EditIcon from '@material-ui/icons/Edit';
-import TextGroup from '../../common/group/TextGroup';
-import { TYPE as T, TEXT as TT, URL as U } from '../../../utils/const';
-import { useRecoilState } from 'recoil';
-import { issueEditTitleState } from '../../../store/Recoil';
-import IssueClosedIcon from '../../styles/svg/IssueClosedIcon';
+import TextGroup from '../../../../common/group/TextGroup';
+import { TYPE as T, TEXT as TT } from '../../../../../utils/const';
+import IssueClosedIcon from '../../../../styles/svg/IssueClosedIcon';
 
 const IssueDetailIssueCloseButton = ({
   callback,
@@ -36,9 +33,4 @@ const TitleEditButton = styled(Button)`
   margin: 5px;
   border: 1px solid #007aff;
   border-radius: 16px;
-`;
-
-const TitleEditIcon = styled(EditIcon)`
-  font-size: 10px;
-  color: #007aff;
 `;

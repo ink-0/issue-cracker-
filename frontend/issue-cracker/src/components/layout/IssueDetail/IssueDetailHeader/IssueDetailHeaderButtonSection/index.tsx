@@ -1,6 +1,6 @@
 import React from 'react';
-import IssueDetailTitleEditCompleteButton from './IssueDetailTitleEditCompleteButton';
 import IssueDetailTitleEditButton from './IssueDetailTitleEditButton';
+import IssueDetailTitleEditCompleteButton from './IssueDetailTitleEditCompleteButton';
 
 const IssueDetailHeaderButtonSection = ({
   state,

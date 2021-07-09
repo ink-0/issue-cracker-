@@ -1,18 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
-import EditIcon from '@material-ui/icons/Edit';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { issueDetailState } from '../../../store/Recoil';
-import { issueEditTitleState } from '../../../store/Recoil';
-import IssueDetailIssueId from './IssueDetailIssueId';
-import IssueDetailTitleEditCompleteButton from './IssueDetailTitleEditCompleteButton';
-import IssueDetailTitleEditButton from './IssueDetailTitleEditButton';
-import IssueDetailIssueCloseButton from './IssueDetailIssueCloseButton';
-import IssueDetailDescription from './IssueDetailDescription';
-import IssueDetailBadge from './IssueDetailBadge';
+import { issueDetailState } from '../../../../store/Recoil';
+import { issueEditTitleState } from '../../../../store/Recoil';
 import IssueDetailHeaderTitleSection from './IssueDetailHeaderTitleSection';
 import IssueDetailHeaderButtonSection from './IssueDetailHeaderButtonSection';
+import IssueDetailHeaderInfoSection from './IssueDetailHeaderInfoSection';
+import IssueDetailIssueId from './IssueDetailHeaderInfoSection/IssueDetailIssueId';
+import IssueDetailIssueCloseButton from './IssueDetailHeaderInfoSection/IssueDetailIssueCloseButton';
 
 const IssueDetailHeader = (): JSX.Element => {
   const issueDetails = useRecoilValue<any | null>(issueDetailState);
@@ -58,15 +53,10 @@ const IssueDetailHeader = (): JSX.Element => {
         </ButtonBox>
       </IssueDetailHeaderUpperBox>
       <TitleLowerBox>
-        <ButtonBox>
-          <IssueDetailBadge state={issueState} />
-        </ButtonBox>
-        <TextBox>
-          <IssueDetailDescription
-            state={issueState}
-            issueDetails={issueDetails}
-          />
-        </TextBox>
+        <IssueDetailHeaderInfoSection
+          state={issueState}
+          issueDetails={issueDetails}
+        />
       </TitleLowerBox>
     </IssueDetailHeaderStyle>
   );
@@ -105,17 +95,4 @@ const TextBox = styled.div`
 const ButtonBox = styled.div`
   margin-right: 10px;
   display: flex;
-`;
-
-const TitleEditButton = styled(Button)`
-  width: 120px;
-  height: 40px;
-  margin: 5px;
-  border: 1px solid #007aff;
-  border-radius: 16px;
-`;
-
-const TitleEditIcon = styled(EditIcon)`
-  font-size: 10px;
-  color: #007aff;
 `;

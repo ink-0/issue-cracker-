@@ -1,6 +1,6 @@
 import React from 'react';
-import IssueDetailTitleEdit from './IssueDetailTitleEdit';
 import IssueDetailTitle from './IssueDetailTitle';
+import IssueDetailTitleEdit from './IssueDetailTitleEdit';
 
 const IssueDetailHeaderTitleSection = ({
   state,

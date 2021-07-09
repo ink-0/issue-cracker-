@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { issueEditInputState } from '../../../store/Recoil';
+import { issueEditInputState } from '../../../../../store/Recoil';
 import { useRecoilState } from 'recoil';
 
 const IssueDetailTitleEdit = (): JSX.Element => {
