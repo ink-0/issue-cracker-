@@ -90,7 +90,6 @@ const SideBar = (): JSX.Element => {
       setIsDropAssignee((prev: boolean) => {
         const assigneeUrl =
           U.ISSUES + '/' + issueDetailId.issueId + '/assignees';
-
         if (prev)
           getPut(assigneeUrl, userToken, {
             assigneeIds: getValueInJson(checkedAssignee, 'id'),
@@ -98,8 +97,27 @@ const SideBar = (): JSX.Element => {
         return false;
       });
 
-      setIsDropLabel(false);
-      setIsDropMilestone(false);
+      setIsDropLabel((prev: boolean) => {
+        const labelUrl = U.ISSUES + '/' + issueDetailId.issueId + '/labels';
+        if (prev)
+          getPut(labelUrl, userToken, {
+            labelIds: getValueInJson(checkedLabel, 'id'),
+          });
+        return false;
+      });
+
+      setIsDropMilestone((prev: boolean) => {
+        const milestoneUrl =
+          U.ISSUES + '/' + issueDetailId.issueId + '/milestones';
+        console.log('마읽스톤데이터', checkedMilestone);
+
+        if (prev)
+          getPut(milestoneUrl, userToken, {
+            milestoneId: checkedMilestone,
+          });
+        return false;
+      });
+      // setIsDropMilestone(false);
     };
 
     document.addEventListener('mousedown', dropCloseHandler);
