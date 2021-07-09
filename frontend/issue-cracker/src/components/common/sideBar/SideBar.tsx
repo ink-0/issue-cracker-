@@ -109,15 +109,13 @@ const SideBar = (): JSX.Element => {
       setIsDropMilestone((prev: boolean) => {
         const milestoneUrl =
           U.ISSUES + '/' + issueDetailId.issueId + '/milestones';
-        console.log('마읽스톤데이터', checkedMilestone);
 
         if (prev)
           getPut(milestoneUrl, userToken, {
-            milestoneId: checkedMilestone,
+            milestoneId: checkedMilestone[0].id,
           });
         return false;
       });
-      // setIsDropMilestone(false);
     };
 
     document.addEventListener('mousedown', dropCloseHandler);
