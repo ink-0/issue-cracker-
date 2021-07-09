@@ -5,7 +5,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import TextGroup from '../../../../common/group/TextGroup';
 import { TYPE as T, TEXT as TT, URL as U } from '../../../../../utils/const';
 import { getPut } from '../../../../../utils/restAPI';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   issueEditTitleState,
   issueEditInputState,
@@ -16,8 +16,7 @@ const IssueDetailTitleEditCompleteButton = ({
 }: {
   id: number;
 }): JSX.Element => {
-  const [issueEditTitle, setIssueEditTitle] =
-    useRecoilState(issueEditTitleState);
+  const setIssueEditTitle = useSetRecoilState(issueEditTitleState);
   const issueEditInput = useRecoilValue(issueEditInputState);
 
   const handleClickCompleteButton = () => {

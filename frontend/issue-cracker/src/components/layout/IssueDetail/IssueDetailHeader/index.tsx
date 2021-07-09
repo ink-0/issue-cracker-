@@ -7,7 +7,6 @@ import IssueDetailHeaderTitleSection from './IssueDetailHeaderTitleSection';
 import IssueDetailHeaderButtonSection from './IssueDetailHeaderButtonSection';
 import IssueDetailHeaderInfoSection from './IssueDetailHeaderInfoSection';
 import IssueDetailIssueId from './IssueDetailHeaderInfoSection/IssueDetailIssueId';
-import IssueDetailIssueCloseButton from './IssueDetailHeaderInfoSection/IssueDetailIssueCloseButton';
 
 const IssueDetailHeader = (): JSX.Element => {
   const issueDetails = useRecoilValue<any | null>(issueDetailState);
@@ -24,8 +23,8 @@ const IssueDetailHeader = (): JSX.Element => {
       // if (editRef.current && !editRef.current.contains(e.target)) {
       //   setIssueEditTitle((prev) => !prev);
       // }
-      console.log(e.target);
-      console.log('current', editRef.current);
+      // console.log(e.target);
+      // console.log('current', editRef.current);
       // setIssueEditTitle((prev) => !prev);
     };
     window.addEventListener('mousedown', handleClickBody);
@@ -37,10 +36,7 @@ const IssueDetailHeader = (): JSX.Element => {
     <IssueDetailHeaderStyle>
       <IssueDetailHeaderUpperBox>
         <TextBox>
-          <IssueDetailHeaderTitleSection
-            state={issueEditTitle}
-            content={issueDetails?.title}
-          />
+          <IssueDetailHeaderTitleSection state={issueEditTitle} />
           <IssueDetailIssueId content={issueDetails?.issueId} />
         </TextBox>
 
@@ -48,8 +44,8 @@ const IssueDetailHeader = (): JSX.Element => {
           <IssueDetailHeaderButtonSection
             state={issueEditTitle}
             id={issueDetails?.issueId}
+            callback={setIssueState}
           />
-          <IssueDetailIssueCloseButton callback={setIssueState} />
         </ButtonBox>
       </IssueDetailHeaderUpperBox>
       <TitleLowerBox>

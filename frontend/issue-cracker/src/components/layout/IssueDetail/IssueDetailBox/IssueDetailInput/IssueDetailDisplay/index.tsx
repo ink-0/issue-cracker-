@@ -5,7 +5,6 @@ import {
   Issue as S,
 } from '../../../../../styles/CommonStyles';
 import TextGroup from '../../../../../common/group/TextGroup';
-import InputGroup from '../../../../../common/group/InputGroup';
 import IssueDetailComment from '../IssueDetailComment';
 
 import { useRecoilValue, useRecoilState } from 'recoil';

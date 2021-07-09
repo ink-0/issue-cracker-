@@ -74,7 +74,7 @@ const IssueDetailDisplayHeader = (): JSX.Element => {
               <TitleEditButton
                 startIcon={<TitleEditIcon style={{ fontSize: '14px' }} />}
                 color="primary"
-                onClick={handleClickEditButton}
+                onClick={handleClickCompleteButton}
               >
                 <TextGroup type={T.XSMALL} content={'완료'} color="#007AFF" />
               </TitleEditButton>
@@ -82,7 +82,7 @@ const IssueDetailDisplayHeader = (): JSX.Element => {
               <TitleEditButton
                 startIcon={<TitleEditIcon style={{ fontSize: '14px' }} />}
                 color="primary"
-                onClick={handleClickCompleteButton}
+                onClick={handleClickEditButton}
               >
                 <TextGroup type={T.XSMALL} content={'편집'} color="#6e7191" />
               </TitleEditButton>

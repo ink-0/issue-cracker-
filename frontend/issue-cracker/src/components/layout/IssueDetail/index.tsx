@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import IssueDetailHeader from './IssueDetailHeader';
 import IssueDetailBox from './IssueDetailBox';
@@ -14,8 +14,7 @@ const IssueDetail = (): JSX.Element => {
   const issueDetailUrl = U.ISSUES + '/' + location.state.id;
   const issueDetails = useFetch(issueDetailUrl, []);
   const [issueDetail, setIssueDetail] = useRecoilState(issueDetailState);
-  const [issueEditInput, setIssueEditInput] =
-    useRecoilState(issueEditInputState);
+  const setIssueEditInput = useSetRecoilState(issueEditInputState);
   setIssueDetail(issueDetails);
 
   useEffect(() => {

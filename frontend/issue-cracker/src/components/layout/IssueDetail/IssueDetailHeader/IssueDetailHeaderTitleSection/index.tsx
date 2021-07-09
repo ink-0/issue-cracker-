@@ -4,16 +4,10 @@ import IssueDetailTitleEdit from './IssueDetailTitleEdit';
 
 const IssueDetailHeaderTitleSection = ({
   state,
-  content,
 }: {
   state: boolean;
-  content: string;
 }): JSX.Element => {
-  return (
-    <>
-      {state ? <IssueDetailTitleEdit /> : <IssueDetailTitle {...{ content }} />}
-    </>
-  );
+  return <>{state ? <IssueDetailTitleEdit /> : <IssueDetailTitle />}</>;
 };
 
 export default IssueDetailHeaderTitleSection;
