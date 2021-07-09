@@ -1,5 +1,10 @@
 import { IssueDataProps } from './types/commonTypes';
-import { MilestoneDataProps } from './types/commonTypes';
+import {
+  MilestoneDataProps,
+  AssigneeProps,
+  LabelProps,
+  MilestoneProps,
+} from './types/commonTypes';
 
 export const getIssue = (
   list: IssueDataProps[],
@@ -53,4 +58,12 @@ export const getDate = (date: string | null): string => {
 export const getProgressRate = (open: number, close: number): number => {
   if (open === 0 && close === 0) return 0;
   return Math.floor((open + close) / open) * 100;
+};
+
+export const getValueInJson = (
+  data: AssigneeProps[] | LabelProps[] | MilestoneProps[],
+  key: string
+): string[] | number[] => {
+  const value = data.map((ele: any) => ele[key]);
+  return value;
 };

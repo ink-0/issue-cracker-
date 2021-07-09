@@ -27,6 +27,7 @@ import LabelContent from './content/LabelContent';
 import MilestoneContent from './content/MilestoneContent';
 import { issueFormState, issueDetailState } from '../../../store/Recoil';
 import { getPut } from '../../../utils/restAPI';
+import { getValueInJson } from '../../../utils/util';
 
 interface TokenProps {
   name: string;
@@ -86,29 +87,33 @@ const SideBar = (): JSX.Element => {
       if (dropLabelElement.current?.contains(e.target as Node)) return;
       if (dropMilestoneElement.current?.contains(e.target as Node)) return;
 
-      setIsDropAssignee((state: boolean) => {
-        // 공통 함수로 분리할 수 있을 것 같아요
-        // 아까 안됐던 이유는 최초 렌더링 된 이후 checkedData값이 업데이트 되지 않았던 것 같고,
-        // 의존성 배열에 checkedData를 넣어서 컴포넌트 렌더링후 사이드 이펙트를 처리해봤습니다.
-        // 두번째 문제는 put data 타입이 => [1, 2]로 일치하지 않아서 map으로 id만 추출했습니다.
-        // 마일스톤은 한 개라서 같은 타입의 배열로 만든 후 첫번째를 선택해서 요청보냈습니다.
-        const url = `${U.ISSUES}/${issueDetailId.issueId}/assignees`;
-        const putData = checkedData.assignee.map((el) => el.id);
-        if (state) getPut(url, userToken, { assigneeIds: putData });
+      setIsDropAssignee((prev: boolean) => {
+        const assigneeUrl =
+          U.ISSUES + '/' + issueDetailId.issueId + '/assignees';
+        if (prev)
+          getPut(assigneeUrl, userToken, {
+            assigneeIds: getValueInJson(checkedAssignee, 'id'),
+          });
         return false;
       });
 
-      setIsDropLabel((state: boolean) => {
-        const url = `${U.ISSUES}/${issueDetailId.issueId}/labels`;
-        const putData = checkedData.label.map((el) => el.id);
-        if (state) getPut(url, userToken, { labelIds: putData });
+      setIsDropLabel((prev: boolean) => {
+        const labelUrl = U.ISSUES + '/' + issueDetailId.issueId + '/labels';
+        if (prev)
+          getPut(labelUrl, userToken, {
+            labelIds: getValueInJson(checkedLabel, 'id'),
+          });
         return false;
       });
 
-      setIsDropMilestone((state: boolean) => {
-        const url = `${U.ISSUES}/${issueDetailId.issueId}/milestones`;
-        const putData = checkedData.milestone.map((el) => el.id);
-        if (state) getPut(url, userToken, { milestoneId: putData[0] });
+      setIsDropMilestone((prev: boolean) => {
+        const milestoneUrl =
+          U.ISSUES + '/' + issueDetailId.issueId + '/milestones';
+
+        if (prev)
+          getPut(milestoneUrl, userToken, {
+            milestoneId: checkedMilestone[0].id,
+          });
         return false;
       });
     };

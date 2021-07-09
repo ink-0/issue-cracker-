@@ -45,6 +45,7 @@ export const BUTTON_NAME = {
   EDIT: '편집',
   WRITING_ISSUE: '이슈작성',
   WRITING_CANCEL: '작성 취소',
+  DELETE_ISSUE: '이슈 삭제',
 };
 
 // ButtonSize
