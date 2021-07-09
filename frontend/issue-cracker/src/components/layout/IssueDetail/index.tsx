@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import IssueDetailTitle from './IssueDetailTitle';
+import IssueDetailHeader from './IssueDetailHeader';
 import IssueDetailBox from './IssueDetailBox';
 import useFetch from '../../../utils/useFetch';
 import { issueDetailState, issueEditInputState } from '../../../store/Recoil';
@@ -29,7 +29,7 @@ const IssueDetail = (): JSX.Element => {
     <>
       {issueDetail && (
         <IssueDetailStyle>
-          <IssueDetailTitle />
+          <IssueDetailHeader />
           <S.TableLine />
           <IssueDetailBox />
         </IssueDetailStyle>
