@@ -1,7 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Issue as S } from '../../styles/CommonStyles';
-import { TYPE as T, SIDEBAR_TYPE as ST, TOKEN } from '../../../utils/const';
+import {
+  TYPE as T,
+  SIDEBAR_TYPE as ST,
+  TOKEN,
+  URL as U,
+} from '../../../utils/const';
 import TextGroup from '../group/TextGroup';
 import AddIcon from '@material-ui/icons/Add';
 import jwtDecode from 'jwt-decode';
@@ -20,7 +25,8 @@ import MilestoneData from './data/MilestoneData';
 import AssigneeContent from './content/AssigneeContent';
 import LabelContent from './content/LabelContent';
 import MilestoneContent from './content/MilestoneContent';
-import { issueFormState } from '../../../store/Recoil';
+import { issueFormState, issueDetailState } from '../../../store/Recoil';
+import { getPut } from '../../../utils/restAPI';
 
 interface TokenProps {
   name: string;
@@ -35,6 +41,7 @@ const SideBar = (): JSX.Element => {
   const [isDropLabel, setIsDropLabel] = useRecoilState(dropLabelState);
   const [isDropMilestone, setIsDropMilestone] =
     useRecoilState(dropMilestoneState);
+  const userToken = localStorage.getItem('token');
 
   const dropAssigneeElement = useRef<HTMLDivElement>(null);
   const dropLabelElement = useRef<HTMLDivElement>(null);
@@ -49,6 +56,7 @@ const SideBar = (): JSX.Element => {
   ];
 
   const checkedData = useRecoilValue(dropCheckState);
+  const issueDetailId = useRecoilValue(issueDetailState);
 
   const [checkedAssignee, checkedLabel, checkedMilestone] = [
     checkedData.assignee,
@@ -74,22 +82,19 @@ const SideBar = (): JSX.Element => {
       });
 
     const dropCloseHandler = (e: MouseEvent): void => {
-      if (dropAssigneeElement.current?.contains(e.target as Node)) {
-        setIsDropLabel(false);
-        setIsDropMilestone(false);
-        return;
-      }
-      if (dropLabelElement.current?.contains(e.target as Node)) {
-        setIsDropAssignee(false);
-        setIsDropMilestone(false);
-        return;
-      }
-      if (dropMilestoneElement.current?.contains(e.target as Node)) {
-        setIsDropAssignee(false);
-        setIsDropLabel(false);
-        return;
-      }
-      setIsDropAssignee(false);
+      if (dropAssigneeElement.current?.contains(e.target as Node)) return;
+      if (dropLabelElement.current?.contains(e.target as Node)) return;
+      if (dropMilestoneElement.current?.contains(e.target as Node)) return;
+
+      setIsDropAssignee((prev: boolean) => {
+        const assigneeUrl =
+          U.ISSUES + '/' + issueDetailId.issueId + '/assignees';
+        console.log(checkedData.assignee);
+        if (prev)
+          getPut(assigneeUrl, userToken, { assigneeIds: checkedData.assignee });
+        return false;
+      });
+
       setIsDropLabel(false);
       setIsDropMilestone(false);
     };

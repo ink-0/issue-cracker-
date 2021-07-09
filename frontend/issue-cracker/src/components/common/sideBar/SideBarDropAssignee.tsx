@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ProfileImg as S, Text as T } from '../../styles/CommonStyles';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { decodedToken, dropCheckState } from '../../../store/Recoil';
+import { useRecoilState } from 'recoil';
+import { dropCheckState } from '../../../store/Recoil';
 import CheckOffIcon from '../../styles/svg/CheckOffIcon';
 import CheckOnIcon from '../../styles/svg/CheckOnIcon';
 import { AssigneeProps } from '../../../utils/types/commonTypes';
@@ -12,8 +12,6 @@ const SideBarDropAssignee = ({
 }: {
   data: AssigneeProps;
 }): JSX.Element => {
-  const decoded = decodedToken && useRecoilValue(decodedToken);
-  const profileURL = decoded && decoded.avatarUrl;
   const [isCheck, setIsCheck] = useState(false);
   const [dropCheck, setDropCheck] = useRecoilState(dropCheckState);
 
