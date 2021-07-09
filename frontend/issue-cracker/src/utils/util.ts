@@ -54,3 +54,8 @@ export const getProgressRate = (open: number, close: number): number => {
   if (open === 0 && close === 0) return 0;
   return Math.floor((open + close) / open) * 100;
 };
+
+export const getValueInJson = (data: any[], key: string): any[] => {
+  const value = data.map((ele) => ele[key]);
+  return value;
+};

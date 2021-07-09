@@ -27,6 +27,7 @@ import LabelContent from './content/LabelContent';
 import MilestoneContent from './content/MilestoneContent';
 import { issueFormState, issueDetailState } from '../../../store/Recoil';
 import { getPut } from '../../../utils/restAPI';
+import { getValueInJson } from '../../../utils/util';
 
 interface TokenProps {
   name: string;
@@ -89,9 +90,11 @@ const SideBar = (): JSX.Element => {
       setIsDropAssignee((prev: boolean) => {
         const assigneeUrl =
           U.ISSUES + '/' + issueDetailId.issueId + '/assignees';
-        console.log(checkedData.assignee);
+
         if (prev)
-          getPut(assigneeUrl, userToken, { assigneeIds: checkedData.assignee });
+          getPut(assigneeUrl, userToken, {
+            assigneeIds: getValueInJson(checkedAssignee, 'id'),
+          });
         return false;
       });
 
@@ -104,7 +107,7 @@ const SideBar = (): JSX.Element => {
     return () => {
       document.removeEventListener('mousedown', dropCloseHandler);
     };
-  }, []);
+  }, [checkedData]);
 
   return (
     <SideBarStyle>
