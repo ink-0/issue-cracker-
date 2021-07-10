@@ -2,13 +2,14 @@
 export const LOGO_TITLE = 'Issue Cracker..🍪';
 const DEPLOY = 'http://issue-tracker.pyro-squad.com';
 // const LOCAL = 'http://localhost:8080';
+// const LOCAL_LOGIN = 'http://localhost:3000';
+
+const LOGIN_URL = DEPLOY;
 const BASE_URL = DEPLOY;
 //url
 export const URL = {
-  // AUTH: 'http://localhost:8080/api/web/auth',
   AUTH: `${BASE_URL}/api/web/auth`,
-  LOGIN:
-    'https://github.com/login/oauth/authorize?client_id=2a42dd1b1e2aad1238e9&scope=read:user,user:email&redirect_uri=http://issue-tracker.pyro-squad.com/authentication',
+  LOGIN: `https://github.com/login/oauth/authorize?client_id=2a42dd1b1e2aad1238e9&scope=read:user,user:email&redirect_uri=${LOGIN_URL}/authentication`,
   FORM: `${BASE_URL}/api/web/issues/form`,
   ISSUES: `${BASE_URL}/api/web/issues`,
   LABELS: `${BASE_URL}/api/web/labels`,
