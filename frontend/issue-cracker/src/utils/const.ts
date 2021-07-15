@@ -3,13 +3,15 @@ export const LOGO_TITLE = 'Issue Cracker..🍪';
 const DEPLOY = 'http://issue-tracker.pyro-squad.com';
 // const LOCAL = 'http://localhost:8080';
 // const LOCAL_LOGIN = 'http://localhost:3000';
-
+const DEPLOY_ID = '2a42dd1b1e2aad1238e9';
+const DEVELOPE_ID = 'e0ec416c1189c6a7f776';
 const LOGIN_URL = DEPLOY;
 const BASE_URL = DEPLOY;
+const CLIENT_ID = BASE_URL === DEPLOY ? DEPLOY_ID : DEVELOPE_ID;
 //url
 export const URL = {
   AUTH: `${BASE_URL}/api/web/auth`,
-  LOGIN: `https://github.com/login/oauth/authorize?client_id=2a42dd1b1e2aad1238e9&scope=read:user,user:email&redirect_uri=${LOGIN_URL}/authentication`,
+  LOGIN: `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=read:user,user:email&redirect_uri=${LOGIN_URL}/authentication`,
   FORM: `${BASE_URL}/api/web/issues/form`,
   ISSUES: `${BASE_URL}/api/web/issues`,
   LABELS: `${BASE_URL}/api/web/labels`,
